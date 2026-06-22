@@ -1,0 +1,1107 @@
+{
+  "meta": {
+    "last_updated": "2026-06-22",
+    "note": "Generated from live incident data.",
+    "total_documented": 64,
+    "total_disclosed": 19,
+    "orders_complete": true,
+    "labels": {
+      "documented": "documented",
+      "disclosed": "legal basis identified"
+    }
+  },
+  "facets": {
+    "who": [
+      {
+        "id": "Individual",
+        "label": "Individual"
+      },
+      {
+        "id": "Media Outlet",
+        "label": "Media Outlet"
+      },
+      {
+        "id": "Technology",
+        "label": "Technology"
+      },
+      {
+        "id": "Journalist",
+        "label": "Journalist"
+      },
+      {
+        "id": "Platform-wide",
+        "label": "Platform-wide"
+      }
+    ],
+    "platform": [
+      {
+        "id": "Twitter/X",
+        "label": "Twitter/X"
+      },
+      {
+        "id": "YouTube",
+        "label": "YouTube"
+      },
+      {
+        "id": "Facebook",
+        "label": "Facebook"
+      },
+      {
+        "id": "Telegram",
+        "label": "Telegram"
+      },
+      {
+        "id": "Website",
+        "label": "Website"
+      },
+      {
+        "id": "ISP",
+        "label": "ISP"
+      },
+      {
+        "id": "Other",
+        "label": "Other"
+      },
+      {
+        "id": "Facebook | Instagram",
+        "label": "Facebook | Instagram"
+      },
+      {
+        "id": "Instagram",
+        "label": "Instagram"
+      },
+      {
+        "id": "Twitter/X | Instagram",
+        "label": "Twitter/X | Instagram"
+      }
+    ],
+    "provision": [
+      {
+        "id": "Unknown",
+        "label": "Unknown"
+      },
+      {
+        "id": "Section 69A",
+        "label": "Section 69A"
+      },
+      {
+        "id": "Sahyog Portal",
+        "label": "Sahyog Portal"
+      },
+      {
+        "id": "Section 79(3)(b)",
+        "label": "Section 79(3)(b)"
+      },
+      {
+        "id": "IT Rules 2021",
+        "label": "IT Rules 2021"
+      },
+      {
+        "id": "IT Rules 2026",
+        "label": "IT Rules 2026"
+      }
+    ],
+    "sector": [
+      {
+        "id": "Other",
+        "label": "Other"
+      },
+      {
+        "id": "Technology Platform",
+        "label": "Technology Platform"
+      },
+      {
+        "id": "Civil Society",
+        "label": "Civil Society"
+      },
+      {
+        "id": "Individual / Journalist",
+        "label": "Individual / Journalist"
+      },
+      {
+        "id": "News Media",
+        "label": "News Media"
+      }
+    ]
+  },
+  "authorities": [
+    {
+      "id": "Unknown",
+      "label": "Unknown"
+    },
+    {
+      "id": "Section 69A",
+      "label": "Section 69A"
+    },
+    {
+      "id": "Sahyog Portal",
+      "label": "Sahyog Portal"
+    },
+    {
+      "id": "Section 79(3)(b)",
+      "label": "Section 79(3)(b)"
+    },
+    {
+      "id": "IT Rules 2021",
+      "label": "IT Rules 2021"
+    },
+    {
+      "id": "IT Rules 2026",
+      "label": "IT Rules 2026"
+    }
+  ],
+  "matrix": {
+    "Unknown": {
+      "Facebook": {
+        "documented": 1,
+        "disclosed": 0
+      },
+      "Telegram": {
+        "documented": 1,
+        "disclosed": 0
+      },
+      "Twitter/X | Instagram": {
+        "documented": 1,
+        "disclosed": 0
+      },
+      "Facebook | Instagram": {
+        "documented": 1,
+        "disclosed": 0
+      },
+      "Twitter/X": {
+        "documented": 40,
+        "disclosed": 0
+      },
+      "Website": {
+        "documented": 1,
+        "disclosed": 0
+      }
+    },
+    "IT Rules 2026": {
+      "Website": {
+        "documented": 1,
+        "disclosed": 1
+      }
+    },
+    "IT Rules 2021": {
+      "ISP": {
+        "documented": 1,
+        "disclosed": 1
+      },
+      "YouTube": {
+        "documented": 1,
+        "disclosed": 1
+      }
+    },
+    "Sahyog Portal": {
+      "Twitter/X": {
+        "documented": 4,
+        "disclosed": 4
+      },
+      "Other": {
+        "documented": 1,
+        "disclosed": 1
+      },
+      "Facebook": {
+        "documented": 1,
+        "disclosed": 1
+      }
+    },
+    "Section 69A": {
+      "Twitter/X": {
+        "documented": 2,
+        "disclosed": 2
+      },
+      "YouTube": {
+        "documented": 4,
+        "disclosed": 4
+      },
+      "Telegram": {
+        "documented": 1,
+        "disclosed": 1
+      }
+    },
+    "Section 79(3)(b)": {
+      "Facebook": {
+        "documented": 2,
+        "disclosed": 2
+      },
+      "Instagram": {
+        "documented": 1,
+        "disclosed": 1
+      }
+    }
+  },
+  "litigation": {
+    "total_cases": 52,
+    "by_court": [
+      {
+        "court": "Delhi High Court",
+        "count": 26
+      },
+      {
+        "court": "Karnataka High Court",
+        "count": 13
+      },
+      {
+        "court": "Bombay High Court",
+        "count": 8
+      },
+      {
+        "court": "Bombay HC",
+        "count": 1
+      },
+      {
+        "court": "Gujarat High Court",
+        "count": 1
+      },
+      {
+        "court": "Rajasthan High Court",
+        "count": 1
+      },
+      {
+        "court": "High Court",
+        "count": 1
+      },
+      {
+        "court": "Karnataka HC",
+        "count": 1
+      }
+    ],
+    "active_challenges": 36
+  },
+  "orders": [
+    {
+      "id": "adda48ac-287e-456b-b120-a9978e29bab1",
+      "date": "2026-06-20",
+      "entity": "David Peterson (Proton VPN General Manager)",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Account withheld within India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTFBnS1ZTOEE3SU43V0dYejRSVHFVT1NNWUs4cnA4Y1U0bmtZbjRGc2dPUUktbjBYVzlFalZpSXNtVGRaZHFIVHZkc1BSTmdScm9IWXZUQ0Vib2tpdzJhSy1wandfMnRhbEZYYTJj?oc=5"
+    },
+    {
+      "id": "06944808-ce3b-417b-be01-65fde5808b9e",
+      "date": "2026-06-19",
+      "entity": "David Peterson (Proton VPN manager)",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://www.medianama.com/2026/06/223-x-withholds-proton-vpn-manager-david-peterson-account/"
+    },
+    {
+      "id": "c2b5a3f9-5db4-411e-a1e7-64bcdef833ae",
+      "date": "2026-06-18",
+      "entity": "Proton VPN GM",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOMWVWQlFRMGRyekxoeEc3UUVYMk1UaDZGNmRvb2pPRlJ0b1hvQ2ZRZ0VBNVlUM2hjclZTc3NoQTdxUy1KSTd5bWNnd2NKcjN0cnBvSk5BTkNTT3FkNHJIRXZ3WExpQ1dzZzdKaHc3UTdHQ0Zock41LXlZQ25SUy1ncENxMEkxOEhRRlRkNTFMMERBS3ZkWEI4aTFGUGVPMEJkZ2RCdmJkMnNsRkpkb05BV0xCOTlDU0xrV2JxRnljR2NmTW1VZkFDRzEzZWpSUWfSAdQBQVVfeXFMTWtVamhIZWZVc1R6am56VmcxU091SndrVlpMWFg5RDNHLTBhUGZrb0F1VHkzZjA1WWhvUElZVmJFZzQxNFZtX0YyWEtycDBfY0JQeE9SS2kyd1BpdmxnMHNyRHB0dUdYc05qdTlxMkdsX1UxZnpBOURGOV9SWk9xeVNiWmExNm5samRLY05PSkk0Ry1Ka1RjWTJuM1ZpNW10WkZCaXl3MEVOYWhCbkJqc0RPWS1OZ2lsMjYwdmxlRnBCS0NBVTZVTF8xQ3lWRklSa0VjdUw?oc=5"
+    },
+    {
+      "id": "eddec7dd-2352-44c6-8d03-32ed73b764b6",
+      "date": "2026-06-16",
+      "entity": "Telegram App",
+      "who": "Technology",
+      "platform": "Telegram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Telegram app banned in India; message editing feature disabled",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQbndybmNmczlVVXZqMGxrZjFtQ2w0ZFJvUU9LX3o4el80MTNLalQzVjA3Mm52MDVHeEJkaVpyYWNLOFBpc28yckhzcVZiUkMxOE54dnljV2tCeXgtalVqZ25hR21aYUtLWjlLcm9vdHdTQnJkdEhRRl9vVmJBMjVfU25XbTk2SWZNSjZoRXNrZ3RZbzAycXBFazRVUDlLTWFQbnMtdmVXU3E5SVNJbkdHS3ItbmdxTGdWTEE0ZVUzNNIBxAFBVV95cUxQQW16UGsySGY4SjNMSzVWZmd4b0x6QVpCSDhUaW9FSUFJMTlLMnJBUWJPMjM0UDl3NkQ0bGgzdmxWc2V6VVdsNV9lTE1PZUJabjhrcjQ5QnBsMUd0R1UxNUQ1bGRkQUFqWDkzaDc0MVR1RjNTMldrcFo5SUJSSTFJSTV0UUhYbXlHSDd0ODZUeWNtYjlYYXg4ZmZMNVFIbFVrU0pzN0l6MXlNaDRBa21nRGpIU0hkaTBBYnVWb3BKVWhKbkJU?oc=5"
+    },
+    {
+      "id": "3c134f77-21af-450f-9d03-6eaf959cf949",
+      "date": "2026-06-16",
+      "entity": "Telegram",
+      "who": "Technology",
+      "platform": "Telegram",
+      "provision": "Section 69A",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Messaging app temporarily blocked in India; message editing feature disabled. Multiple fraudulent channels also taken down.",
+      "disclosed": true,
+      "url": "https://indianexpress.com/article/education/telegram-app-blocked-till-june-22-neet-security-concerns-nta-paper-leak-10741793/"
+    },
+    {
+      "id": "2220aa2b-4414-44ee-b8b2-993e3f45d2ea",
+      "date": "2026-06-14",
+      "entity": "YSR Congress Party (YSRCP)",
+      "who": "Individual",
+      "platform": "Facebook",
+      "provision": "Unknown",
+      "status": "Challenged",
+      "sector": "Other",
+      "action": "Official Facebook page blocked/made inaccessible in India",
+      "disclosed": false,
+      "url": "https://www.thenewsminute.com/andhra-pradesh/ysrcps-facebook-page-blocked-in-india-jagan-blames-naidu-govt-for-undemocratic-move"
+    },
+    {
+      "id": "0663f1ea-faf8-4491-a5f6-7501467582f8",
+      "date": "2026-06-04",
+      "entity": "Viral Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMigANBVV95cUxPZ2ttQ1FaVzlLRnpnaXhxTzlVSjFPeXFHTG5hOUJ0UFFrSTR3T1RsSzd1UHR5LUVzQmxLNlNUODgyTzZ6MzJ4R0FUNDFtakZqX0ZPQTBTMGtBbXBNUXNNMlI0enpPYU0zNkNZSC1OMmlCOUxWN3JIU0o4MEk2VDZsQmJxYjJkcjBydHNPRGtKU0FYQU9DWFdOZ3ZENXFwWW1XVjBGRk5jMkZ2anBZTDl0WGpDMGlTVnlMWk14Vk1iWFAtVjd4WVRvekdocm5FLWF4UUR4czAtb2FHNGYtdlIxajBnYkNCOU5TTW1IOVhqTXZsN1l2VzRCMlFFaHhWdlZ3STZ2QTR6M2J2OU80OV9DaV82UHFCRnRBRC1UckVHa1VtdlA0OGVrLUVQUzg5anhqc3JUVVZqWUNvVE5uMFktWmR0b2R0Vkd1TTNQZnB2LTgyN0R0VElVdnhhQkNGcW94b04teVk4enNqaDdyWnlWTXFxQWJILU5JYVB1WGlxT2k?oc=5"
+    },
+    {
+      "id": "1e89d032-bfaa-49f0-b98f-9a0834f127a3",
+      "date": "2026-06-01",
+      "entity": "Cockroach Janta Party's X account",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "X account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPN3B4OXFzUEQ4aVZBT0VCUS03RzRhZWRWRS1GSUw3akRNRmItWXFEMnNBQjFUdXVmUTBiN3p5Q09RaXhYMFRXN3ZHOEJyMF9DUDI0a2lLY0VMeTJnZUg3RVI3X3h4NWNrRWlQYTI1Tm54aF9JSUJNNzhqUklpb05IcGYzVU9Jc3hSS2MtaTFaSGN1RFZpTjlvMTVCT2dtejFsbVg5V3poVEhpUWxaSkJweFphWjBDd2FrT3pXc05PdXkxT09UaGNWSVhEUUt2OFJqODhYdlF5YzdTdFRBWGtDZDRzMkZmSnY2ZThzc0RxdktNY1ZCb21lOXVtc1AtaUZXaE5LSElLNm0?oc=5"
+    },
+    {
+      "id": "edba73ad-e42f-437e-ac14-71ccd460a8f6",
+      "date": "2026-05-29",
+      "entity": "Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiiAJBVV95cUxPN3B4OXFzUEQ4aVZBT0VCUS03RzRhZWRWRS1GSUw3akRNRmItWXFEMnNBQjFUdXVmUTBiN3p5Q09RaXhYMFRXN3ZHOEJyMF9DUDI0a2lLY0VMeTJnZUg3RVI3X3h4NWNrRWlQYTI1Tm54aF9JSUJNNzhqUklpb05IcGYzVU9Jc3hSS2MtaTFaSGN1RFZpTjlvMTVCT2dtejFsbVg5V3poVEhpUWxaSkJweFphWjBDd2FrT3pXc05PdXkxT09UaGNWSVhEUUt2OFJqODhYdlF5YzdTdFRBWGtDZDRzMkZmSnY2ZThzc0RxdktNY1ZCb21lOXVtc1AtaUZXaE5LSElLNm0?oc=5"
+    },
+    {
+      "id": "92910491-9f3a-40c2-83c5-b9b58384af32",
+      "date": "2026-05-28",
+      "entity": "Viral Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxNa3BUTEF5U1ZlVmFuN3JTcnh2a3ZWc0oxWk1DelZVM0lLV1RVc0RhZVBiQzJkSTNCV2xBbTJwN1k1M25FcEdHaXkySkY4dC1vRTBweXFGMkxWUlU1ZHUyU0FuLVU2ODlEZ1BuUUJaamxfUXJZUHR5YVVOZHo0cW14YU1rYVBQQ1R3MHpudjVoUTU5SUJZcXdqdlhVQkI4a2M1R0JRYWRSWXIxN3UzT0RoLXhwcG9sN3VUR0Vna2NvOVYyQVJyY29odDVEdjIxdDZWYXlqODFiSDZXZmFIeF9ndC1JX2l1eFdpSEhTNlNBR3V1V2RpYnJCQUwzbnJkNHJxemVzT1drNDFkSFh1VlVjYzJiaVlyOFoyZDNRRU5wcy1iR3VPVmFUbVlHY3B1MkhwSkZmQ2R6TmY0a19JbF9fS2ZJZ0cxcXJZVE1iRGR5SmY2bjMzYThlSzMzQTdYaDJXbVJLOXRpSzV5YlZxQTdkaA?oc=5"
+    },
+    {
+      "id": "30388eb2-64cc-4fee-a957-3c155809e086",
+      "date": "2026-05-28",
+      "entity": "Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMinwNBVV95cUxNTmRIWTBPSXV6akZRQV94Y2NUdC00cmY4VjIyVnprdVJnNjJ5YThwRlRSbUY5dV80MFhXNXdvT3h3QjFtSkpseWVRY1NhMllic1poVXRSbGo2RVozRkZYVzdIUFlJRENLemtybjYxRHJESFVhbFpZSGhaUm9qck9ZdkNkTFFYMURtM0s0dzU5QnhhSmZib1g4UXpKbkNmZUxqMjlZa2NxUERod1hSTmpqODZsUFVUR3lRX3BWaEpJejlyWlZsbk9QRUR1a1dfVWd0ZUgtSy1tS3NMQWVtR3I1Mi1ldm5ONjdaN0p5RHFYY1o2VnB1bTlRNXVodkhYTG85UEZURzVrUFVsRUpuQkRROXNwWmNkclVhZ0VvcV84ZmIxeExCQWFXaUhzZFVzcUd2UXFfUG1VNGxIYk5HeVlBRXE1SWdPNHFVcndGV2NDTlBOelZtWVFZbGFfNDJxMmR1UEptMHhTZUN6T3hCRVIwamU2bFRHbU5xcXdnSGJDVEJLeHp1UjFkTTIyUmhjY3YzUHBEYUtCUDhLaUFkSHB3?oc=5"
+    },
+    {
+      "id": "01a1fe16-8778-4006-a94a-1cb4001bca38",
+      "date": "2026-05-27",
+      "entity": "Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMijwNBVV95cUxOU25kVEFDTjlMcHpBOGMwcUo5dVE4c21VbmdXbXZWYV9aYXoxeENhQlRXaFJucnBnRURaVGo4a2xuZER0LWhNRUFiSGp3NjhNOUp5YWwwMWg2WWw1NGZlSGJxaFNmWHdVYy1uWGFwbHp4ZmhEU3lEd05QczE5MHlCaGFERjJsaVduc0EzZW1JOWtIZUdHYVNnWGcwLTI0S0RvcGllZERmUmNjV0E1bU9kMDJlRXc4Q3NJYm8zV3RlUGVXbjk5c0tvSUFDRHpTSWxUVVJVTnVrQUdYR00xLVdtVkNWdjB0ellmLXQ2Z0ZfT05ncnN1ZHd1QjlHSDB2eWtQZ05GdEVCV3lyWEVMbnE4LWZtMnBPTWlYY0dNRWdIbDVpZF9UcVhFS0RwY0RKN3Q1VS1OUmVidVVJSEZwMWJrTHZib05VeUZ6LXltREFybGgyWTdkRmJ6dGNXdFJ6MVd5Q3NYQWtuWVFWSkx1dFZQNTZRZzEzai12N204U2ZCSFZLVmxyUzlZU2VTaHZ2bVU?oc=5"
+    },
+    {
+      "id": "5b482cd3-3915-4552-a37f-cbb4afdb2946",
+      "date": "2026-05-25",
+      "entity": "Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Unknown",
+      "sector": "Other",
+      "action": "Account withheld and website inaccessible",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxObEJVX0NjcFQzVm5NY2o3cnJrcW53U0xzeHN3T0JBMXp2UlJmZk43SXVIOWJSQUJ0ckhXRTh5eldPbXBURHUteldrZGx5VThhejZaMmhhbl9SMF9OSFF5dnNrWkkzZUpJRTI1VnhsU05fcUdQMVJyS0h1azZ2M1h1b3dveDYtREV0NUY4Qi1EdnlUTWJoMlJ0bXNlRGMwSkw0X044MjgxV0NuZHlNU1VJVmJCeTlKNVQ1eGljakNZY0tLT3RsVlBEZWFNTFRON0pJUEI4M1BhQmNSekN3T1VCeDZMRWc2TC1YM1NaWjBaUWdpWkxjU21ZZGQ0el8yUldU0gGGAkFVX3lxTFBEaFdGenNZN2lzVmJjVV96UUZiQlVndklQN3d2Q3VjMHY0X09CZ0p5TmRzakVocVVES1d4Vm1nenFjVkhrRXN5Q0tFOWdsUVByTnI4SlJRRlAwbVB3Z1MzS3lLbTFieXRBYlhmZVdaYUgybW5ha0JwNGFBSG1VVzRfejB2Z0hxM2ZPb2l3TFBUMVA5WjdNSFpGNURJaHFTNDVVSzJpUmFkLU1rMzJLT3lhaFEzTFVkWXNxNjFhY3BvR2VHSTh6d2JCYmc5b3VkQnQ0Y0p2dE9yWWs4Y3k4c1htUzUyb1JIdENXZE13em9EdUd3ZzVNWFhUVWVPSzRua0ZfeDM3OGc?oc=5"
+    },
+    {
+      "id": "8dc92e0c-01de-4711-9f93-cffe39f45960",
+      "date": "2026-05-24",
+      "entity": "'Cockroach Janata Party'",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Individual / Journalist",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxPSWUzRkNjTjdsU1V0QzZTc1hzbG5xZjRFY2pweWtxZ1dxVXkyUmJWdGstTUw1NHIwTVVPTVJ2N3VKUUZid3NRVE1RNFZSN0dNbWtxbEtvMEg5Q0g2Q1VFeWtrajhqNndpZk4zbktTcDItYlZ4NmNCbWI3bEtSU3JBU3FCT0FzZVpHOG9WZnE1MTZGTTFmaE0wY1FET1VZZm43MkVibnh1OUp2X1FjdVNIUjRtQVZmWTBWUWhPbnFlaE5SV29rSUVyYXhqQ19aczh3aUtia1IxdGN5X3pUcGJ5RXFuWHpTcnQ1S004RlVyRmNId2RheF9LOXJOYTRVQlhBZ0k1SnMxQzN5REZTblJEak1Qb0VVMklIN2tPNHNBSEpYUmVNeUptTmFSRzlLMHFDbmNweWxmaXZ2UjIyZmJraDlpdWtTV1E?oc=5"
+    },
+    {
+      "id": "d67598b2-5013-40f7-9766-0eae84ba4fc1",
+      "date": "2026-05-23",
+      "entity": "Cockroach Janta Party (founder Abhijeet Dipke)",
+      "who": "Individual",
+      "platform": "Twitter/X | Instagram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "X handles withheld, Instagram accounts hacked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPd1ZKOUpSV2g5NngyUkxfTURtanI3emFHM05YOFdxWGdsY2dSVExaVFlZUy1iSk5oQWZvQTltbEtYTE5KaGFwSlR1VjloUjk4Ul9FRmpYTWdRMTdkekhxNk9BU2lCOWdVamxzbWtwREg3Rm5qeVpER3l2VHZmd2JvOGZJS2RoZXRXeFlCWF9mekJIRTV1RzJHQW5RWjZHazhxYUphY2FEVlRvZ0VWdVFqUVRCREgxNlU3dU9fZFhkbmFCdUtObEdQRUJsUHBaY3fSAdYBQVVfeXFMT1F2bVhpV1UwWVNOYlVLdjZ1cFBqQ2xCQTZsZnFqRTNoLXNkVERuS2FDdFEtN3hNT3ljWG41ZmlsMXAwNmxlRmh0cXRPcFoyemdidFZzQVo5QW81NnljWE1hTF96TEQ0Tldud1FtNTdyTHNpYmJRUkQ5clFxWmpxdm5hN2Vzdl9nVk90YXE0NzU0N1Y3M2dQOUhwYlZiakpTSHJGUzY5dGx2LTEtbktkdU5Ga214b0dSeDhDd2llelRuVTRSNUVhXzlBcjVxT0lBdnp1elBOQQ?oc=5"
+    },
+    {
+      "id": "5a334fd4-dcf4-4906-8c18-bcc1e76dc74d",
+      "date": "2026-05-23",
+      "entity": "Cockroach Janata Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxNbkRxb2lIalZuRWI1QlZiU1lzczVPYmF3VjVKaUdCdE1qTUoyVnBuWk84cEhCdVp1ZjVkSnZ5czI1M2t2cUpfRE1keENwazJIYl9fMUU4MDNIb0pPT3VjOE1DdEY3SHdmbEFabkpoODRzLW9GcUhhQ3N4SGFtZHZaWnBKcllNMGZ0YXFQMXBnOWRidEtvSzVnbzBaM1dkTXpnUHJHVWdEZDdPWmlHVEF5NlN6VVA3UFVlZ3FCQTBSSXNlZzIxUWZnSExGOG5xdlFXTy0ycTF0QnN4Zw?oc=5"
+    },
+    {
+      "id": "d581ab23-5d3e-470a-86eb-79d689bf1ea3",
+      "date": "2026-05-23",
+      "entity": "Satirical Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Website",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOMTA0SFFHSFh6VTdkdDRSTUlGNVk5Wi1Xc3hvY3diVWY1WUVsQzJ3QlhzOW12RlU0M2NGRkhWdllhU1h6c0JOWHNRVFFKM21WQW5mTFRXVHdaeFAybGdYYVhEc3RncURXaXVDbVd4dVVVMWgwQ0k4b1lUcHpaeVo5Yk9hNEhmdwJOdzBWWWNuOXpTbUlOMmJIR0dkeXMxNXR2dm9MRWgtQ2R5QjFDS09UbElQS0FfdWRIRlRHaGdVdWNKTHhiNnhJLWd5RngxdG1TWlNadDBwQV9LRW0yclcyaFVmQVNzYW9kOG1pZ19ucmlTWjVvdEZUbg?oc=5"
+    },
+    {
+      "id": "469f1952-3bae-4ef1-82e8-cf40e9e8cb6a",
+      "date": "2026-05-23",
+      "entity": "'Cockroach Janata Party' X account",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMixwJBVV95cUxPSWUzRkNjTjdsU1V0QzZTc1hzbE5xZjRFY2pweWtxZ1dxVXkyUmJWdGstTUw1NHIwTVVPTVJ2N3VKUUZid3NRVE1RNFZSN0dNbWtxbEtvMEg5Q0g2Q1VFeWtrajhqNndpZk4zbktTcDItYlZ4NmNCbWI3bEtSU3JBU3FCT0FzZVpHOG9WZnE1MTZGTTFmaE0wY1FET1VZZk43MkVibnh1OUp2X1FjdVNIUjRtQVZmWTBWUWhPbnFlaE5SV29rSUVyYXhqQ19aczh3aUtia1IxdGN5X3pUcGJ5RXFuWHpTcnQ1S004RlVyRmNId2RheF9LOXJOYTRVQlhBZ0k1SnMxQzN5REZTblJEak1Qb0VMwNlRU1RNFZSN0dNbWtxbEtvMEg5Q0g2Q1VFeWtrajhqNndpZk4zbktTcDItYlZ4NmNCbWI3bEtSU3JBU3FCT0FzZVpHOG9WZnE1MTZGTTFmaE0wY1FET1VZZk43MkVibnh1OUp2X1FjdVNIUjRtQVZmWTBWUWhPbnFlaE5SV29rSUVyYXhqQ19aczh3aUtia1IxdGN5X3pUcGJ5RXFuWHpTcnQ1S004RlVyRmNId2RheF9LOXJOYTRVQlhBZ0k1SnMxQzN5REZTblJEak1Qb0VVMklIN2tPNHNBSEpYUmVNeUptTmFSRzlLMHFDbmNweWxmaXZ2UjIyZmJraDlpdWtTV1E?oc=5"
+    },
+    {
+      "id": "9571b610-c437-4f33-8137-6121290bcf60",
+      "date": "2026-05-23",
+      "entity": "Viral Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxNa3BUTEF5U1ZlVmFuN3JTcnh2a3ZWc0oxWk1DelZVM0lLV1RVc0RhZVBiQzJkSTNCV2xBbTJwN1k1M25FcEdHaXkySkY4dC1vRTBweXFGMkxWUlU1ZHUyU0FuLVU2ODlEZ1BuUUJaamxfUXJZUHR5YVVOZHo0cW14YU1rYVBQQ1R3MHpudjVoUTU5SUJZcXdqdlhVQkI4a2M1R0JRYWRSWXIxN3UzT0RoLXhwcG9sN3VUR0Vna2NvOVYyQVJyY29odDVEdjIxdDZWYXlqODFiSDZXZmFIeF9ndC1JX2l1eFdpSEhTNlNBR3V1V2RpYnJCQUwzbnJkNHJxemVzT1drNDFkSFh1VlVjYzJiaVlyOFoyZDNRRU5wcy1iR3VPVmFUbVlHY3B1MkhwSkZmQ2R6TmY0a19JbF9fS2ZJZ0cxcXJZVE1iRGR5SmY2bjMzYThlSzMzQTdYaDJXbVJLOXRpSzV5YlZxQTdkaA?oc=5"
+    },
+    {
+      "id": "393ae526-2712-42e0-8e97-81145208d694",
+      "date": "2026-05-22",
+      "entity": "'Cockroach Janta Party'",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "X handle withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOUXE3OVVrQ0tPNzY2Tm9IZ1JQSXplaWRlU09CdFJNWk9ta2R5U194YXdOWXI1cjlNdlZ1aldWZVZ6NllQRTdyOW9Hek5JNmxlbHlLMFZaTmVXRER4MndLN09SMDVLeUM1bVVua1VsRTlFYzdaUXQ1V3hXOW5sLUlZcUd1dXEtRG1sanhKU3lJdEVqUnh0LXNjUTBkeDM4dEJzdnc?oc=5"
+    },
+    {
+      "id": "d2c3a9db-f382-42b8-9ebd-591726174ef5",
+      "date": "2026-05-21",
+      "entity": "Cockroach Janata Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "X handle withheld",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxOREdHcEFlY2syQktYd1FjdUdqVVVkcmFTTHo4eFVYdjFPY3ZiQktlTWQ5cUVWNEw1SDR4TGpYa1RydURJWUlyRUdpZE42N2JMZ3c4QzN4dFAxN1NQbHN1TzZEdm1obXp1aUNDZm5yX0gtS29mN1dVZ044RFVzeW5ZYjNPczhmYkx5UE1mMTFQY3JzcjdTbnByS1hkVXBVOWJnSDczcTBFQnVlM2JBT1ZhYVF5QlJhSzBvYnExUjlvaHl0MXhhdGfSAcwBQVVfeXFMTWFCNFFwMm9ieEpEVldtYm5qQmZld19VYnhYZFkwdnAybkFXNWdOalJndzkyMjJGWGszUXJqWnltNXFMWDNHeHZVbzZCbGJ1YnZ5T2hmTGZyaFpJWmpiY0R2bmpGakxyM0VqSVdfVnp4VTh2UVVZTjJQV2NZbXNLT0RfX1dYZXQ5dGNqdEtibV9KZmdISVI3dzlrdGcwMHlwNkVZUkl1YkRtN1BBU3UxSk1UNG1RMXpUZzdLampNZE93S0NBZHhKa0syakF0?oc=5"
+    },
+    {
+      "id": "72e44c44-de03-428c-9965-26b4a25d3cad",
+      "date": "2026-05-21",
+      "entity": "CJP X Account",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Civil Society",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxQOFJFSDlzOV9MZlQ3OXM0cnlxX18xMnIzT3lqbEk1dWUtZmQzVXIzOFRvLTRNNG0zZXJ4QXpxM3JYVnB4VW9fX2JmcDdlTXozNUNOQThFTkhRRGk2Z3dyYWg1aWcyaVVZQl9ldDFpbnk2SkEyNWJsR3p6cFozSWpJOEVnTkFmOEItRTFzSWdHc2xiQkNVNHFrQ21zTEFpTU5DeExCSzZpeVhKZGEwbUFZdXNTblVRQlpYZjdxU1lRT0pxdGI1NkhkRUdmd1dSdmFRSlFoUEVYQnV5ekFMM2YwZUJRRTMwLVVHWnhpNVNrZ3k1TEHSAfMBQVVfeXFMUDhSRUg5czlfTGZUNzlzNHJ5cV9fMTJyM095amxJNXVlLWZkM1VyMzhUby00TTRtM2VyeEF6cTNyWFZweFVvX19iZnA3ZU16MzVDTkE4RU5IUURpNmd3cmFoNWlnMmlVWUJfZXQxaW55NkpBMjVibEd6enBaM0lqSThFZ05BZjhCLUUxc0lnR3NsYkJDVTRxa0Ntc0xBaU1OQ3hMQks2aXlYSmRhMG1BWXVzU25VUUJaWGY3cVNZUU9KcXRiNTZIZEVHZndXUnZhUUpRaFBFWEJ1eXpBTDNmMGVCUUUzMC1VR1p4aTVTa2d5NUxB?oc=5"
+    },
+    {
+      "id": "77dac068-e065-4ed8-b0dd-cbfd9472b3db",
+      "date": "2026-05-21",
+      "entity": "CJP (Citizens for Justice and Peace)",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Civil Society",
+      "action": "Account withheld/blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOajJUTHVTczFCUzhSeGx6Qm4weFR0dEJ6TUR4ekFrZEdJM2NfWlNIeFRuQThwOWFCbk9qQUd2cF9QZFpCY3FUajNsVHFwdWxxdVZiZG55S2ZzWlpKa1EyV0gzWWl3ZTFkM3M1X3RuN1FPekZpZ1htZzlxTlBwT2VJTGVOcjlJc2N4ZG5vclN1aDJ0ZGZGV3dHVERYR0JsRUpPUTBjd1FaSXZCNXAtLWFuSGFuV2tPbTVlemfSAb8BQVVfeXFMTjRNZC1ZYTRKOG5PbGxsTFdGSWtta0ZUdmZRVDB2dlptUXNGSlFNVGJnUklMd0FqVkFIUHY0WG1uVGV6WHFOX3NuT2FRREkyUnhiYktIbC11WTBYa184NDBQS1NlNHFfSGx4a3FJOVpZeGFuQzlGNXYyRUZGWmRTc19KVG1fMWZlbVB0SGtpVlQ5Q21uRUtJLWRBMlhrMjNIdlBGZ2E1SDRkM3_0k5vb3VBS2o0TFNJZmkyUGxOajQ?oc=5"
+    },
+    {
+      "id": "01f4e0c4-94a3-493e-9157-00a45960bdf2",
+      "date": "2026-05-21",
+      "entity": "Cockroach Janta Party (CJP)",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Civil Society",
+      "action": "X handle withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxNUHJZN0VQeldsc040Q1A2QXhBTHE4Vi1Ua3V5WjByWVRJMzhKdmJfM1ZsQkZLUzZxR3BoLTVadXNoT1dBS0JHYjAwMWFSSkVIeGltTU8wMjFDeEJBcUdZdldiQ0xWcXdNbEtJd1JSaWZXNXp1SEhLQ1RaOGtMdXYyXzhZS1pxaHE4T3lxTFE2WGlPMklxTTlNYlEydlBfb2RtOFE5XzdpXy1wVGxCaHA4ckU5T20wWXpydUJTMzR5cw?oc=5"
+    },
+    {
+      "id": "689bcd52-f131-4f3f-86f2-85173da4ee73",
+      "date": "2026-05-21",
+      "entity": "Cockroach Janta Party founder",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxOZmFZVnVTZ1k5aVZFMlVoYWpDQ29hS25hWWgyZk1KNFpTMEloVEhEMnZPUkVZb0g2SU84UzgzWndNT3N1MmtJc1ZJaTdmM0o3bGhSSmx4Q2RzWTVDeFp4a0xCckhUY19UWGZicVdxdmE3Sk55ZGVDOC1ScHVRN2NMcW9ycjVaWUdEejh3VTlCdFpJcDFVRjhZTy1xaG1vNEpVbWhzbmpNSVM1RzZrNjlvTDZoY2xnQU1QTXcxcERpQUdhcXA4c2k0QkxvV1HSAdIBQVVfeXFMUHhiUEdKUFZMNF9INl9jNTZ2RUQ2NzJvb1Z1MnpxV21neDc1bWhfNnh3bC1VXy1UUjFGeXlKUl8wTTBtaVBtTU0xYnotMXAzYzlIcnFLcDM2TXQwdWhnc1JjX1BpcDFocmZXal9PYUQwM2RqV1hSRE1LQU9adTVtb0pQbUdtVGFLR3JYRExvUHU3QTI1cHpCZXNUaVhGakE3UjVxS2hGMTFTZTZOemh4QWc0M01WWjdYQV9ORExNeUUzUWtCWWJHYW85QlJmOUEwZEFn?oc=5"
+    },
+    {
+      "id": "4ddc45be-18fd-4e51-9ba3-a091acc0ce8b",
+      "date": "2026-05-21",
+      "entity": "Citizens for Justice and Peace (CJP)",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Civil Society",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxNaHRVOER1b2E1aThFclRPMFdsSHlOVlBuNGZxVVQySEMwRTRLT2FOQ2g2TzAtZWdxSVM1eS1yZnU4NC1YaWFkV1hJM0kxWXRpN1hLX2EzTVNuZmIyQ1pDYnFIdzVmQTJXb2w0SndyVnlOVU8yZzE1MWdRdGczUlJndkRpc3B3LTVkOGRGOEpHZkxUZnpuLUxkZlcwaUxNazRLUnQyeEZvR2VTUGpyV0g1YjJTQTh4UkRXcjNwTkJB?oc=5"
+    },
+    {
+      "id": "f56bb1d6-ea8a-4134-91ff-2260f1b482bc",
+      "date": "2026-05-21",
+      "entity": "'Cockroach Janata Party'",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQYlk1S3ZENm00RVNveDFaSVAzd3dmVWNhNVg4a2Y4WXduYjJUYXBKLVhtRXFIODJGdnBiRGotQ2pyNlg1dG11YUNsNlNJS3FBM2wtM0tEOWZMQ0VBZ3ItdVczYTZtcm9XU3QwLW41T2YtRkNGN1l5OWhMU3RfblZYamRCREpLR2F4Q1pFU3FBakNpVkRTQ09QY1J1eTR6TzVpeGh6d3Nn0gGuAUFVX3lxTE9wQW93VDlNNV9yd2FZRWRwWTRNemJSQVlHY0h1WThQenRvRVgyTldnWU0zMXllX1FNU1M3YVBVNUdPQmQ4S3F1NmpHRFFnUzVNS3lhWUdiel9adzhRU1B1UG05b0FjM3JCRTl4aGJUeUZrTHJXS3ctc1FyMGoxRVNSZm9YMmstWUJ6Y2VNeWRxanNlVEViY3YwdWRLUkJZMFNKWU1XdnVxSDhkd1hwUQ?oc=5"
+    },
+    {
+      "id": "e6664f73-e251-4e3a-93a1-5eec873396fd",
+      "date": "2026-05-21",
+      "entity": "CJP (Cockroach Janata Party)",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Civil Society",
+      "action": "X handle withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxPZTU4RG1iZndhcmZqcXhBa0xadGxfb29JNFdXempkZHR3NFdZTHExS1BMNXRrX1p5OTBaenVpcWlVUXNJUUE1S2RycjgtVjhvamdhamhxZ1JRMFZSUVNXaGVWTXJZNndqdnNqUTREaUFxQUx2bV8tajQ4MHVzOUI0aGZJWG9FdzhCWXhhZ2V4Tjg2UVE4NUE2bTA5REtUb1dOdVlpTWtSeDgzTm1Ld1RYNmxpVHlxUE1NMlU3YVI3bUg?oc=5"
+    },
+    {
+      "id": "49f4ad01-8323-446b-97bf-e0d58de31449",
+      "date": "2026-05-21",
+      "entity": "Viral Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxQM2gyazFDQnlDREx1NmxrZk1ETWdmWlBOSDBfWnAzMVJ4ZTdHQ1pGZ3JpWHVnZGN4QzVVWE44bVZJX01sUURZeUpRS1FYT1Jndy10UHczYUxWOGdDeTR4dUtCdEtTLWVDZ3F4Q3VuNDBBU3A5Y2E0azhmZGduVzMza0R1eEx5X0tOMHVuMWdBM1pSUm9TVk0ydzFnNm01TnZFR0pTYU9YWFhrNTlwdWNjVU9HNWZSc0lTVkNDQW1Zd3RnUdIBxwFBVV95cUxQZl9vcldMek5HN0RPRGdrZVExbkluNU9oVE5zb1o4dmZjSnNQdmY4ZXowbzBZNnZuOW8ySnFuU2VRbUhZci10OGtJWUtjbXhIRXNvRzJmeHl4QS05M3pFcUdONVhqQl9BRDJLOTFzaDdEMVJWSDl1YXVrbjdmTE5LYU1LMG5kT0EzbWItdWhvWEVGQjIwWlZybUVVTERwUC1JYmoxNHdNTnFWSTRsd0lsaHIwNmdiNjdXMUFKWVBVTnUyck5LNU93?oc=5"
+    },
+    {
+      "id": "a391dd0a-0773-4f01-858a-d85b1a59b12e",
+      "date": "2026-05-21",
+      "entity": "Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Challenged",
+      "sector": "Civil Society",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://indianexpress.com/article/india/cockroach-janta-party-x-account-withheld-india-abhijit-dipke-cji-surya-kant-10701635/"
+    },
+    {
+      "id": "62820549-c1cf-40d8-95bc-792d67dae331",
+      "date": "2026-05-20",
+      "entity": "Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Civil Society",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://www.medianama.com/2026/05/223-x-withholds-cockroach-janta-party-account-india-days-after-launch/"
+    },
+    {
+      "id": "18953be6-6cff-4818-ae5c-0aa7e056fb78",
+      "date": "2026-05-20",
+      "entity": "Cockroach Janata Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Challenged",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://www.thehindu.com/news/national/cockroach-janata-partys-x-handle-withheld-founder-starts-new-account/article71006016.ece"
+    },
+    {
+      "id": "0255cbb1-3328-41b8-9981-b7168f4d2164",
+      "date": "2026-05-19",
+      "entity": "Iltija Mufti",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Individual / Journalist",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxOVnVFX01ZN0VUMjFyNUVoTzVSLVVHaDVnN1RZdDh1amRNeG9fV2x1bXZDcmVvVVVWUEkybkk3U0JPMkRGSmZ5Z3NKZ0wwNFpzTk5sZjFWMEdQZmdZOGowT1hyeF9GN2M4aXJxUUdyQklJNDhiV1l5NjloeDVnRzhGS1Vzbk1FZHRfd2JUaUFTRDdxOHNlTTVhTWRBLVRGSW12TDRhMnljbVRxcXBRUUhmcmlVazVKSnlaeTJLdlZQSHdjYk9BOGFoZldBMEJTWWVILWZRM1A3U25lY2JmakFLN18tdnFSbXNneFFtYmk3bjBFSndSVm8ydnJTZUNmcmpZOVlnY09ocEFINzN1RnpKWXlXZm4yLTJHVjk0TEVvcVpSX19ka3d5b3pZWWk1YjZBMnhKX2FNWjdidC1pWjZOMkxqOUVIVzRkY09yNGRGZlg?oc=5"
+    },
+    {
+      "id": "6ce61830-cb67-4dec-82cc-3114615a0a91",
+      "date": "2026-05-17",
+      "entity": "Iltija Mufti",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Individual / Journalist",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi0AJBVV95cUxNNzFZczF2cjFfa3FWS1l0WjNhWXNfZEFCSjQ4T0VCeGRVNWw2amxzNXM0TG00cTdWYjNXYmNDTUh5Q1NEd3gxOEtZeVNaU2NTTlZUTzFuVVoyQTEzNVdlTmNPMUJJZTQtbm1uVmlkcmpSUy00NUZMQmVMbmpnaWR6aWk1MGRPeGNrNWc3OE5RVTFJLWZqOERSMHZoMjlkUkxzZ181Sjd6dTd3VkhTQ2tHUUhJZnNNTXNqVFBMXzk1MlhlZTJYQlZRcFVLdGZ5czZ2cmNWYzZtNERvVkJWOE16VExjQ1NDZ0hueUU0TkhJVjV1N2RsX2NSOWtoZHZ5cmJldEJwMDFHNFIyRC1BSm5uaXJJMEIrR2FrQVBkSmt5ZlFiUjJqdWRidEstZ05rZE9TMHlpbzJUZ29FODgxR3pfNndqNlVfNWFWdGFIeTc1WEk?oc=5"
+    },
+    {
+      "id": "f30f70fa-680a-45f1-a233-06b3739451db",
+      "date": "2026-05-16",
+      "entity": "Iltija Mufti",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Individual / Journalist",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxQZ01PY1JzUjFRTVJWb2xqUW1uY0Y2azJOb3BRM1JzbnQwNl9iTTZ0R1VPRFc1OHdRellDQVhPb0w5RmxCVWo1LXg5YV9vSTFONjBQT2NEbGw1XzN6OEdiVHpXaDZybmh3NmV0NUk4RjNwUi1JZG16OVJ1SHJkSi1QNGRPX2R3MFMxZ0N0RzJCMjdLT1NpV1NIRmh2dDJJejZ1Xy1OeWp5a1FndFBuSTNCMzQwS1M4YmtvVXc?oc=5"
+    },
+    {
+      "id": "bf271167-fa84-4ffe-814c-19713a511284",
+      "date": "2026-05-12",
+      "entity": "Iltija Mufti",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPX3lQUjRHMVJLYVFuems4ZjBYaEc2MG5QV0oxa2JfLURJaE14NV9rUFJRb0tCZS1lZ2V2MGFuZE1FZWprTnV5NzQzY0YtUDlycElMNEEyYXJwMXc1dGZYbW9oeTcxYW9XcFpnbm0tTk1vNEZkMGdhbDJycFRlX3VINzdhM1pNNHZQM2g2ZFJwdTYyeVB4LWFVV3l2VE91ckJodWVJeWJDd3NnUk9ONTM2OGpGaG5CeDl5X2hRTk5JTVpNaF9RcFE?oc=5"
+    },
+    {
+      "id": "e5eaab01-bfb3-4d95-a1aa-d133b9a34215",
+      "date": "2026-05-11",
+      "entity": "Iltija",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Individual / Journalist",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTFBzWThXX3EybU9CRXB5cmNyX3FTQ2tTUVYzVFo2ZGpRamFJTmhrbHFJbXZjNHZjYXVYeXdFdDFRRmhhRkowR1lyNzlucG1YdmxrOUU5S2hRRVBaeVB5Y3ltOUl0cDFnRTVSc0E?oc=5"
+    },
+    {
+      "id": "bda907de-b773-4d37-adbc-85a60867ac80",
+      "date": "2026-05-11",
+      "entity": "PDP Leader",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTE5hcDBra2VqY3VIZGlCSnZfQUxxanI0ZlRZUUVzZjhDRVZfaGVRdkxfcmU1a3A5ZFh6MVVQa2ZQazJRc0hLWVktRWZ5R3pBVDkyRmdCMnVpSDRrUzMwcm5RZG9yRktDRU16RlhnQ1ppWHFObkFwX2U5R2FaNA?oc=5"
+    },
+    {
+      "id": "96e7221e-2bb6-454e-b852-936e797f6ec4",
+      "date": "2026-05-11",
+      "entity": "Iltija Mufti",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Individual / Journalist",
+      "action": "Account withheld",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi5gFBVV95cUxNclp1UTNHbDdHd1JIWjluMjBOb2l1eU10a1NtUGVCTU9YTi02VEdSZktEc0N2MWpOZGVxTjliU21LODVKb1NlR3lmMzlTWVFxdktoc0F5UjVhZDQ2b2hkTXpKdTFLOWJidGw5blo2bm9VcFZ5RjNnaDR4a1B6VmRZTXJXQms1RE5XcnRkaTVTUnNHcGVVSUhLMFFzTjdwRVlxNXJyV2hMVW1IbXh1SlBxWFRraVdjMFhtQUNsS1BEelFzRmJoWjJLLUIzU29iQjMwWFdGem5lZzFJQnY4MTNFN0ZoZw?oc=5"
+    },
+    {
+      "id": "33f2340b-3b65-49d2-a799-e972267a5ccc",
+      "date": "2026-04-28",
+      "entity": "Ambuj Kumar, Editor of Lokhit India",
+      "who": "Journalist",
+      "platform": "YouTube",
+      "provision": "IT Rules 2021",
+      "status": "Unknown",
+      "sector": "News Media",
+      "action": "Summoned by IDC for a video thumbnail",
+      "disclosed": true,
+      "url": "https://www.medianama.com/2026/04/223-india-it-rules-idc-oversight-free-speech-concerns/"
+    },
+    {
+      "id": "273ccaa0-b37d-4359-80d2-0524d34a2689",
+      "date": "2026-04-28",
+      "entity": "Reuters",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Unknown",
+      "sector": "News Media",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi9gJBVV95cUxNcHpCaHFmRDl2cENldU1aMXZ2RUkwekZwXzNUUjdpSWFJb29nQ2szUmw0S3dqWFh0Sk41TUo4Q2Vmdw0KPHRhcmdldD5yYXBJX2R0Yk5qVVlEOWxBaUNQbVlUTWJMbERDczU0SlYyQzlIT2R6MkZ3S29MWHlnNVF3eTRNWU5Yclp6TmRBYTBfZUNnT0pILVhKZnRWQl84MzUwM2JwbmhPaXFZRzRVTHBlbE5nMHp6UE9ZbjlxemFmdXpVbjltUWMwLWNqeVYwNE9Tc2FkM3NuMDNhWjQ1MmdhSXJVc2JBMk5KckwxVUxTajJIMEFwQmE0c2g4TlhBOC1Ca3FJelhnOVRKWDRudEcxbGpPVFhSZXBkbkNEbFBURk9UdGJ5SlduSkRqUEhRR2lxSzlrSTlQdlNlOUFLTmYxSGt5Ymlibml3VjVicEJ0NjhkcVhFYWhlMzE4SE5fTEU2UmJ5WXc0LVJkMHRwalVGdFVsaHdWdEpNR1pfdWtGQQ?oc=5"
+    },
+    {
+      "id": "97fb6e4b-35fa-4d2c-87eb-1f12ec62ae15",
+      "date": "2026-04-27",
+      "entity": "Turkish broadcaster",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "News Media",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiowNBVV95cUxOX_NzWXI1Wjhfdk5kTk0xQTV1a0poR1o2c3pwaE00OXRtcTNnWlhNM2NrZ3NjZFloQkstT1F0cC0tQ0tpR0UydzU1WmgzRmJCdUtKcVVJMlZOcnZGVFQ1MllkT2xERjNhbmxGVFNNOXMzSmhiRmFQZXRfaEdwYTBoWmgxbHd1R1RndGxkM2d6aU5tUnB6VVFwUFUzc04wSjE0STF4M1JIbkI0Qk83RWF1bVpwLXFMMmFOMUFtdXJlVm1zNVdwMm5DcWV6S09KcHhpNUpZWG0yRzM4TEE1TGJ6STdyTV9RODlxcWhhb01NVVF0VzBKTVQ2NGczVGdhUGNuZkNkU0R6M0VqTTI2WTZzcnJaMUVUZTNxSnRYQ0paMlVTU0R0SjlzUko5eGUyZG9sZjhmUmtmUFhSQTZCdkFtdDJfeWtsNlFOazhoS0VsY2ZTYVZKVzRYUUFSbjlJZEFqbnBSaXRISmd5NzRCVVZIMzlRalhFcGVkckY5Rk1qc0xFbzlta28xVnlWYlp3LXpqelpSUk9KSUVlUXdVLTNBbWRhOA?oc=5"
+    },
+    {
+      "id": "7d40e01a-65f4-4c23-aba1-cc2a6f1101b2",
+      "date": "2026-04-27",
+      "entity": "Reuters",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "News Media",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi9gJBVV95cUxNcHpCaHFmRDl2cENldU1aMXZ2RUkwekZwXzNUUjdpSWFJb29nQ2szUmw0S3dqWFh0Sk41TUo4Q2Vmdw1wYXBJX2R0Yk5qVVlEOWxBaUNQbVlUTWJMbERDczU0SlYyQzlIT2R6MkZ3S29MWHlnNVF3eTRNWU5Yclp6TmRBYTBfZUNnT0pILVhKZnRWQl84MzUwM2JwbmhPaXFZRzRVTHBlbE5nMHp6UE9ZbjlxemFmdXpVbjltUWMwLWNqeVYwNE9Tc2FkM3NuMDNhWjQ1MmdhSXJVc2JBMk5KckwxVUxTajJIMEFwQmE0c2g4TlhBOC1Ca3FJelhnOVRKWDRudEcxbGpPVFhSZXBkbkNEbFBURk9UdGJ5SlduSkRqUEhRR2lxSzlrSTlQdlNlOUFLTmYxSGt5Ymlibml3VjVicEJ0NjhkcVhFYWhlMzE4SE5fTEU2UmJ5WXc0LVJkMHRwalVGdFVsaHdWdEpNR1pfdWtGQQ?oc=5"
+    },
+    {
+      "id": "851c56fb-e328-4dd7-ad36-23b9be3ebcd0",
+      "date": "2026-04-25",
+      "entity": "Reuters",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "News Media",
+      "action": "Account unblocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiywJBVV95cUxQalVSYVZLY3NUYTdPXzNWdHpJSEJOOFlUdmhNQVpsWWk3OWttNWRSdm44V190VktmSUkwcGI2eWpqTTBFWmZ5VGwzOXpFYlZyZWxEYXNvUlRRcl8zdk5hczhoYnBxNWxkNm9ad3ljbXkxYmd1S1liNk5xdXVvUm91SGdZSkZfQktFcnBIcUVwdG9BdzZzTGF2QVdsdlZUOUdXd29iZHUzOEhSNzBsM0c2WkZqazNhYW9GaGMtOFg4SUV5djBkM0NLZ1N2ZXc1X3Z5OFZnaVBVN2pwN0VYQjBRdGtXeFBNa25HLUxlQXhGQ2p6MmZPOTZqdVpoWGlTWnljUXpCMS1PZUMyYjFYNm44U1RDV3VGNVkzdUNmS3pGMTlPdGZpc181UkpRVUJHS0piMUFMeVhId1lhZWo2cE03TDdxMVhsVVBGYS1B?oc=5"
+    },
+    {
+      "id": "072a5fc5-4837-4ada-b1a2-2425107b0910",
+      "date": "2026-04-24",
+      "entity": "Meta (Facebook, Instagram)",
+      "who": "Platform-wide",
+      "platform": "Facebook | Instagram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Automatic, scaled blocking of content flagged by government/police",
+      "disclosed": false,
+      "url": "https://www.thehindu.com/sci-tech/technology/meta-sets-up-automatic-blocking-for-govt-police-referred-content/article70901931.ece"
+    },
+    {
+      "id": "e6dc39c5-c5a6-4342-ad3f-0ab3ba1d714b",
+      "date": "2026-04-21",
+      "entity": "X's @GlobalAffairs handle",
+      "who": "Technology",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Technology Platform",
+      "action": "Account unblocked and previously withheld post made visible",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMixgJBVV95cUxQWGxoM19pdm9op6H8b3dUQ1F4NlZWOUwzRnJ2dVBlVHZaa2w3eUlPcUZBNzBhNW02RHB2a0xBQ1J2cUVBb2ZuRmxlbWN4T25fSzJXZU1zNTVwVHRGNk1EV25LUDdSZ3FzblliZW5wMDdZMm1VTkZGNFNWM2FDQW82Z0VOYjNfTHpGR0VjQTB6X0o1a1R2TjNZLXBwM1ZKcFJvNkdSTEFOdXgyWGN0WDJRUEoteXktcFhKVU5XTVBsX3hsVnlPQm1VRm5wOVAzaEh6eE1YSHlTbXhxMVViSXVLREpVLXE0cEtyU2p3NWxBbE16bWJzZm5OQzhIUnFqcUFVNS0xNmtUcWxfTFZNZTdVVjBLVE1hMnV5NXRtUmZYT1VVLWg3UUcwTnZIY3Q4SXNUZlpZQ1RCeTlNZUtic2tPMExDU2E3QQ?oc=5"
+    },
+    {
+      "id": "4203067c-aa9e-442f-afdb-12aac99bfc60",
+      "date": "2026-04-15",
+      "entity": "Platforms",
+      "who": "Technology",
+      "platform": "Other",
+      "provision": "Sahyog Portal",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Ordered to link with Sahyog portal",
+      "disclosed": true,
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPX043MFpDUXdFc0pEbkt0cVlpZ1VMSGdnelpHaDFrUXR0QnVUT1kyT3VRNzdBUkdRYWFWV3VYLXh3SHhtNVY1M1VXaDVSdHdObWhrdllnVFJDYTFsTmtBczNVMGVsREh6SXpMeWI1bmNmbk02eHhrQnZvOE9KczBHQ0t1UDNQQ0cyVm5MWWxqdzM5dTluYVh1cG53dm90VWE3WEU2RjFEa2V1RHk4WEE?oc=5"
+    },
+    {
+      "id": "788b0d09-6229-4183-b5b4-05f809e6d9dd",
+      "date": "2026-04-08",
+      "entity": "4PM",
+      "who": "Media Outlet",
+      "platform": "YouTube",
+      "provision": "Section 69A",
+      "status": "Active",
+      "sector": "News Media",
+      "action": "Channel blocked",
+      "disclosed": true,
+      "url": "https://www.medianama.com/2026/04/223-public-opinion-draft-it-rules-amendments-free-speech-india/"
+    },
+    {
+      "id": "a8f2059f-0f4a-4f22-8a27-85265e29fa21",
+      "date": "2026-03-03",
+      "entity": "Kashmir Life",
+      "who": "Media Outlet",
+      "platform": "Facebook",
+      "provision": "Section 79(3)(b)",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Facebook and Instagram pages restricted for users in India",
+      "disclosed": true,
+      "url": "https://kashmirlife.net"
+    },
+    {
+      "id": "d79841a7-7614-4178-bae6-6404e73919f6",
+      "date": "2026-03-03",
+      "entity": "Greater Kashmir",
+      "who": "Media Outlet",
+      "platform": "Facebook",
+      "provision": "Section 79(3)(b)",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Facebook and Instagram pages blocked in India",
+      "disclosed": true,
+      "url": "https://greaterkashmir.com"
+    },
+    {
+      "id": "c044c452-3b8a-4009-8fff-537812b5ba14",
+      "date": "2026-02-27",
+      "entity": "The Wire",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Satirical cartoon post withheld in India",
+      "disclosed": false,
+      "url": "https://thewire.in"
+    },
+    {
+      "id": "db729044-8c3c-4b34-9379-c8c4a8c25b3c",
+      "date": "2026-02-22",
+      "entity": "Kunal Kamra",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Sahyog Portal",
+      "status": "Challenged",
+      "sector": "Other",
+      "action": "Account withheld in India; posts removed",
+      "disclosed": true,
+      "url": "https://www.livelaw.in"
+    },
+    {
+      "id": "7e7f4635-22a7-4fc5-8e70-c7e4933c8ad3",
+      "date": "2026-02-20",
+      "entity": "The Wire",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Sahyog Portal",
+      "status": "Active",
+      "sector": "Other",
+      "action": "3 posts withheld in India via Sahyog Portal",
+      "disclosed": true,
+      "url": "https://thewire.in"
+    },
+    {
+      "id": "71741cae-34e4-4937-8441-522c8c6788f7",
+      "date": "2026-02-18",
+      "entity": "Scroll.in",
+      "who": "Media Outlet",
+      "platform": "Instagram",
+      "provision": "Section 79(3)(b)",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "Instagram account restricted for 48 hours",
+      "disclosed": true,
+      "url": "https://scroll.in"
+    },
+    {
+      "id": "c4c1c2e4-e571-4769-9123-dd3c738f3fa2",
+      "date": "2026-02-15",
+      "entity": "NewsClick",
+      "who": "Media Outlet",
+      "platform": "YouTube",
+      "provision": "Section 69A",
+      "status": "Active",
+      "sector": "Other",
+      "action": "YouTube channel blocked under emergency Section 69A",
+      "disclosed": true,
+      "url": "https://newsclick.in"
+    },
+    {
+      "id": "63900395-5083-4b62-80c7-91feb00d678e",
+      "date": "2026-02-12",
+      "entity": "Alt News",
+      "who": "Media Outlet",
+      "platform": "Facebook",
+      "provision": "Sahyog Portal",
+      "status": "Challenged",
+      "sector": "Other",
+      "action": "11 posts removed via Sahyog Portal; page restricted",
+      "disclosed": true,
+      "url": "https://altnews.in"
+    },
+    {
+      "id": "5f071c94-0472-4b66-8f1a-512d63de7821",
+      "date": "2026-02-10",
+      "entity": "Haresh Jagtiani",
+      "who": "Journalist",
+      "platform": "Twitter/X",
+      "provision": "Sahyog Portal",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": true,
+      "url": "https://www.livelaw.in"
+    },
+    {
+      "id": "9b9f6ae4-0a5f-4863-83d7-83cf876b17b0",
+      "date": "2026-02-08",
+      "entity": "Agence France-Presse India",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Section 69A",
+      "status": "Active",
+      "sector": "Other",
+      "action": "5 posts withheld in India; no notice provided",
+      "disclosed": true,
+      "url": "https://afp.com"
+    },
+    {
+      "id": "d37f0e27-bc7e-419d-8116-e183ab59d846",
+      "date": "2026-01-30",
+      "entity": "Internet Freedom Foundation",
+      "who": "Journalist",
+      "platform": "Twitter/X",
+      "provision": "Sahyog Portal",
+      "status": "Active",
+      "sector": "Other",
+      "action": "4 posts withheld in India",
+      "disclosed": true,
+      "url": "https://internetfreedom.in"
+    },
+    {
+      "id": "034475e6-65c8-4862-881b-85f74f997364",
+      "date": "2026-01-26",
+      "entity": "Republic Day Protest Coverage",
+      "who": "Platform-wide",
+      "platform": "Twitter/X",
+      "provision": "Section 69A",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "Hashtags and 14 accounts restricted on Republic Day",
+      "disclosed": true,
+      "url": "https://internetfreedom.in"
+    },
+    {
+      "id": "71a2ac00-7258-4107-abed-367ead878bc3",
+      "date": "2026-01-20",
+      "entity": "The Quint",
+      "who": "Media Outlet",
+      "platform": "YouTube",
+      "provision": "Section 69A",
+      "status": "Active",
+      "sector": "Other",
+      "action": "2 investigative documentary videos blocked in India",
+      "disclosed": true,
+      "url": "https://www.thequint.com"
+    },
+    {
+      "id": "3bf17af8-a59f-44f3-bb5e-401b0cb27d56",
+      "date": "2026-01-14",
+      "entity": "MediaNama",
+      "who": "Media Outlet",
+      "platform": "Website",
+      "provision": "IT Rules 2026",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "ISP DNS block for 18 hours",
+      "disclosed": true,
+      "url": "https://medianama.com"
+    },
+    {
+      "id": "50a4e767-7cb5-49af-98ed-5cc81d0eff65",
+      "date": "2025-10-15",
+      "entity": "BBC News India",
+      "who": "Media Outlet",
+      "platform": "YouTube",
+      "provision": "Section 69A",
+      "status": "Active",
+      "sector": "Other",
+      "action": "BBC documentary on Gujarat 2002 blocked on YouTube India",
+      "disclosed": true,
+      "url": "https://www.bbc.com/news"
+    },
+    {
+      "id": "dd92f658-f241-4df1-afa0-7a3913c2754f",
+      "date": "2025-08-22",
+      "entity": "Manipur Internet Shutdown",
+      "who": "Platform-wide",
+      "platform": "ISP",
+      "provision": "IT Rules 2021",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "5-day broadband and mobile internet suspension in Manipur",
+      "disclosed": true,
+      "url": "https://internetfreedom.in"
+    }
+  ]
+}
