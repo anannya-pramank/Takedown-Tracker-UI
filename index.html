@@ -121,7 +121,7 @@
   var CHAT_ENDPOINT = null;
 
   var SVGNS = "http://www.w3.org/2000/svg";
-  var state = { who:null, what:null, provision:null, reason:null };
+  var state = { who:null, platform:null, provision:null, sector:null };
   var DATA = null;
 
   function el(tag, attrs, kids){
@@ -147,15 +147,15 @@
   function render(){
     var m = DATA.meta;
     document.getElementById("standfirst").innerHTML =
-      "Orders to block online content issued under Sections 69A and 79(3)(b) of the IT Act, "
-      + "compiled from public and legal sources. "
-      + '<span class="cta">Select the categories below, then ask about the matching orders.</span>'
+      "Documented incidents of online content being blocked, restricted or taken down in India, "
+      + "compiled from public reporting and legal sources. "
+      + '<span class="cta">Select the categories below, then ask about the matching incidents.</span>'
       + '<span class="stamp">Last updated ' + formatDate(m.last_updated) + " · " + (m.note || "") + "</span>";
 
     document.getElementById("footnote").textContent =
-      "Each square is one documented order. \u201CDocumented\u201D counts orders compiled from public and legal sources; "
-      + "\u201Cdisclosed\u201D counts those for which the government has published a figure or the order itself. "
-      + "Where the two differ, the gap reflects orders that are not officially acknowledged.";
+      "Each square is one documented incident. \u201CDocumented\u201D counts incidents compiled from public reporting and legal sources; "
+      + "\u201Clegal basis identified\u201D counts those where the legal authority for the action is known. "
+      + "For most incidents the legal basis is not publicly identified \u2014 the action is visible, the authority for it is not.";
 
     var app = document.getElementById("app");
     app.innerHTML = "";
@@ -198,9 +198,9 @@
     }
 
     box.appendChild(row("If you are", "who"));
-    box.appendChild(row("and it was", "what"));
+    box.appendChild(row("on", "platform"));
     box.appendChild(row("blocked under", "provision"));
-    box.appendChild(row("for", "reason"));
+    box.appendChild(row("in", "sector"));
     return box;
   }
 
@@ -219,7 +219,7 @@
     svg.setAttribute("id","grid");
     svg.setAttribute("viewBox","0 0 360 320");
     svg.setAttribute("role","img");
-    svg.setAttribute("aria-label","Documented orders grouped by issuing authority; highlighted squares match the current selection.");
+    svg.setAttribute("aria-label","Documented incidents grouped by platform; highlighted squares match the current selection.");
     mapcard.appendChild(svg);
 
     var legend = el("div", { class:"legend" });
@@ -231,12 +231,12 @@
 
     // chat column
     var chat = el("div", { class:"chat" });
-    chat.appendChild(el("div", { class:"chat-eyebrow", id:"chatEyebrow", text:"Ask about the matching orders" }));
+    chat.appendChild(el("div", { class:"chat-eyebrow", id:"chatEyebrow", text:"Ask about the matching incidents" }));
     var thread = el("div", { class:"thread", id:"thread" });
     chat.appendChild(thread);
 
     var chips = el("div", { class:"chips", id:"chips" });
-    ["Which were challenged in court?","Show the most recent","Why no ground stated?","Which authorities issued these?"].forEach(function(q){
+    ["Which were challenged in court?","Show the most recent","How many have a known legal basis?","Which platforms are affected?"].forEach(function(q){
       var c = el("button", { class:"chip", type:"button", text:q });
       c.addEventListener("click", function(){ ask(q); });
       chips.appendChild(c);
@@ -261,13 +261,13 @@
   function buildGrid(svg){
     squares = [];
     var sq=8, gap=3, colW=10, y=14;
-    DATA.authorities.forEach(function(auth){
-      var total = matrixTotalFor(auth.id);
+    gridGroups().forEach(function(grp){
+      var total = matrixTotalFor(grp.id);
       var label = document.createElementNS(SVGNS,"text");
       label.setAttribute("x",4); label.setAttribute("y",y);
       label.setAttribute("font-size","10.5"); label.setAttribute("fill","var(--ink-soft)");
       label.setAttribute("font-family","-apple-system,Segoe UI,Roboto,sans-serif");
-      label.textContent = auth.label + " (" + total + ")";
+      label.textContent = grp.label + " (" + total + ")";
       svg.appendChild(label);
       var gy = y+6;
       for(var i=0;i<total;i++){
@@ -276,7 +276,7 @@
         r.setAttribute("y", gy+Math.floor(i/colW)*(sq+gap));
         r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","1.5");
         r.setAttribute("fill","var(--grid-empty)");
-        r.dataset.auth = auth.id;
+        r.dataset.auth = grp.id;
         svg.appendChild(r); squares.push(r);
       }
       y = gy + Math.ceil(total/colW)*(sq+gap) + 15;
@@ -284,12 +284,17 @@
     svg.setAttribute("viewBox","0 0 360 " + Math.max(320,y));
   }
 
-  // total documented per authority = sum across provisions in the matrix
-  function matrixTotalFor(authId){
+  // The grid groups by platform (the inner key of the matrix).
+  function gridGroups(){
+    return DATA.facets.platform || [];
+  }
+
+  // total documented per platform = sum across provisions in the matrix
+  function matrixTotalFor(platformId){
     var t = 0;
     for(var prov in DATA.matrix){
       if(prov.charAt(0)==="_") continue;
-      var cell = DATA.matrix[prov][authId];
+      var cell = DATA.matrix[prov][platformId];
       if(cell) t += cell.documented;
     }
     return t;
@@ -297,62 +302,72 @@
 
   // ----- recompute on selection -----
   function recompute(){
-    var ready = state.who && state.what && state.provision && state.reason;
+    var ready = state.who && state.platform && state.provision && state.sector;
     var tally = document.getElementById("tally");
     var eyebrow = document.getElementById("chatEyebrow");
 
     if(!ready){
       tally.innerHTML = '<span class="muted">Pick an option in each row</span>';
       squares.forEach(function(r){ r.setAttribute("fill","var(--grid-empty)"); });
-      if(eyebrow) eyebrow.textContent = "Ask about the matching orders";
+      if(eyebrow) eyebrow.textContent = "Ask about the matching incidents";
       resetThread(null);
       return;
     }
 
     var counts = countMatches();
+    var disclosedLabel = (DATA.meta && DATA.meta.labels && DATA.meta.labels.disclosed) || "disclosed";
     tally.innerHTML = '<span class="big">' + fmt(counts.documented) + "</span> documented "
-      + '<span class="muted">\u00b7 ' + fmt(counts.disclosed) + " disclosed</span>";
+      + '<span class="muted">\u00b7 ' + fmt(counts.disclosed) + " " + disclosedLabel + "</span>";
 
-    // light the grid: distribute matches across authorities per the matrix shape for the chosen provision
+    // light the grid: distribute matches across platforms per the matrix shape for the chosen provision
     squares.forEach(function(r){ r.setAttribute("fill","var(--grid-empty)"); });
     var prov = DATA.matrix[state.provision] || {};
-    DATA.authorities.forEach(function(auth){
-      var cell = prov[auth.id];
+    gridGroups().forEach(function(group){
+      var cell = prov[group.id];
       if(!cell) return;
-      var share = counts.documented === 0 ? 0
+      var share = counts.provisionTotal === 0 ? 0
         : Math.round(counts.documented * (cell.documented / counts.provisionTotal));
-      var pool = squares.filter(function(r){ return r.dataset.auth === auth.id; });
+      var pool = squares.filter(function(r){ return r.dataset.auth === group.id; });
       for(var i=0;i<Math.min(share,pool.length);i++) pool[i].setAttribute("fill","var(--grid-match)");
     });
 
-    if(eyebrow) eyebrow.textContent = "Ask about these " + counts.documented + " orders";
+    if(eyebrow) eyebrow.textContent = "Ask about these " + counts.documented + " incidents";
     resetThread(counts);
   }
 
-  // Count logic: provision picks the matrix column-sum; the other facets scale it down
-  // deterministically so the demo reacts. In production this is a real query result.
+  // Count logic: read real numbers.
+  // The matrix (provision x platform) gives provision-level totals and the
+  // per-platform distribution for the grid. The headline count filters the
+  // order records on every selected facet.
   function countMatches(){
     var prov = DATA.matrix[state.provision] || {};
-    var provisionTotal = 0;
-    for(var a in prov) provisionTotal += prov[a].documented;
+    var provisionTotal = 0, provisionDisclosed = 0;
+    for(var p in prov){ provisionTotal += prov[p].documented; provisionDisclosed += prov[p].disclosed; }
 
-    // deterministic scaling from the categorical facets (sample only)
-    var whoIdx = idxOf("who", state.who);
-    var whatIdx = idxOf("what", state.what);
-    var factor = ((whoIdx+1) * (whatIdx+2)) % 7 + 3;     // 3..9
-    var documented = Math.max(3, Math.round(provisionTotal * factor / 60));
+    var matched = (DATA.orders || []).filter(function(o){
+      return o.provision === state.provision
+          && o.platform === state.platform
+          && matchField(o, "who", state.who)
+          && matchField(o, "sector", state.sector);
+    });
 
-    var disclosed;
-    if(state.reason === "not_disclosed") disclosed = 0;
-    else disclosed = Math.round(documented * 0.3);
+    var useOrders = matched.length > 0 || (DATA.meta && DATA.meta.orders_complete);
+    var documented = useOrders ? matched.length : provisionTotal;
+    var disclosed = useOrders
+      ? matched.filter(function(o){ return o.disclosed; }).length
+      : provisionDisclosed;
+
+    // "disclosed" here means legal basis is identified; an Unknown basis is
+    // never an identified basis.
+    if(state.provision === "Unknown") disclosed = 0;
 
     return { documented:documented, disclosed:disclosed, provisionTotal:provisionTotal };
   }
 
-  function idxOf(group, id){
-    var arr = DATA.facets[group];
-    for(var i=0;i<arr.length;i++) if(arr[i].id===id) return i;
-    return 0;
+  // If a record lacks a field, don't exclude on it.
+  function matchField(o, key, val){
+    if(o[key] === undefined || o[key] === null) return true;
+    return o[key] === val;
   }
 
   // ----- chat -----
@@ -362,11 +377,11 @@
     thread.innerHTML = "";
     var b = el("div", { class:"bubble bot" });
     if(!counts){
-      b.textContent = "Compose your situation above, then ask me about the orders that match.";
+      b.textContent = "Compose your situation above, then ask me about the incidents that match.";
     } else {
       var labels = selectionLabels();
-      b.innerHTML = "You're looking at <span class=\"em\">" + counts.documented + " documented orders</span> against "
-        + labels.who + ", under " + labels.provision + ", for " + labels.reason
+      b.innerHTML = "You're looking at <span class=\"em\">" + counts.documented + " documented incidents</span> involving "
+        + labels.who + " on " + labels.platform + ", under " + labels.provision
         + ". Ask me anything about them.";
     }
     thread.appendChild(b);
@@ -376,9 +391,9 @@
     function lbl(group,id){ var a=DATA.facets[group]; for(var i=0;i<a.length;i++) if(a[i].id===id) return a[i].label; return id; }
     return {
       who: lbl("who", state.who),
-      what: lbl("what", state.what),
+      platform: lbl("platform", state.platform),
       provision: lbl("provision", state.provision),
-      reason: lbl("reason", state.reason)
+      sector: lbl("sector", state.sector)
     };
   }
 
@@ -391,8 +406,8 @@
   }
 
   function ask(question){
-    if(!(state.who && state.what && state.provision && state.reason)){
-      addBubble("bot", "Pick an option in each row first, so I can scope the answer to the matching orders.");
+    if(!(state.who && state.platform && state.provision && state.sector)){
+      addBubble("bot", "Pick an option in each row first, so I can scope the answer to the matching incidents.");
       return;
     }
     addBubble("user", question);
@@ -406,19 +421,19 @@
   function cannedAnswer(q){
     var labels = selectionLabels();
     var key = q.toLowerCase();
-    if(key.indexOf("challenge")>-1)
-      return "Some of these were challenged before the High Courts (most often Karnataka and Delhi); executive directions from MeitY more often face no recorded challenge. In live mode this returns the exact orders.";
+    if(key.indexOf("challenge")>-1 || key.indexOf("court")>-1)
+      return "Challenges to incidents like these have been filed mainly in the Delhi, Karnataka and Bombay High Courts. In live mode this returns the matching legal cases.";
     if(key.indexOf("recent")>-1)
-      return "The most recent matching order would appear here with its date, issuing authority, and a link to the order where one exists.";
-    if(key.indexOf("ground")>-1 || key.indexOf("why")>-1)
-      return "You've filtered to \u201C" + labels.reason + ".\u201D Where the ground is \u201Cnot disclosed,\u201D that typically reflects Rule 16 confidentiality \u2014 the order text and reasons aren't published, so the ground is inferred, if at all, from any challenge filings.";
-    if(key.indexOf("authorit")>-1)
-      return "Matches are grouped by issuing authority in the panel on the left. Litigation skews to the High Courts; executive blocking skews to MeitY.";
-    return "Within the matching orders, that detail isn't recorded in the public sources for many entries \u2014 in live mode I'd answer from the order records and point to PDFs where they exist.";
+      return "The most recent matching incident would appear here with its date, the entity affected, and a source link.";
+    if(key.indexOf("basis")>-1 || key.indexOf("provision")>-1 || key.indexOf("why")>-1)
+      return "You've filtered to \u201C" + labels.provision + ".\u201D Note that for most documented incidents the legal basis is recorded as \u201CUnknown\u201D \u2014 the action is visible but the legal authority for it was never made public. That gap is itself a finding.";
+    if(key.indexOf("platform")>-1)
+      return "Incidents are grouped by platform in the panel on the left. The large majority involve Twitter/X.";
+    return "For many incidents that detail isn't recorded in the public sources \u2014 in live mode I'd answer from the incident records and link to the source reporting.";
   }
 
   function liveAsk(question){
-    var payload = { question: question, filter: { who:state.who, what:state.what, provision:state.provision, reason:state.reason } };
+    var payload = { question: question, filter: { who:state.who, platform:state.platform, provision:state.provision, sector:state.sector } };
     fetch(CHAT_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) })
       .then(function(r){ return r.json(); })
       .then(function(res){ addBubble("bot", res.answer || "No answer returned."); })
