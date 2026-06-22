@@ -33,10 +33,12 @@
 
   .rule{height:1px;background:var(--line);border:0;margin:34px 0 30px;}
 
-  .sentence{font-size:18px;line-height:2.45;}
-  .sentence .lead{font-weight:600;margin:0 2px;}
-  .pillset{display:inline;}
-  .pill{font-family:var(--sans);font-size:15px;padding:5px 14px;margin:0 3px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);cursor:pointer;transition:background .12s,border-color .12s,color .12s;line-height:1.3;white-space:nowrap;}
+  .sentence{font-size:18px;}
+  .srow{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;}
+  .srow:last-child{margin-bottom:0;}
+  .srow .lead{font-weight:600;flex:0 0 116px;text-align:right;color:var(--ink);}
+  .pillset{display:flex;flex-wrap:wrap;gap:8px;flex:1;}
+  .pill{font-family:var(--sans);font-size:15px;padding:5px 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);cursor:pointer;transition:background .12s,border-color .12s,color .12s;line-height:1.3;white-space:nowrap;}
   .pill:hover{background:var(--surface);}
   .pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .pill.on{background:var(--accent);border-color:var(--accent);color:#fff;}
@@ -78,7 +80,9 @@
   @media (max-width:760px){
     .header{grid-template-columns:1fr;gap:14px;}
     .results{grid-template-columns:1fr;}
-    .sentence{font-size:16px;line-height:2.3;}
+    .sentence{font-size:16px;}
+    .srow{flex-direction:column;align-items:stretch;gap:8px;}
+    .srow .lead{flex:none;text-align:left;}
   }
   @media (prefers-reduced-motion:reduce){
     .pill,.composer button{transition:none;}
@@ -170,7 +174,6 @@
   function buildSentence(){
     var box = el("div", { class:"sentence" });
 
-    function lead(t){ return el("span", { class:"lead", text:t }); }
     function set(group){
       var span = el("span", { class:"pillset" });
       DATA.facets[group].forEach(function(opt){
@@ -187,15 +190,17 @@
       return span;
     }
 
-    box.appendChild(lead("If you are "));
-    box.appendChild(set("who"));
-    box.appendChild(lead(" and it was "));
-    box.appendChild(set("what"));
-    box.appendChild(el("br"));
-    box.appendChild(lead("blocked under "));
-    box.appendChild(set("provision"));
-    box.appendChild(lead(" for "));
-    box.appendChild(set("reason"));
+    function row(leadText, group){
+      var r = el("div", { class:"srow" });
+      r.appendChild(el("span", { class:"lead", text:leadText }));
+      r.appendChild(set(group));
+      return r;
+    }
+
+    box.appendChild(row("If you are", "who"));
+    box.appendChild(row("and it was", "what"));
+    box.appendChild(row("blocked under", "provision"));
+    box.appendChild(row("for", "reason"));
     return box;
   }
 
