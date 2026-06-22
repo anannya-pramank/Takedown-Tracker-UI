@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "functions": {
+    "api/ask.py": {
+      "runtime": "@vercel/python@4.3.0"
+    }
+  }
+}
