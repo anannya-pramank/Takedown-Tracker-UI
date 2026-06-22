@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Content-blocking tracker</title>
+<style>
+  :root{
+    --ink:#1a1a18;
+    --ink-soft:#56544e;
+    --ink-faint:#8a877f;
+    --paper:#ffffff;
+    --surface:#f6f4ef;
+    --line:#e3e0d8;
+    --line-strong:#cbc7bd;
+    --accent:#1f5a8a;
+    --accent-soft:#e7eef5;
+    --grid-empty:#d9d5cb;
+    --grid-match:#1f5a8a;
+    --radius:10px;
+    --serif:Georgia,"Times New Roman",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1040px;margin:0 auto;padding:40px 28px 64px;}
+
+  .header{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:start;}
+  .headline{font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.4vw,46px);line-height:1.06;letter-spacing:-0.01em;margin:0;}
+  .standfirst{font-size:15.5px;color:var(--ink-soft);padding-top:8px;}
+  .standfirst .cta{color:var(--ink);font-weight:600;}
+  .stamp{display:block;margin-top:8px;font-size:13px;color:var(--ink-faint);}
+
+  .rule{height:1px;background:var(--line);border:0;margin:34px 0 30px;}
+
+  .sentence{font-size:18px;line-height:2.45;}
+  .sentence .lead{font-weight:600;margin:0 2px;}
+  .pillset{display:inline;}
+  .pill{font-family:var(--sans);font-size:15px;padding:5px 14px;margin:0 3px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink);cursor:pointer;transition:background .12s,border-color .12s,color .12s;line-height:1.3;white-space:nowrap;}
+  .pill:hover{background:var(--surface);}
+  .pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .pill.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+
+  .results{display:grid;grid-template-columns:1fr 1.08fr;gap:24px;margin-top:36px;align-items:stretch;}
+
+  .mapcard{display:flex;flex-direction:column;align-items:center;}
+  .tally{font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:10px;text-align:center;}
+  .tally .big{font-size:30px;font-weight:700;color:var(--accent);}
+  .tally .muted{color:var(--ink-soft);}
+  #grid{width:100%;max-width:360px;height:auto;}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:12px;color:var(--ink-soft);}
+  .legend span{display:flex;align-items:center;gap:6px;}
+  .swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
+
+  .chat{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;min-height:400px;}
+  .chat-eyebrow{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
+  .thread{flex:1;display:flex;flex-direction:column;gap:10px;}
+  .bubble{max-width:92%;border-radius:10px;padding:10px 13px;font-size:13.5px;line-height:1.55;}
+  .bubble.bot{align-self:flex-start;background:var(--paper);border:1px solid var(--line);color:var(--ink);}
+  .bubble.bot .em{color:var(--ink);font-weight:600;}
+  .bubble.user{align-self:flex-end;background:var(--accent);color:#fff;}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 10px;}
+  .chip{font-size:12.5px;padding:6px 12px;border-radius:999px;border:1px solid var(--line-strong);background:var(--paper);color:var(--ink-soft);cursor:pointer;}
+  .chip:hover{color:var(--ink);border-color:var(--ink-faint);}
+  .chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .composer{display:flex;gap:8px;align-items:center;}
+  .composer input{flex:1;height:38px;border:1px solid var(--line-strong);border-radius:8px;padding:0 12px;font-size:14px;font-family:var(--sans);background:var(--paper);color:var(--ink);}
+  .composer input:focus{outline:2px solid var(--accent);outline-offset:0;border-color:var(--accent);}
+  .composer button{height:38px;width:40px;border:1px solid var(--line-strong);border-radius:8px;background:var(--paper);cursor:pointer;font-size:17px;line-height:1;color:var(--ink);}
+  .composer button:hover{background:var(--surface);}
+  .composer button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  .footnote{margin-top:30px;font-size:12px;color:var(--ink-faint);line-height:1.6;border-top:1px solid var(--line);padding-top:14px;}
+
+  .loading,.error{padding:40px 0;color:var(--ink-soft);font-size:15px;}
+  .error{color:#9a3324;}
+
+  @media (max-width:760px){
+    .header{grid-template-columns:1fr;gap:14px;}
+    .results{grid-template-columns:1fr;}
+    .sentence{font-size:16px;line-height:2.3;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .pill,.composer button{transition:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="header">
+    <h1 class="headline" id="headline">Has your content been blocked?</h1>
+    <p class="standfirst" id="standfirst">
+      Loading…
+    </p>
+  </header>
+
+  <hr class="rule" />
+
+  <div id="app" aria-live="polite">
+    <p class="loading">Loading the tracker…</p>
+  </div>
+
+  <p class="footnote" id="footnote"></p>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ----- config -----
+  // For production, point this at the Azure Blob URL of the vetted daily snapshot.
+  var SNAPSHOT_URL = "sample-snapshot.json";
+  // For production, point this at your Azure Functions / Foundry chat endpoint.
+  // Left null here -> chat runs in stubbed (canned answer) mode.
+  var CHAT_ENDPOINT = null;
+
+  var SVGNS = "http://www.w3.org/2000/svg";
+  var state = { who:null, what:null, provision:null, reason:null };
+  var DATA = null;
+
+  function el(tag, attrs, kids){
+    var n = document.createElement(tag);
+    if(attrs) for(var k in attrs){ if(k==="class") n.className=attrs[k]; else if(k==="text") n.textContent=attrs[k]; else n.setAttribute(k,attrs[k]); }
+    if(kids) kids.forEach(function(c){ n.appendChild(c); });
+    return n;
+  }
+
+  function fmt(n){ return Number(n).toLocaleString("en-IN"); }
+
+  // ----- data load -----
+  fetch(SNAPSHOT_URL)
+    .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
+    .then(function(json){ DATA = json; render(); })
+    .catch(function(err){
+      document.getElementById("app").innerHTML =
+        '<p class="error">Couldn\'t load the data. Check the snapshot URL and CORS settings.</p>';
+      document.getElementById("standfirst").textContent = "";
+      console.error(err);
+    });
+
+  function render(){
+    var m = DATA.meta;
+    document.getElementById("standfirst").innerHTML =
+      "Orders to block online content issued under Sections 69A and 79(3)(b) of the IT Act, "
+      + "compiled from public and legal sources. "
+      + '<span class="cta">Select the categories below, then ask about the matching orders.</span>'
+      + '<span class="stamp">Last updated ' + formatDate(m.last_updated) + " · " + (m.note || "") + "</span>";
+
+    document.getElementById("footnote").textContent =
+      "Each square is one documented order. \u201CDocumented\u201D counts orders compiled from public and legal sources; "
+      + "\u201Cdisclosed\u201D counts those for which the government has published a figure or the order itself. "
+      + "Where the two differ, the gap reflects orders that are not officially acknowledged.";
+
+    var app = document.getElementById("app");
+    app.innerHTML = "";
+    app.appendChild(buildSentence());
+    app.appendChild(buildResults());
+    recompute();
+  }
+
+  function formatDate(iso){
+    if(!iso) return "";
+    var d = new Date(iso + "T00:00:00");
+    return d.toLocaleDateString("en-GB", { day:"numeric", month:"long", year:"numeric" });
+  }
+
+  // ----- compose-a-sentence -----
+  function buildSentence(){
+    var box = el("div", { class:"sentence" });
+
+    function lead(t){ return el("span", { class:"lead", text:t }); }
+    function set(group){
+      var span = el("span", { class:"pillset" });
+      DATA.facets[group].forEach(function(opt){
+        var b = el("button", { class:"pill", type:"button", "data-v":opt.id, text:opt.label });
+        b.addEventListener("click", function(){
+          var was = b.classList.contains("on");
+          span.querySelectorAll(".pill").forEach(function(x){ x.classList.remove("on"); });
+          state[group] = was ? null : opt.id;
+          if(!was) b.classList.add("on");
+          recompute();
+        });
+        span.appendChild(b);
+      });
+      return span;
+    }
+
+    box.appendChild(lead("If you are "));
+    box.appendChild(set("who"));
+    box.appendChild(lead(" and it was "));
+    box.appendChild(set("what"));
+    box.appendChild(el("br"));
+    box.appendChild(lead("blocked under "));
+    box.appendChild(set("provision"));
+    box.appendChild(lead(" for "));
+    box.appendChild(set("reason"));
+    return box;
+  }
+
+  // ----- results: map + chat -----
+  var squares = [];
+  function buildResults(){
+    var grid = el("div", { class:"results" });
+
+    // map column
+    var mapcard = el("div", { class:"mapcard" });
+    var tally = el("div", { class:"tally", id:"tally" });
+    tally.innerHTML = '<span class="muted">Pick an option in each row</span>';
+    mapcard.appendChild(tally);
+
+    var svg = document.createElementNS(SVGNS, "svg");
+    svg.setAttribute("id","grid");
+    svg.setAttribute("viewBox","0 0 360 320");
+    svg.setAttribute("role","img");
+    svg.setAttribute("aria-label","Documented orders grouped by issuing authority; highlighted squares match the current selection.");
+    mapcard.appendChild(svg);
+
+    var legend = el("div", { class:"legend" });
+    legend.innerHTML =
+      '<span><span class="swatch" style="background:var(--grid-empty)"></span>All documented</span>'
+      + '<span><span class="swatch" style="background:var(--grid-match)"></span>Your matches</span>';
+    mapcard.appendChild(legend);
+    grid.appendChild(mapcard);
+
+    // chat column
+    var chat = el("div", { class:"chat" });
+    chat.appendChild(el("div", { class:"chat-eyebrow", id:"chatEyebrow", text:"Ask about the matching orders" }));
+    var thread = el("div", { class:"thread", id:"thread" });
+    chat.appendChild(thread);
+
+    var chips = el("div", { class:"chips", id:"chips" });
+    ["Which were challenged in court?","Show the most recent","Why no ground stated?","Which authorities issued these?"].forEach(function(q){
+      var c = el("button", { class:"chip", type:"button", text:q });
+      c.addEventListener("click", function(){ ask(q); });
+      chips.appendChild(c);
+    });
+    chat.appendChild(chips);
+
+    var composer = el("div", { class:"composer" });
+    var input = el("input", { type:"text", id:"qbox", placeholder:"Ask a follow-up\u2026", "aria-label":"Ask a follow-up question" });
+    var send = el("button", { type:"button", id:"send", "aria-label":"Send", text:"\u2191" });
+    function fire(){ var v=input.value.trim(); if(!v) return; ask(v); input.value=""; }
+    send.addEventListener("click", fire);
+    input.addEventListener("keydown", function(e){ if(e.key==="Enter") fire(); });
+    composer.appendChild(input); composer.appendChild(send);
+    chat.appendChild(composer);
+
+    grid.appendChild(chat);
+
+    buildGrid(svg);
+    return grid;
+  }
+
+  function buildGrid(svg){
+    squares = [];
+    var sq=8, gap=3, colW=10, y=14;
+    DATA.authorities.forEach(function(auth){
+      var total = matrixTotalFor(auth.id);
+      var label = document.createElementNS(SVGNS,"text");
+      label.setAttribute("x",4); label.setAttribute("y",y);
+      label.setAttribute("font-size","10.5"); label.setAttribute("fill","var(--ink-soft)");
+      label.setAttribute("font-family","-apple-system,Segoe UI,Roboto,sans-serif");
+      label.textContent = auth.label + " (" + total + ")";
+      svg.appendChild(label);
+      var gy = y+6;
+      for(var i=0;i<total;i++){
+        var r = document.createElementNS(SVGNS,"rect");
+        r.setAttribute("x", 4+(i%colW)*(sq+gap));
+        r.setAttribute("y", gy+Math.floor(i/colW)*(sq+gap));
+        r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","1.5");
+        r.setAttribute("fill","var(--grid-empty)");
+        r.dataset.auth = auth.id;
+        svg.appendChild(r); squares.push(r);
+      }
+      y = gy + Math.ceil(total/colW)*(sq+gap) + 15;
+    });
+    svg.setAttribute("viewBox","0 0 360 " + Math.max(320,y));
+  }
+
+  // total documented per authority = sum across provisions in the matrix
+  function matrixTotalFor(authId){
+    var t = 0;
+    for(var prov in DATA.matrix){
+      if(prov.charAt(0)==="_") continue;
+      var cell = DATA.matrix[prov][authId];
+      if(cell) t += cell.documented;
+    }
+    return t;
+  }
+
+  // ----- recompute on selection -----
+  function recompute(){
+    var ready = state.who && state.what && state.provision && state.reason;
+    var tally = document.getElementById("tally");
+    var eyebrow = document.getElementById("chatEyebrow");
+
+    if(!ready){
+      tally.innerHTML = '<span class="muted">Pick an option in each row</span>';
+      squares.forEach(function(r){ r.setAttribute("fill","var(--grid-empty)"); });
+      if(eyebrow) eyebrow.textContent = "Ask about the matching orders";
+      resetThread(null);
+      return;
+    }
+
+    var counts = countMatches();
+    tally.innerHTML = '<span class="big">' + fmt(counts.documented) + "</span> documented "
+      + '<span class="muted">\u00b7 ' + fmt(counts.disclosed) + " disclosed</span>";
+
+    // light the grid: distribute matches across authorities per the matrix shape for the chosen provision
+    squares.forEach(function(r){ r.setAttribute("fill","var(--grid-empty)"); });
+    var prov = DATA.matrix[state.provision] || {};
+    DATA.authorities.forEach(function(auth){
+      var cell = prov[auth.id];
+      if(!cell) return;
+      var share = counts.documented === 0 ? 0
+        : Math.round(counts.documented * (cell.documented / counts.provisionTotal));
+      var pool = squares.filter(function(r){ return r.dataset.auth === auth.id; });
+      for(var i=0;i<Math.min(share,pool.length);i++) pool[i].setAttribute("fill","var(--grid-match)");
+    });
+
+    if(eyebrow) eyebrow.textContent = "Ask about these " + counts.documented + " orders";
+    resetThread(counts);
+  }
+
+  // Count logic: provision picks the matrix column-sum; the other facets scale it down
+  // deterministically so the demo reacts. In production this is a real query result.
+  function countMatches(){
+    var prov = DATA.matrix[state.provision] || {};
+    var provisionTotal = 0;
+    for(var a in prov) provisionTotal += prov[a].documented;
+
+    // deterministic scaling from the categorical facets (sample only)
+    var whoIdx = idxOf("who", state.who);
+    var whatIdx = idxOf("what", state.what);
+    var factor = ((whoIdx+1) * (whatIdx+2)) % 7 + 3;     // 3..9
+    var documented = Math.max(3, Math.round(provisionTotal * factor / 60));
+
+    var disclosed;
+    if(state.reason === "not_disclosed") disclosed = 0;
+    else disclosed = Math.round(documented * 0.3);
+
+    return { documented:documented, disclosed:disclosed, provisionTotal:provisionTotal };
+  }
+
+  function idxOf(group, id){
+    var arr = DATA.facets[group];
+    for(var i=0;i<arr.length;i++) if(arr[i].id===id) return i;
+    return 0;
+  }
+
+  // ----- chat -----
+  function resetThread(counts){
+    var thread = document.getElementById("thread");
+    if(!thread) return;
+    thread.innerHTML = "";
+    var b = el("div", { class:"bubble bot" });
+    if(!counts){
+      b.textContent = "Compose your situation above, then ask me about the orders that match.";
+    } else {
+      var labels = selectionLabels();
+      b.innerHTML = "You're looking at <span class=\"em\">" + counts.documented + " documented orders</span> against "
+        + labels.who + ", under " + labels.provision + ", for " + labels.reason
+        + ". Ask me anything about them.";
+    }
+    thread.appendChild(b);
+  }
+
+  function selectionLabels(){
+    function lbl(group,id){ var a=DATA.facets[group]; for(var i=0;i<a.length;i++) if(a[i].id===id) return a[i].label; return id; }
+    return {
+      who: lbl("who", state.who),
+      what: lbl("what", state.what),
+      provision: lbl("provision", state.provision),
+      reason: lbl("reason", state.reason)
+    };
+  }
+
+  function addBubble(role, text){
+    var thread = document.getElementById("thread");
+    var b = el("div", { class:"bubble " + role });
+    b.textContent = text;
+    thread.appendChild(b);
+    b.scrollIntoView({ block:"nearest" });
+  }
+
+  function ask(question){
+    if(!(state.who && state.what && state.provision && state.reason)){
+      addBubble("bot", "Pick an option in each row first, so I can scope the answer to the matching orders.");
+      return;
+    }
+    addBubble("user", question);
+    if(CHAT_ENDPOINT){
+      liveAsk(question);
+    } else {
+      setTimeout(function(){ addBubble("bot", cannedAnswer(question)); }, 220);
+    }
+  }
+
+  function cannedAnswer(q){
+    var labels = selectionLabels();
+    var key = q.toLowerCase();
+    if(key.indexOf("challenge")>-1)
+      return "Some of these were challenged before the High Courts (most often Karnataka and Delhi); executive directions from MeitY more often face no recorded challenge. In live mode this returns the exact orders.";
+    if(key.indexOf("recent")>-1)
+      return "The most recent matching order would appear here with its date, issuing authority, and a link to the order where one exists.";
+    if(key.indexOf("ground")>-1 || key.indexOf("why")>-1)
+      return "You've filtered to \u201C" + labels.reason + ".\u201D Where the ground is \u201Cnot disclosed,\u201D that typically reflects Rule 16 confidentiality \u2014 the order text and reasons aren't published, so the ground is inferred, if at all, from any challenge filings.";
+    if(key.indexOf("authorit")>-1)
+      return "Matches are grouped by issuing authority in the panel on the left. Litigation skews to the High Courts; executive blocking skews to MeitY.";
+    return "Within the matching orders, that detail isn't recorded in the public sources for many entries \u2014 in live mode I'd answer from the order records and point to PDFs where they exist.";
+  }
+
+  function liveAsk(question){
+    var payload = { question: question, filter: { who:state.who, what:state.what, provision:state.provision, reason:state.reason } };
+    fetch(CHAT_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) })
+      .then(function(r){ return r.json(); })
+      .then(function(res){ addBubble("bot", res.answer || "No answer returned."); })
+      .catch(function(){ addBubble("bot", "The assistant is unavailable right now. Try again shortly."); });
+  }
+
+})();
+</script>
+</body>
+</html>
