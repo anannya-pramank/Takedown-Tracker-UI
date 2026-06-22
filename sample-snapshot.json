@@ -1,0 +1,76 @@
+{
+  "meta": {
+    "last_updated": "2026-06-21",
+    "year": 2026,
+    "note": "Illustrative sample data. Not a record of actual orders.",
+    "total_documented": 165,
+    "total_disclosed": 47
+  },
+  "facets": {
+    "who": [
+      { "id": "website", "label": "a website" },
+      { "id": "app", "label": "an app" },
+      { "id": "news", "label": "a news outlet" },
+      { "id": "creator", "label": "a content creator" }
+    ],
+    "what": [
+      { "id": "post", "label": "a post" },
+      { "id": "tweet", "label": "a tweet" },
+      { "id": "reel", "label": "a reel" },
+      { "id": "article", "label": "an article" },
+      { "id": "video", "label": "a video" }
+    ],
+    "provision": [
+      { "id": "69a", "label": "Section 69A" },
+      { "id": "79_3b", "label": "Section 79(3)(b)" }
+    ],
+    "reason": [
+      { "id": "national_security", "label": "national security" },
+      { "id": "public_order", "label": "public order" },
+      { "id": "communal", "label": "communal harmony" },
+      { "id": "defamation", "label": "defamation" },
+      { "id": "misinformation", "label": "misinformation" },
+      { "id": "obscenity", "label": "obscenity" },
+      { "id": "not_disclosed", "label": "not disclosed" }
+    ]
+  },
+  "authorities": [
+    { "id": "meity", "label": "MeitY (Union)" },
+    { "id": "delhi_hc", "label": "Delhi HC" },
+    { "id": "karnataka_hc", "label": "Karnataka HC" },
+    { "id": "bombay_hc", "label": "Bombay HC" },
+    { "id": "madras_hc", "label": "Madras HC" },
+    { "id": "other", "label": "Other" }
+  ],
+  "orders": [
+    { "id": "o001", "date": "2026-03-12", "who": "news", "what": "article", "provision": "79_3b", "reason": "not_disclosed", "authority": "meity", "status": "in_force", "disclosed": false, "url": "" },
+    { "id": "o002", "date": "2026-02-28", "who": "news", "what": "article", "provision": "79_3b", "reason": "not_disclosed", "authority": "karnataka_hc", "status": "stayed", "disclosed": false, "url": "" },
+    { "id": "o003", "date": "2026-01-09", "who": "news", "what": "article", "provision": "79_3b", "reason": "not_disclosed", "authority": "delhi_hc", "status": "challenged", "disclosed": false, "url": "" },
+    { "id": "o004", "date": "2026-03-30", "who": "creator", "what": "reel", "provision": "69a", "reason": "public_order", "authority": "meity", "status": "in_force", "disclosed": true, "url": "" },
+    { "id": "o005", "date": "2026-04-15", "who": "creator", "what": "video", "provision": "69a", "reason": "national_security", "authority": "meity", "status": "in_force", "disclosed": false, "url": "" },
+    { "id": "o006", "date": "2026-02-02", "who": "website", "what": "post", "provision": "69a", "reason": "national_security", "authority": "meity", "status": "in_force", "disclosed": true, "url": "" },
+    { "id": "o007", "date": "2026-05-01", "who": "app", "what": "post", "provision": "69a", "reason": "national_security", "authority": "meity", "status": "in_force", "disclosed": false, "url": "" },
+    { "id": "o008", "date": "2026-03-21", "who": "creator", "what": "tweet", "provision": "79_3b", "reason": "communal", "authority": "karnataka_hc", "status": "challenged", "disclosed": true, "url": "" },
+    { "id": "o009", "date": "2026-04-08", "who": "news", "what": "article", "provision": "69a", "reason": "misinformation", "authority": "bombay_hc", "status": "in_force", "disclosed": true, "url": "" },
+    { "id": "o010", "date": "2026-01-19", "who": "creator", "what": "reel", "provision": "79_3b", "reason": "obscenity", "authority": "madras_hc", "status": "in_force", "disclosed": false, "url": "" }
+  ],
+  "matrix": {
+    "_comment": "Pre-aggregated counts so the client need not crunch the full corpus. Keyed provision -> authority -> {documented, disclosed}.",
+    "69a": {
+      "meity": { "documented": 78, "disclosed": 22 },
+      "delhi_hc": { "documented": 9, "disclosed": 4 },
+      "karnataka_hc": { "documented": 6, "disclosed": 3 },
+      "bombay_hc": { "documented": 5, "disclosed": 2 },
+      "madras_hc": { "documented": 4, "disclosed": 1 },
+      "other": { "documented": 6, "disclosed": 2 }
+    },
+    "79_3b": {
+      "meity": { "documented": 14, "disclosed": 2 },
+      "delhi_hc": { "documented": 11, "disclosed": 3 },
+      "karnataka_hc": { "documented": 9, "disclosed": 1 },
+      "bombay_hc": { "documented": 5, "disclosed": 1 },
+      "madras_hc": { "documented": 4, "disclosed": 0 },
+      "other": { "documented": 5, "disclosed": 0 }
+    }
+  }
+}
