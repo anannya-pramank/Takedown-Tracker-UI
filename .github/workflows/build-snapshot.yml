@@ -1,0 +1,38 @@
+name: Build snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 1 * * *"   # daily at 01:30 UTC (07:00 IST). Adjust as needed.
+
+permissions:
+  contents: write          # allows committing snapshot.json back to the repo
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install psycopg2-binary
+
+      - name: Build snapshot
+        env:
+          SUPABASE_DB_PW: ${{ secrets.SUPABASE_DB_PW }}
+        run: python build_snapshot.py
+
+      - name: Commit snapshot if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain snapshot.json)" ]; then
+            git add snapshot.json
+            git commit -m "Update snapshot $(date -u +%Y-%m-%d)"
+            git push
+          else
+            echo "No changes to snapshot.json"
+          fi
