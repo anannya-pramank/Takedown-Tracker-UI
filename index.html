@@ -29,9 +29,19 @@
 
   .header{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:start;}
   .headline{font-family:var(--serif);font-weight:700;font-size:clamp(40px,6.6vw,72px);line-height:1.04;letter-spacing:-0.015em;margin:0;}
-  .headline .hl{display:inline-block;outline:2px solid var(--grid-hover);outline-offset:3px;border-radius:5px;
-    transition:outline-offset .18s ease, background-color .18s ease;}
-  .headline .hl:hover{outline-offset:9px;background-color:rgba(224,163,46,.14);}
+  .headline .hl{position:relative;display:inline-block;color:var(--ink);}
+  .headline .hl .hl-t{position:relative;z-index:1;}
+  .headline .hl .hl-mark{position:absolute;z-index:0;left:-0.14em;top:-0.02em;
+    width:calc(100% + 0.28em);height:106%;
+    clip-path:inset(0 100% 0 0);transform-origin:center;
+    transition:transform .28s cubic-bezier(.2,.7,.2,1);
+    animation:hl-unfurl .85s cubic-bezier(.2,.75,.2,1) .45s forwards;}
+  .headline .hl:hover .hl-mark{transform:scale(1.16);}
+  @keyframes hl-unfurl{from{clip-path:inset(0 100% 0 0);}to{clip-path:inset(0 -4% 0 0);}}
+  @media (prefers-reduced-motion:reduce){
+    .headline .hl .hl-mark{animation:none;clip-path:inset(0 -4% 0 0);}
+    .headline .hl:hover .hl-mark{transform:none;}
+  }
   .standfirst{font-size:15.5px;color:var(--ink-soft);padding-top:8px;}
   .standfirst .cta{color:var(--ink);font-weight:600;}
   .stamp{display:block;margin-top:8px;font-size:13px;color:var(--ink-faint);}
@@ -118,7 +128,7 @@
 <div class="wrap">
 
   <header class="header">
-    <h1 class="headline" id="headline">Has your content been <span class="hl">blocked</span>?</h1>
+    <h1 class="headline" id="headline">Has your content been <span class="hl"><svg class="hl-mark" viewBox="0 0 240 64" preserveAspectRatio="none" aria-hidden="true"><defs><filter id="hlRough" x="-15%" y="-45%" width="130%" height="190%"><feTurbulence type="fractalNoise" baseFrequency="0.02 0.42" numOctaves="2" seed="9" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="10" xChannelSelector="R" yChannelSelector="G"/></filter></defs><g filter="url(#hlRough)" fill="var(--grid-hover)"><path d="M5,13 C60,7 150,9 236,7 C237,26 236,44 234,56 C150,53 70,58 6,55 C4,41 6,27 5,13 Z" opacity="0.82"/><path d="M12,46 C70,41 150,44 228,39" stroke="var(--grid-hover)" stroke-width="7" fill="none" stroke-linecap="round" opacity="0.45"/></g></svg><span class="hl-t">blocked</span></span>?</h1>
     <p class="standfirst" id="standfirst">
       Loading…
     </p>
