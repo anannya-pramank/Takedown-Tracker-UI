@@ -58,13 +58,13 @@
   .pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .pill.on{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-  .results{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px;align-items:start;}
+  .results{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;margin-top:30px;align-items:start;}
 
   .mapcard{display:flex;flex-direction:column;align-items:center;position:relative;}
   .bigcount{font-family:var(--serif);text-align:center;margin:30px 0 2px;font-size:25px;color:var(--ink);line-height:1.1;}
   .bigcount .bc-num{font-size:46px;font-weight:700;color:var(--accent);margin:0 6px;letter-spacing:-0.01em;}
   .bigcount .bc-suf{color:var(--ink);}
-  #grid{width:100%;max-width:400px;height:auto;}
+  #grid{width:100%;max-width:520px;height:auto;}
   .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:12px;color:var(--ink-soft);}
   .legend span{display:flex;align-items:center;gap:6px;}
   .swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
@@ -284,14 +284,18 @@
   // ----- India tile map -----
   // Simplified mainland outline (lon, lat), clockwise from the northwest.
   var INDIA_POLY = [
-    [74.0,34.3],[78.0,32.5],[80.5,30.2],[83.5,27.5],[88.0,26.8],[89.5,26.0],
-    [92.0,27.8],[96.5,28.3],[97.3,27.0],[95.2,24.0],[93.3,22.0],[91.5,23.0],
-    [89.8,22.0],[87.5,21.3],[85.2,19.5],[82.5,17.0],[80.3,15.8],[80.3,13.1],
-    [79.8,11.5],[78.2,8.4],[76.5,8.9],[75.0,12.0],[74.0,14.5],[73.5,16.0],
-    [72.9,18.0],[72.8,19.1],[72.6,21.0],[72.2,21.7],[70.0,20.8],[69.0,22.3],
-    [68.2,23.7],[70.0,24.3],[71.0,27.5],[73.5,29.8],[74.5,32.0]
+    [74.0,34.4],[75.0,34.6],[76.8,35.4],[78.2,35.5],[78.9,34.4],[79.3,33.0],
+    [79.0,31.5],[80.5,30.4],[80.3,28.8],[81.5,28.3],[83.5,27.5],[85.5,26.6],[88.0,26.4],
+    [88.6,27.2],[89.3,27.0],[90.5,26.8],[92.0,26.9],
+    [92.4,27.7],[94.2,27.5],[95.5,29.0],[97.3,28.3],
+    [97.0,27.2],[96.3,25.2],[95.2,23.9],[94.5,24.1],[93.4,22.2],
+    [91.9,23.7],[92.3,24.9],[90.6,25.2],[89.9,25.9],[88.4,26.4],[88.7,24.5],[88.9,23.2],[89.1,22.0],
+    [87.3,21.5],[86.5,20.2],[85.0,19.0],[83.3,17.8],[81.2,16.3],[80.3,15.7],[80.3,13.9],[79.9,11.8],[78.5,9.2],[77.5,8.1],
+    [76.6,8.9],[75.7,11.6],[74.7,13.0],[74.1,14.8],[73.5,15.9],[73.0,17.7],[72.8,18.9],[72.7,20.7],[72.9,21.2],
+    [72.0,21.5],[70.5,20.9],[70.0,21.5],[69.0,22.2],[68.2,23.7],[69.5,23.9],[70.6,24.3],
+    [71.0,27.0],[72.5,28.5],[73.9,30.0],[74.5,31.5],[75.0,32.5],[74.6,33.5]
   ];
-  var GEO = { lonMin:67, lonMax:98, latMin:6.5, latMax:37.5, cols:22, rows:24 };
+  var GEO = { lonMin:67.5, lonMax:98.0, latMin:6.5, latMax:37.8, cols:36, rows:40 };
   var landSet = {};   // "c_r" -> true
   var cellRect = {};  // "c_r" -> rect
 
