@@ -1,14 +1,9 @@
 """
-Vercel serverless function: Level 1 chat endpoint.
-Structured, templated answers from SQL. No LLM, cannot hallucinate.
+Vercel serverless function: Level 1 chat endpoint (DEBUG build).
 
-Deploys at /api/ask when this file lives at api/ask.py in the repo.
-
-POST { "question": "...", "filter": { who, platform, provision, sector } }
-->   { "answer": "..." }
-
-DB password comes from the SUPABASE_DB_PW environment variable
-(set in the Vercel dashboard -> Project -> Settings -> Environment Variables).
+Same logic as before, but failures return the real error text + a 500 status
+so you can see *why* in curl / the Network tab. Revert the do_POST except-block
+to the generic message before anything public-facing.
 """
 
 import os
@@ -23,27 +18,27 @@ PORT = 6543
 DBNAME = "postgres"
 USER = "postgres.mehsswdrmprtfookaqig"
 
-# Restrict to your site origin in production, e.g. "https://yoursite.netlify.app".
-# "*" is fine while prototyping.
 ALLOW_ORIGIN = os.environ.get("ALLOW_ORIGIN", "*")
 
 
 def get_conn():
+    pw = os.environ.get("SUPABASE_DB_PW")
+    if not pw:
+        raise RuntimeError(
+            "SUPABASE_DB_PW is not set on this deployment. Add it in Vercel "
+            "(Settings -> Environment Variables) for the right environment, "
+            "then redeploy so a fresh build picks it up."
+        )
     return psycopg2.connect(
         host=HOST, port=PORT, dbname=DBNAME, user=USER,
-        password=os.environ["SUPABASE_DB_PW"],
-        connect_timeout=15, sslmode="require",
+        password=pw, connect_timeout=15, sslmode="require",
     )
 
 
 def build_where(filt):
     clauses, params = [], []
-    mapping = {
-        "who": "entity_type",
-        "platform": "platform",
-        "provision": "legal_basis",
-        "sector": "sector",
-    }
+    mapping = {"who": "entity_type", "platform": "platform",
+               "provision": "legal_basis", "sector": "sector"}
     for key, col in mapping.items():
         val = filt.get(key)
         if val:
@@ -135,6 +130,14 @@ class handler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Methods", "POST, OPTIONS")
         self.send_header("Access-Control-Allow-Headers", "Content-Type")
 
+    def _json(self, status, obj):
+        payload = json.dumps(obj).encode()
+        self.send_response(status)
+        self.send_header("Content-Type", "application/json")
+        self._cors()
+        self.end_headers()
+        self.wfile.write(payload)
+
     def do_OPTIONS(self):
         self.send_response(204)
         self._cors()
@@ -147,15 +150,11 @@ class handler(BaseHTTPRequestHandler):
             body = json.loads(raw or b"{}")
         except ValueError:
             body = {}
-
         try:
             ans = answer(body.get("question", ""), body.get("filter", {}) or {})
-        except Exception:
-            ans = "The assistant is unavailable right now. Try again shortly."
-
-        payload = json.dumps({"answer": ans}).encode()
-        self.send_response(200)
-        self.send_header("Content-Type", "application/json")
-        self._cors()
-        self.end_headers()
-        self.wfile.write(payload)
+            self._json(200, {"answer": ans})
+        except Exception as e:
+            # DEBUG: surfaces the real cause. Swap back to the generic
+            # "unavailable" message before publishing.
+            self._json(500, {"answer": "Backend error (debug): "
+                             + type(e).__name__ + ": " + str(e)})
