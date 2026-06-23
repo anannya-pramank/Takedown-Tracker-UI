@@ -264,9 +264,15 @@
 
   function buildGrid(svg){
     squares = [];
+    // Group the real incident records by platform so each dot IS an incident.
+    var byPlatform = {};
+    (DATA.orders || []).forEach(function(o){
+      (byPlatform[o.platform] = byPlatform[o.platform] || []).push(o);
+    });
     var sq=8, gap=3, colW=10, y=14;
     gridGroups().forEach(function(grp){
-      var total = matrixTotalFor(grp.id);
+      var list = byPlatform[grp.id] || [];
+      var total = list.length || matrixTotalFor(grp.id);
       var label = document.createElementNS(SVGNS,"text");
       label.setAttribute("x",4); label.setAttribute("y",y);
       label.setAttribute("font-size","10.5"); label.setAttribute("fill","var(--ink-soft)");
@@ -275,12 +281,25 @@
       svg.appendChild(label);
       var gy = y+6;
       for(var i=0;i<total;i++){
+        var ord = list[i] || null;
         var r = document.createElementNS(SVGNS,"rect");
         r.setAttribute("x", 4+(i%colW)*(sq+gap));
         r.setAttribute("y", gy+Math.floor(i/colW)*(sq+gap));
         r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","1.5");
         r.setAttribute("fill","var(--grid-empty)");
         r.dataset.auth = grp.id;
+        if(ord){
+          r._order = ord;
+          // Native hover tooltip: entity, date, action, and a click hint.
+          var tip = document.createElementNS(SVGNS,"title");
+          var bits = [ord.entity || "Unnamed", ord.date || "", ord.action || ""].filter(Boolean);
+          tip.textContent = bits.join("  \u00b7  ") + (ord.url ? "  \u2014  click to open source" : "  (no source link)");
+          r.appendChild(tip);
+          if(ord.url){
+            r.style.cursor = "pointer";
+            r.addEventListener("click", (function(u){ return function(){ window.open(u, "_blank", "noopener"); }; })(ord.url));
+          }
+        }
         svg.appendChild(r); squares.push(r);
       }
       y = gy + Math.ceil(total/colW)*(sq+gap) + 15;
@@ -323,16 +342,13 @@
     tally.innerHTML = '<span class="big">' + fmt(counts.documented) + "</span> documented "
       + '<span class="muted">\u00b7 ' + fmt(counts.disclosed) + " " + disclosedLabel + "</span>";
 
-    // light the grid: distribute matches across platforms per the matrix shape for the chosen provision
-    squares.forEach(function(r){ r.setAttribute("fill","var(--grid-empty)"); });
-    var prov = DATA.matrix[state.provision] || {};
-    gridGroups().forEach(function(group){
-      var cell = prov[group.id];
-      if(!cell) return;
-      var share = counts.provisionTotal === 0 ? 0
-        : Math.round(counts.documented * (cell.documented / counts.provisionTotal));
-      var pool = squares.filter(function(r){ return r.dataset.auth === group.id; });
-      for(var i=0;i<Math.min(share,pool.length);i++) pool[i].setAttribute("fill","var(--grid-match)");
+    // light the exact incidents that match the full selection, so a highlighted
+    // dot links to a genuinely matching record (and the lit count equals the headline).
+    var matchedIds = {};
+    (counts.matched || []).forEach(function(o){ if(o && o.id) matchedIds[o.id] = true; });
+    squares.forEach(function(r){
+      var hit = r._order && r._order.id && matchedIds[r._order.id];
+      r.setAttribute("fill", hit ? "var(--grid-match)" : "var(--grid-empty)");
     });
 
     if(eyebrow) eyebrow.textContent = "Ask about these " + counts.documented + " incidents";
@@ -365,7 +381,7 @@
     // never an identified basis.
     if(state.provision === "Unknown") disclosed = 0;
 
-    return { documented:documented, disclosed:disclosed, provisionTotal:provisionTotal };
+    return { documented:documented, disclosed:disclosed, provisionTotal:provisionTotal, matched:matched };
   }
 
   // If a record lacks a field, don't exclude on it.
