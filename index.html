@@ -71,23 +71,8 @@
 
   /* dot hover: grow + recolor (presentation-attribute fill is overridden by these rules) */
   #grid{overflow:visible;}
-  .dot{transition:transform .12s ease, fill .12s ease;transform-box:fill-box;transform-origin:center;}
-  .dot:hover{fill:var(--grid-hover) !important;transform:scale(1.7);}
-
-  /* incident preview card */
-  .dotcard{position:absolute;z-index:60;display:none;pointer-events:none;width:248px;
-    background:var(--card-bg);color:#fff;border-radius:10px;padding:13px 15px 12px;
-    box-shadow:0 8px 22px rgba(0,0,0,.22);font-family:var(--sans);}
-  .dotcard .dc-name{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
-  .dotcard .dc-entity{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.2;color:#fff;}
-  .dotcard .dc-badge{flex:0 0 auto;font-size:10.5px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;
-    padding:2px 8px;border-radius:999px;background:var(--grid-hover);color:#2a2a26;}
-  .dotcard .dc-action{font-size:13.5px;line-height:1.35;color:#fff;margin-bottom:5px;}
-  .dotcard .dc-meta{font-size:11.5px;color:#cdc9c0;line-height:1.4;}
-  .dotcard .dc-hint{font-size:11px;color:var(--grid-hover);margin-top:8px;font-weight:600;}
-  .dotcard::after{content:"";position:absolute;left:var(--px,50%);transform:translateX(-50%);
-    bottom:-7px;width:0;height:0;border:7px solid transparent;border-bottom:0;border-top-color:var(--card-bg);}
-  .dotcard.below::after{bottom:auto;top:-7px;border-top:0;border-bottom:7px solid var(--card-bg);}
+  .dot{transition:fill .12s ease;cursor:default;}
+  .dot:hover{fill:var(--grid-hover) !important;}
 
   .chat{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;min-height:400px;}
   .chat-eyebrow{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
@@ -256,23 +241,14 @@
     svg.setAttribute("id","grid");
     svg.setAttribute("viewBox","0 0 360 320");
     svg.setAttribute("role","img");
-    svg.setAttribute("aria-label","Documented incidents grouped by platform; highlighted squares match the current selection.");
+    svg.setAttribute("aria-label","Tile map of India. Grey cells form the country; highlighted cells mark where matching incidents originate.");
     mapcard.appendChild(svg);
 
     var legend = el("div", { class:"legend" });
     legend.innerHTML =
-      '<span><span class="swatch" style="background:var(--grid-empty)"></span>All documented</span>'
+      '<span><span class="swatch" style="background:var(--grid-empty)"></span>India</span>'
       + '<span><span class="swatch" style="background:var(--grid-match)"></span>Your matches</span>';
     mapcard.appendChild(legend);
-
-    // incident preview card (positioned on hover)
-    var card = el("div", { class:"dotcard", id:"dotcard" });
-    card.innerHTML =
-      '<div class="dc-name"><span class="dc-entity"></span><span class="dc-badge"></span></div>'
-      + '<div class="dc-action"></div>'
-      + '<div class="dc-meta"></div>'
-      + '<div class="dc-hint">click to open source \u2197</div>';
-    mapcard.appendChild(card);
 
     grid.appendChild(mapcard);
 
@@ -305,82 +281,121 @@
     return grid;
   }
 
-  function buildGrid(svg){
-    squares = [];
-    // One organised rectangle: all incidents, ordered by platform so clusters stay
-    // contiguous. Each dot is still a real incident (hover card + click-through).
-    var platOrder = {};
-    gridGroups().forEach(function(g, idx){ platOrder[g.id] = idx; });
-    var all = (DATA.orders || []).slice().sort(function(a, b){
-      var pa = platOrder[a.platform], pb = platOrder[b.platform];
-      pa = (pa === undefined) ? 999 : pa; pb = (pb === undefined) ? 999 : pb;
-      if(pa !== pb) return pa - pb;
-      return String(b.date || "").localeCompare(String(a.date || ""));
-    });
+  // ----- India tile map -----
+  // Simplified mainland outline (lon, lat), clockwise from the northwest.
+  var INDIA_POLY = [
+    [74.0,34.3],[78.0,32.5],[80.5,30.2],[83.5,27.5],[88.0,26.8],[89.5,26.0],
+    [92.0,27.8],[96.5,28.3],[97.3,27.0],[95.2,24.0],[93.3,22.0],[91.5,23.0],
+    [89.8,22.0],[87.5,21.3],[85.2,19.5],[82.5,17.0],[80.3,15.8],[80.3,13.1],
+    [79.8,11.5],[78.2,8.4],[76.5,8.9],[75.0,12.0],[74.0,14.5],[73.5,16.0],
+    [72.9,18.0],[72.8,19.1],[72.6,21.0],[72.2,21.7],[70.0,20.8],[69.0,22.3],
+    [68.2,23.7],[70.0,24.3],[71.0,27.5],[73.5,29.8],[74.5,32.0]
+  ];
+  var GEO = { lonMin:67, lonMax:98, latMin:6.5, latMax:37.5, cols:22, rows:24 };
+  var landSet = {};   // "c_r" -> true
+  var cellRect = {};  // "c_r" -> rect
 
-    var n = all.length;
-    var cols = Math.max(1, Math.ceil(Math.sqrt(n)));   // near-square block
-    var rows = Math.ceil(n / cols);
-    var sq = 24, gap = 7, pad = 2;
-
-    all.forEach(function(ord, i){
-      var r = document.createElementNS(SVGNS, "rect");
-      r.setAttribute("x", pad + (i % cols) * (sq + gap));
-      r.setAttribute("y", pad + Math.floor(i / cols) * (sq + gap));
-      r.setAttribute("width", sq); r.setAttribute("height", sq); r.setAttribute("rx", "3");
-      r.setAttribute("fill", "var(--grid-empty)");
-      r.setAttribute("class", "dot");
-      r.dataset.auth = ord.platform;
-      r._order = ord;
-      var bits = [ord.entity || "Unnamed", ord.date || "", ord.action || ""].filter(Boolean);
-      r.setAttribute("aria-label", bits.join(" \u00b7 "));
-      if(ord.url){
-        r.style.cursor = "pointer";
-        r.addEventListener("click", (function(u){ return function(){ window.open(u, "_blank", "noopener"); }; })(ord.url));
+  function pointInPoly(lon, lat){
+    var inside = false, poly = INDIA_POLY;
+    for(var i=0, j=poly.length-1; i<poly.length; j=i++){
+      var xi=poly[i][0], yi=poly[i][1], xj=poly[j][0], yj=poly[j][1];
+      if(((yi>lat)!==(yj>lat)) && (lon < (xj-xi)*(lat-yi)/(yj-yi)+xi)) inside = !inside;
+    }
+    return inside;
+  }
+  function cellCenter(c, r){
+    return [ GEO.lonMin + (c+0.5)*(GEO.lonMax-GEO.lonMin)/GEO.cols,
+             GEO.latMax - (r+0.5)*(GEO.latMax-GEO.latMin)/GEO.rows ];
+  }
+  function lonLatToCell(lon, lat){
+    var c = Math.floor((lon-GEO.lonMin)/((GEO.lonMax-GEO.lonMin)/GEO.cols));
+    var r = Math.floor((GEO.latMax-lat)/((GEO.latMax-GEO.latMin)/GEO.rows));
+    return [Math.max(0,Math.min(GEO.cols-1,c)), Math.max(0,Math.min(GEO.rows-1,r))];
+  }
+  function nearestLandCell(c, r){
+    if(landSet[c+"_"+r]) return c+"_"+r;
+    for(var rad=1; rad<=Math.max(GEO.cols,GEO.rows); rad++){
+      for(var dr=-rad; dr<=rad; dr++){
+        for(var dc=-rad; dc<=rad; dc++){
+          if(Math.abs(dr)!==rad && Math.abs(dc)!==rad) continue;  // ring only
+          var k=(c+dc)+"_"+(r+dr);
+          if(landSet[k]) return k;
+        }
       }
-      r.addEventListener("mouseenter", (function(rect, o){ return function(){ showCard(rect, o); }; })(r, ord));
-      r.addEventListener("mouseleave", hideCard);
-      svg.appendChild(r); squares.push(r);
+    }
+    return null;
+  }
+
+  // City coordinates used for state capitals and High-Court seats.
+  var CITY = {
+    "New Delhi":[77.21,28.61], "Bengaluru":[77.59,12.97], "Mumbai":[72.88,19.08],
+    "Chennai":[80.27,13.08], "Kolkata":[88.36,22.57], "Ahmedabad":[72.57,23.03],
+    "Jaipur":[75.79,26.91], "Jodhpur":[73.02,26.29], "Hyderabad":[78.47,17.38],
+    "Lucknow":[80.95,26.85], "Patna":[85.14,25.59], "Bhopal":[77.41,23.26],
+    "Thiruvananthapuram":[76.95,8.52], "Guwahati":[91.74,26.14], "Chandigarh":[76.78,30.73]
+  };
+  // High Court / issuing-body -> city (extend as needed).
+  var COURT_CITY = {
+    "Delhi High Court":"New Delhi", "High Court":"New Delhi",
+    "Karnataka High Court":"Bengaluru", "Karnataka HC":"Bengaluru",
+    "Bombay High Court":"Mumbai", "Bombay HC":"Mumbai",
+    "Gujarat High Court":"Ahmedabad", "Rajasthan High Court":"Jodhpur",
+    "Madras High Court":"Chennai", "Calcutta High Court":"Kolkata"
+  };
+
+  // Resolve an incident to [lon,lat]. Reads explicit geo if the data ever carries
+  // it (o.lon/o.lat, o.city, o.state capital, o.court seat); otherwise falls back
+  // to the central issuing body for Section 69A / 79(3)(b) / Sahyog orders (Delhi).
+  function incidentLonLat(o){
+    if(o.lon != null && o.lat != null) return [o.lon, o.lat];
+    if(o.city && CITY[o.city]) return CITY[o.city];
+    if(o.state && CITY[o.state]) return CITY[o.state];
+    if(o.court && COURT_CITY[o.court] && CITY[COURT_CITY[o.court]]) return CITY[COURT_CITY[o.court]];
+    return CITY["New Delhi"];
+  }
+
+  // Cells to light for a set of matching incidents: the resolved cell plus a
+  // couple of adjacent land cells around it.
+  function matchedCellKeys(matched){
+    var keys = {};
+    (matched || []).forEach(function(o){
+      var ll = incidentLonLat(o);
+      var cr = lonLatToCell(ll[0], ll[1]);
+      var k = nearestLandCell(cr[0], cr[1]);
+      if(!k) return;
+      keys[k] = true;
+      var p = k.split("_"), cc = +p[0], rr = +p[1];
+      var around = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,-1]], added = 0;
+      for(var a=0; a<around.length && added<2; a++){
+        var nk = (cc+around[a][0])+"_"+(rr+around[a][1]);
+        if(landSet[nk] && !keys[nk]){ keys[nk] = true; added++; }
+      }
     });
-
-    var contentW = pad * 2 + cols * (sq + gap) - gap;
-    var contentH = pad * 2 + rows * (sq + gap) - gap;
-    svg.setAttribute("viewBox", "0 0 " + contentW + " " + contentH);
+    return keys;
   }
 
-  // ----- incident preview card -----
-  function showCard(rect, ord){
-    if(!ord) return;
-    var card = document.getElementById("dotcard");
-    if(!card) return;
-    card.querySelector(".dc-entity").textContent = ord.entity || "Unnamed";
-    var badge = card.querySelector(".dc-badge");
-    if(ord.status){ badge.textContent = ord.status; badge.style.display = "inline-block"; }
-    else { badge.style.display = "none"; }
-    card.querySelector(".dc-action").textContent = ord.action || "";
-    card.querySelector(".dc-meta").textContent =
-      [ord.platform, ord.sector, ord.date].filter(Boolean).join("  \u00b7  ");
-    card.querySelector(".dc-hint").style.display = ord.url ? "block" : "none";
+  function buildGrid(svg){          // builds the India tile map
+    squares = []; landSet = {}; cellRect = {};
+    var pitch = 20, inset = 2, sz = pitch - inset*2;
+    for(var r=0; r<GEO.rows; r++){
+      for(var c=0; c<GEO.cols; c++){
+        var ll = cellCenter(c, r);
+        if(!pointInPoly(ll[0], ll[1])) continue;
+        var key = c+"_"+r;
+        landSet[key] = true;
+        var rect = document.createElementNS(SVGNS, "rect");
+        rect.setAttribute("x", c*pitch + inset);
+        rect.setAttribute("y", r*pitch + inset);
+        rect.setAttribute("width", sz); rect.setAttribute("height", sz); rect.setAttribute("rx", "2.5");
+        rect.setAttribute("fill", "var(--grid-empty)");
+        rect.setAttribute("class", "dot");
+        rect.dataset.cell = key;
+        svg.appendChild(rect); squares.push(rect); cellRect[key] = rect;
+      }
+    }
+    svg.setAttribute("viewBox", "0 0 " + (GEO.cols*pitch) + " " + (GEO.rows*pitch));
+  }
 
-    card.style.display = "block";              // measure after showing
-    var host = card.parentNode;                // .mapcard (position:relative)
-    var hb = host.getBoundingClientRect();
-    var db = rect.getBoundingClientRect();
-    var cx = db.left - hb.left + db.width/2;
-    var cw = card.offsetWidth, ch = card.offsetHeight;
-    var left = Math.max(2, Math.min(cx - cw/2, host.clientWidth - cw - 2));
-    var top = (db.top - hb.top) - ch - 10;
-    var below = top < 0;
-    if(below) top = (db.top - hb.top) + db.height + 10;
-    card.style.left = left + "px";
-    card.style.top = top + "px";
-    card.classList.toggle("below", below);
-    card.style.setProperty("--px", (cx - left) + "px");
-  }
-  function hideCard(){
-    var card = document.getElementById("dotcard");
-    if(card) card.style.display = "none";
-  }
 
   // The grid groups by platform (the inner key of the matrix).
   function gridGroups(){
@@ -455,13 +470,10 @@
 
     var counts = countMatches();
 
-    // light the exact incidents that match the full selection, so a highlighted
-    // dot links to a genuinely matching record (and the lit count equals the headline).
-    var matchedIds = {};
-    (counts.matched || []).forEach(function(o){ if(o && o.id) matchedIds[o.id] = true; });
+    // light the map cells where the matching incidents originate
+    var keys = matchedCellKeys(counts.matched || []);
     squares.forEach(function(r){
-      var hit = r._order && r._order.id && matchedIds[r._order.id];
-      r.setAttribute("fill", hit ? "var(--grid-match)" : "var(--grid-empty)");
+      r.setAttribute("fill", keys[r.dataset.cell] ? "var(--grid-match)" : "var(--grid-empty)");
     });
 
     if(eyebrow) eyebrow.textContent = "Ask about these " + counts.documented + " incidents";
