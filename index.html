@@ -64,7 +64,7 @@
   .bigcount{font-family:var(--serif);text-align:center;margin:30px 0 2px;font-size:25px;color:var(--ink);line-height:1.1;}
   .bigcount .bc-num{font-size:46px;font-weight:700;color:var(--accent);margin:0 6px;letter-spacing:-0.01em;}
   .bigcount .bc-suf{color:var(--ink);}
-  #grid{width:100%;max-width:460px;height:auto;}
+  #grid{width:100%;max-width:400px;height:auto;}
   .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:12px;color:var(--ink-soft);}
   .legend span{display:flex;align-items:center;gap:6px;}
   .swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
@@ -307,48 +307,45 @@
 
   function buildGrid(svg){
     squares = [];
-    // Group the real incident records by platform so each dot IS an incident.
-    var byPlatform = {};
-    (DATA.orders || []).forEach(function(o){
-      (byPlatform[o.platform] = byPlatform[o.platform] || []).push(o);
+    // One organised rectangle: all incidents, ordered by platform so clusters stay
+    // contiguous. Each dot is still a real incident (hover card + click-through).
+    var platOrder = {};
+    gridGroups().forEach(function(g, idx){ platOrder[g.id] = idx; });
+    var all = (DATA.orders || []).slice().sort(function(a, b){
+      var pa = platOrder[a.platform], pb = platOrder[b.platform];
+      pa = (pa === undefined) ? 999 : pa; pb = (pb === undefined) ? 999 : pb;
+      if(pa !== pb) return pa - pb;
+      return String(b.date || "").localeCompare(String(a.date || ""));
     });
-    var sq=16, gap=6, colW=15, pad=4, y=18;
-    gridGroups().forEach(function(grp){
-      var list = byPlatform[grp.id] || [];
-      var total = list.length || matrixTotalFor(grp.id);
-      var label = document.createElementNS(SVGNS,"text");
-      label.setAttribute("x",pad); label.setAttribute("y",y);
-      label.setAttribute("font-size","11"); label.setAttribute("fill","var(--ink-soft)");
-      label.setAttribute("font-family","-apple-system,Segoe UI,Roboto,sans-serif");
-      label.textContent = grp.label + " (" + total + ")";
-      svg.appendChild(label);
-      var gy = y+8;
-      for(var i=0;i<total;i++){
-        var ord = list[i] || null;
-        var r = document.createElementNS(SVGNS,"rect");
-        r.setAttribute("x", pad+(i%colW)*(sq+gap));
-        r.setAttribute("y", gy+Math.floor(i/colW)*(sq+gap));
-        r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","2.5");
-        r.setAttribute("fill","var(--grid-empty)");
-        r.setAttribute("class","dot");
-        r.dataset.auth = grp.id;
-        if(ord){
-          r._order = ord;
-          var bits = [ord.entity || "Unnamed", ord.date || "", ord.action || ""].filter(Boolean);
-          r.setAttribute("aria-label", bits.join(" \u00b7 "));
-          if(ord.url){
-            r.style.cursor = "pointer";
-            r.addEventListener("click", (function(u){ return function(){ window.open(u, "_blank", "noopener"); }; })(ord.url));
-          }
-          r.addEventListener("mouseenter", (function(rect, o){ return function(){ showCard(rect, o); }; })(r, ord));
-          r.addEventListener("mouseleave", hideCard);
-        }
-        svg.appendChild(r); squares.push(r);
+
+    var n = all.length;
+    var cols = Math.max(1, Math.ceil(Math.sqrt(n)));   // near-square block
+    var rows = Math.ceil(n / cols);
+    var sq = 24, gap = 7, pad = 2;
+
+    all.forEach(function(ord, i){
+      var r = document.createElementNS(SVGNS, "rect");
+      r.setAttribute("x", pad + (i % cols) * (sq + gap));
+      r.setAttribute("y", pad + Math.floor(i / cols) * (sq + gap));
+      r.setAttribute("width", sq); r.setAttribute("height", sq); r.setAttribute("rx", "3");
+      r.setAttribute("fill", "var(--grid-empty)");
+      r.setAttribute("class", "dot");
+      r.dataset.auth = ord.platform;
+      r._order = ord;
+      var bits = [ord.entity || "Unnamed", ord.date || "", ord.action || ""].filter(Boolean);
+      r.setAttribute("aria-label", bits.join(" \u00b7 "));
+      if(ord.url){
+        r.style.cursor = "pointer";
+        r.addEventListener("click", (function(u){ return function(){ window.open(u, "_blank", "noopener"); }; })(ord.url));
       }
-      y = gy + Math.ceil(total/colW)*(sq+gap) + 18;
+      r.addEventListener("mouseenter", (function(rect, o){ return function(){ showCard(rect, o); }; })(r, ord));
+      r.addEventListener("mouseleave", hideCard);
+      svg.appendChild(r); squares.push(r);
     });
-    var contentW = pad*2 + colW*(sq+gap) - gap;
-    svg.setAttribute("viewBox","0 0 " + contentW + " " + (y));
+
+    var contentW = pad * 2 + cols * (sq + gap) - gap;
+    var contentH = pad * 2 + rows * (sq + gap) - gap;
+    svg.setAttribute("viewBox", "0 0 " + contentW + " " + contentH);
   }
 
   // ----- incident preview card -----
