@@ -118,7 +118,9 @@
   var SNAPSHOT_URL = "sample-snapshot.json";
   // For production, point this at your Azure Functions / Foundry chat endpoint.
   // Left null here -> chat runs in stubbed (canned answer) mode.
-  var CHAT_ENDPOINT = "takedown-tracker-ikqzvx1f5-tlegtech.vercel.app";
+  // Page is hosted on GitHub Pages; the function lives on Vercel (cross-origin).
+  // ask.py defaults ALLOW_ORIGIN="*", so the cross-origin POST is permitted.
+  var CHAT_ENDPOINT = "https://takedown-tracker-ikqzvx1f5-tlegtech.vercel.app/api/ask";
 
   var SVGNS = "http://www.w3.org/2000/svg";
   var state = { who:null, platform:null, provision:null, sector:null };
