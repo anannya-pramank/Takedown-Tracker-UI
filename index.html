@@ -58,16 +58,13 @@
   .pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .pill.on{background:var(--accent);border-color:var(--accent);color:#fff;}
 
-  .results{display:grid;grid-template-columns:1fr 1.08fr;gap:24px;margin-top:36px;align-items:stretch;}
+  .results{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:30px;align-items:start;}
 
   .mapcard{display:flex;flex-direction:column;align-items:center;position:relative;}
-  .tally{font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:10px;text-align:center;}
-  .tally .big{font-size:30px;font-weight:700;color:var(--accent);}
-  .tally .muted{color:var(--ink-soft);}
   .bigcount{font-family:var(--serif);text-align:center;margin:30px 0 2px;font-size:25px;color:var(--ink);line-height:1.1;}
   .bigcount .bc-num{font-size:46px;font-weight:700;color:var(--accent);margin:0 6px;letter-spacing:-0.01em;}
   .bigcount .bc-suf{color:var(--ink);}
-  #grid{width:100%;max-width:360px;height:auto;}
+  #grid{width:100%;max-width:460px;height:auto;}
   .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:12px;color:var(--ink-soft);}
   .legend span{display:flex;align-items:center;gap:6px;}
   .swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
@@ -254,9 +251,6 @@
 
     // map column
     var mapcard = el("div", { class:"mapcard" });
-    var tally = el("div", { class:"tally", id:"tally" });
-    tally.innerHTML = '<span class="muted">Pick an option in each row</span>';
-    mapcard.appendChild(tally);
 
     var svg = document.createElementNS(SVGNS, "svg");
     svg.setAttribute("id","grid");
@@ -318,23 +312,23 @@
     (DATA.orders || []).forEach(function(o){
       (byPlatform[o.platform] = byPlatform[o.platform] || []).push(o);
     });
-    var sq=11, gap=4, colW=10, y=14;
+    var sq=16, gap=6, colW=15, pad=4, y=18;
     gridGroups().forEach(function(grp){
       var list = byPlatform[grp.id] || [];
       var total = list.length || matrixTotalFor(grp.id);
       var label = document.createElementNS(SVGNS,"text");
-      label.setAttribute("x",4); label.setAttribute("y",y);
-      label.setAttribute("font-size","10.5"); label.setAttribute("fill","var(--ink-soft)");
+      label.setAttribute("x",pad); label.setAttribute("y",y);
+      label.setAttribute("font-size","11"); label.setAttribute("fill","var(--ink-soft)");
       label.setAttribute("font-family","-apple-system,Segoe UI,Roboto,sans-serif");
       label.textContent = grp.label + " (" + total + ")";
       svg.appendChild(label);
-      var gy = y+6;
+      var gy = y+8;
       for(var i=0;i<total;i++){
         var ord = list[i] || null;
         var r = document.createElementNS(SVGNS,"rect");
-        r.setAttribute("x", 4+(i%colW)*(sq+gap));
+        r.setAttribute("x", pad+(i%colW)*(sq+gap));
         r.setAttribute("y", gy+Math.floor(i/colW)*(sq+gap));
-        r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","2");
+        r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","2.5");
         r.setAttribute("fill","var(--grid-empty)");
         r.setAttribute("class","dot");
         r.dataset.auth = grp.id;
@@ -351,9 +345,10 @@
         }
         svg.appendChild(r); squares.push(r);
       }
-      y = gy + Math.ceil(total/colW)*(sq+gap) + 16;
+      y = gy + Math.ceil(total/colW)*(sq+gap) + 18;
     });
-    svg.setAttribute("viewBox","0 0 360 " + Math.max(320,y));
+    var contentW = pad*2 + colW*(sq+gap) - gap;
+    svg.setAttribute("viewBox","0 0 " + contentW + " " + (y));
   }
 
   // ----- incident preview card -----
@@ -452,11 +447,9 @@
   function recompute(){
     updateBigCount();
     var ready = state.who && state.platform && state.provision && state.sector;
-    var tally = document.getElementById("tally");
     var eyebrow = document.getElementById("chatEyebrow");
 
     if(!ready){
-      tally.innerHTML = '<span class="muted">Pick an option in each row</span>';
       squares.forEach(function(r){ r.setAttribute("fill","var(--grid-empty)"); });
       if(eyebrow) eyebrow.textContent = "Ask about the matching incidents";
       resetThread(null);
@@ -464,9 +457,6 @@
     }
 
     var counts = countMatches();
-    var disclosedLabel = (DATA.meta && DATA.meta.labels && DATA.meta.labels.disclosed) || "disclosed";
-    tally.innerHTML = '<span class="big">' + fmt(counts.documented) + "</span> documented "
-      + '<span class="muted">\u00b7 ' + fmt(counts.disclosed) + " " + disclosedLabel + "</span>";
 
     // light the exact incidents that match the full selection, so a highlighted
     // dot links to a genuinely matching record (and the lit count equals the headline).
