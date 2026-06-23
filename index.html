@@ -17,6 +17,8 @@
     --accent-soft:#e7eef5;
     --grid-empty:#d9d5cb;
     --grid-match:#1f5a8a;
+    --grid-hover:#e0a32e;
+    --card-bg:#3a3935;
     --radius:10px;
     --serif:Georgia,"Times New Roman",serif;
     --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
@@ -45,7 +47,7 @@
 
   .results{display:grid;grid-template-columns:1fr 1.08fr;gap:24px;margin-top:36px;align-items:stretch;}
 
-  .mapcard{display:flex;flex-direction:column;align-items:center;}
+  .mapcard{display:flex;flex-direction:column;align-items:center;position:relative;}
   .tally{font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:10px;text-align:center;}
   .tally .big{font-size:30px;font-weight:700;color:var(--accent);}
   .tally .muted{color:var(--ink-soft);}
@@ -53,6 +55,26 @@
   .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:12px;color:var(--ink-soft);}
   .legend span{display:flex;align-items:center;gap:6px;}
   .swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
+
+  /* dot hover: grow + recolor (presentation-attribute fill is overridden by these rules) */
+  #grid{overflow:visible;}
+  .dot{transition:transform .12s ease, fill .12s ease;transform-box:fill-box;transform-origin:center;}
+  .dot:hover{fill:var(--grid-hover) !important;transform:scale(1.7);}
+
+  /* incident preview card */
+  .dotcard{position:absolute;z-index:60;display:none;pointer-events:none;width:248px;
+    background:var(--card-bg);color:#fff;border-radius:10px;padding:13px 15px 12px;
+    box-shadow:0 8px 22px rgba(0,0,0,.22);font-family:var(--sans);}
+  .dotcard .dc-name{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
+  .dotcard .dc-entity{font-family:var(--serif);font-weight:700;font-size:16px;line-height:1.2;color:#fff;}
+  .dotcard .dc-badge{flex:0 0 auto;font-size:10.5px;font-weight:700;letter-spacing:.02em;text-transform:uppercase;
+    padding:2px 8px;border-radius:999px;background:var(--grid-hover);color:#2a2a26;}
+  .dotcard .dc-action{font-size:13.5px;line-height:1.35;color:#fff;margin-bottom:5px;}
+  .dotcard .dc-meta{font-size:11.5px;color:#cdc9c0;line-height:1.4;}
+  .dotcard .dc-hint{font-size:11px;color:var(--grid-hover);margin-top:8px;font-weight:600;}
+  .dotcard::after{content:"";position:absolute;left:var(--px,50%);transform:translateX(-50%);
+    bottom:-7px;width:0;height:0;border:7px solid transparent;border-bottom:0;border-top-color:var(--card-bg);}
+  .dotcard.below::after{bottom:auto;top:-7px;border-top:0;border-bottom:7px solid var(--card-bg);}
 
   .chat{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;min-height:400px;}
   .chat-eyebrow{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
@@ -231,6 +253,16 @@
       '<span><span class="swatch" style="background:var(--grid-empty)"></span>All documented</span>'
       + '<span><span class="swatch" style="background:var(--grid-match)"></span>Your matches</span>';
     mapcard.appendChild(legend);
+
+    // incident preview card (positioned on hover)
+    var card = el("div", { class:"dotcard", id:"dotcard" });
+    card.innerHTML =
+      '<div class="dc-name"><span class="dc-entity"></span><span class="dc-badge"></span></div>'
+      + '<div class="dc-action"></div>'
+      + '<div class="dc-meta"></div>'
+      + '<div class="dc-hint">click to open source \u2197</div>';
+    mapcard.appendChild(card);
+
     grid.appendChild(mapcard);
 
     // chat column
@@ -269,7 +301,7 @@
     (DATA.orders || []).forEach(function(o){
       (byPlatform[o.platform] = byPlatform[o.platform] || []).push(o);
     });
-    var sq=8, gap=3, colW=10, y=14;
+    var sq=11, gap=4, colW=10, y=14;
     gridGroups().forEach(function(grp){
       var list = byPlatform[grp.id] || [];
       var total = list.length || matrixTotalFor(grp.id);
@@ -285,26 +317,60 @@
         var r = document.createElementNS(SVGNS,"rect");
         r.setAttribute("x", 4+(i%colW)*(sq+gap));
         r.setAttribute("y", gy+Math.floor(i/colW)*(sq+gap));
-        r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","1.5");
+        r.setAttribute("width",sq); r.setAttribute("height",sq); r.setAttribute("rx","2");
         r.setAttribute("fill","var(--grid-empty)");
+        r.setAttribute("class","dot");
         r.dataset.auth = grp.id;
         if(ord){
           r._order = ord;
-          // Native hover tooltip: entity, date, action, and a click hint.
-          var tip = document.createElementNS(SVGNS,"title");
           var bits = [ord.entity || "Unnamed", ord.date || "", ord.action || ""].filter(Boolean);
-          tip.textContent = bits.join("  \u00b7  ") + (ord.url ? "  \u2014  click to open source" : "  (no source link)");
-          r.appendChild(tip);
+          r.setAttribute("aria-label", bits.join(" \u00b7 "));
           if(ord.url){
             r.style.cursor = "pointer";
             r.addEventListener("click", (function(u){ return function(){ window.open(u, "_blank", "noopener"); }; })(ord.url));
           }
+          r.addEventListener("mouseenter", (function(rect, o){ return function(){ showCard(rect, o); }; })(r, ord));
+          r.addEventListener("mouseleave", hideCard);
         }
         svg.appendChild(r); squares.push(r);
       }
-      y = gy + Math.ceil(total/colW)*(sq+gap) + 15;
+      y = gy + Math.ceil(total/colW)*(sq+gap) + 16;
     });
     svg.setAttribute("viewBox","0 0 360 " + Math.max(320,y));
+  }
+
+  // ----- incident preview card -----
+  function showCard(rect, ord){
+    if(!ord) return;
+    var card = document.getElementById("dotcard");
+    if(!card) return;
+    card.querySelector(".dc-entity").textContent = ord.entity || "Unnamed";
+    var badge = card.querySelector(".dc-badge");
+    if(ord.status){ badge.textContent = ord.status; badge.style.display = "inline-block"; }
+    else { badge.style.display = "none"; }
+    card.querySelector(".dc-action").textContent = ord.action || "";
+    card.querySelector(".dc-meta").textContent =
+      [ord.platform, ord.sector, ord.date].filter(Boolean).join("  \u00b7  ");
+    card.querySelector(".dc-hint").style.display = ord.url ? "block" : "none";
+
+    card.style.display = "block";              // measure after showing
+    var host = card.parentNode;                // .mapcard (position:relative)
+    var hb = host.getBoundingClientRect();
+    var db = rect.getBoundingClientRect();
+    var cx = db.left - hb.left + db.width/2;
+    var cw = card.offsetWidth, ch = card.offsetHeight;
+    var left = Math.max(2, Math.min(cx - cw/2, host.clientWidth - cw - 2));
+    var top = (db.top - hb.top) - ch - 10;
+    var below = top < 0;
+    if(below) top = (db.top - hb.top) + db.height + 10;
+    card.style.left = left + "px";
+    card.style.top = top + "px";
+    card.classList.toggle("below", below);
+    card.style.setProperty("--px", (cx - left) + "px");
+  }
+  function hideCard(){
+    var card = document.getElementById("dotcard");
+    if(card) card.style.display = "none";
   }
 
   // The grid groups by platform (the inner key of the matrix).
