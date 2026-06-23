@@ -64,6 +64,9 @@
   .tally{font-family:var(--serif);font-size:19px;color:var(--ink);margin-bottom:10px;text-align:center;}
   .tally .big{font-size:30px;font-weight:700;color:var(--accent);}
   .tally .muted{color:var(--ink-soft);}
+  .bigcount{font-family:var(--serif);text-align:center;margin:30px 0 2px;font-size:25px;color:var(--ink);line-height:1.1;}
+  .bigcount .bc-num{font-size:46px;font-weight:700;color:var(--accent);margin:0 6px;letter-spacing:-0.01em;}
+  .bigcount .bc-suf{color:var(--ink);}
   #grid{width:100%;max-width:360px;height:auto;}
   .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:12px;color:var(--ink-soft);}
   .legend span{display:flex;align-items:center;gap:6px;}
@@ -199,6 +202,7 @@
     var app = document.getElementById("app");
     app.innerHTML = "";
     app.appendChild(buildSentence());
+    app.appendChild(buildBigCount());
     app.appendChild(buildResults());
     recompute();
   }
@@ -402,8 +406,51 @@
     return t;
   }
 
+  // ----- live "There are N…" count (updates on every toggle, partial or full) -----
+  function buildBigCount(){
+    var d = el("div", { class:"bigcount", id:"bigcount" });
+    d.innerHTML = '<span class="bc-pre">There are</span>'
+      + '<span class="bc-num" id="bcNum">0</span>'
+      + '<span class="bc-suf" id="bcSuf">documented incidents on record</span>';
+    return d;
+  }
+
+  function partialCount(){
+    return (DATA.orders || []).filter(function(o){
+      return (!state.who      || matchField(o, "who", state.who))
+          && (!state.platform  || matchField(o, "platform", state.platform))
+          && (!state.provision || matchField(o, "provision", state.provision))
+          && (!state.sector    || matchField(o, "sector", state.sector));
+    }).length;
+  }
+
+  function tweenNum(node, to){
+    var from = parseInt((node.textContent || "0").replace(/[^0-9]/g, ""), 10) || 0;
+    if(from === to){ node.textContent = to; return; }
+    var start = null, dur = 360;
+    function step(ts){
+      if(start === null) start = ts;
+      var p = Math.min(1, (ts - start) / dur);
+      var e = p < 0.5 ? 2*p*p : 1 - Math.pow(-2*p + 2, 2)/2;
+      node.textContent = Math.round(from + (to - from) * e);
+      if(p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function updateBigCount(){
+    var num = document.getElementById("bcNum");
+    if(!num) return;
+    var suf = document.getElementById("bcSuf");
+    var any = state.who || state.platform || state.provision || state.sector;
+    var n = any ? partialCount() : ((DATA.orders || []).length);
+    tweenNum(num, n);
+    if(suf) suf.textContent = any ? "documented incidents like this" : "documented incidents on record";
+  }
+
   // ----- recompute on selection -----
   function recompute(){
+    updateBigCount();
     var ready = state.who && state.platform && state.provision && state.sector;
     var tally = document.getElementById("tally");
     var eyebrow = document.getElementById("chatEyebrow");
