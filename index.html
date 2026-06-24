@@ -17,6 +17,7 @@
     --accent-soft:#e7eef5;
     --grid-empty:#d9d5cb;
     --grid-match:#1f5a8a;
+    --grid-halo:#94b1cb;
     --grid-hover:#e0a32e;
     --card-bg:#3a3935;
     --radius:10px;
@@ -674,8 +675,9 @@
     var litCount = 0;
     squares.forEach(function(r){
       var lit = !!keys[r.dataset.cell];
-      r.setAttribute("fill", lit ? "var(--grid-match)" : "var(--grid-empty)");
-      if(lit && cellIncidentMap[r.dataset.cell]){
+      var primary = lit && cellIncidentMap[r.dataset.cell];
+      r.setAttribute("fill", lit ? (primary ? "var(--grid-match)" : "var(--grid-halo)") : "var(--grid-empty)");
+      if(primary){
         // stagger pop-in by up to 180 ms so cells ripple in rather than all at once
         r.style.animationDelay = (litCount * 18).toFixed(0) + "ms";
         r.classList.add("dot-lit");
