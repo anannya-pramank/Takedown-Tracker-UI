@@ -71,8 +71,37 @@
 
   /* dot hover: grow + recolor (presentation-attribute fill is overridden by these rules) */
   #grid{overflow:visible;}
-  .dot{transition:fill .12s ease;cursor:default;}
-  .dot:hover{fill:var(--grid-hover) !important;}
+  .dot{
+    transition: fill .12s ease, transform .18s cubic-bezier(.2,.8,.2,1), filter .18s ease;
+    cursor: default;
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .dot:hover{
+    fill: var(--grid-hover) !important;
+    transform: scale(1.55);
+    filter: drop-shadow(0 0 4px rgba(224,163,46,.65));
+    z-index: 10;
+  }
+  /* subtle pop-in when a cell first becomes lit */
+  @keyframes dot-pop{
+    0%  { transform: scale(.4); opacity:.3; }
+    65% { transform: scale(1.25); }
+    100%{ transform: scale(1);   opacity:1; }
+  }
+  .dot-lit{
+    cursor: pointer;
+    animation: dot-pop .28s cubic-bezier(.2,.8,.2,1) both;
+  }
+  .dot-lit:hover{
+    transform: scale(1.55) !important;
+    filter: drop-shadow(0 0 5px rgba(31,90,138,.7));
+  }
+  @media (prefers-reduced-motion:reduce){
+    .dot{ transition: fill .12s ease; }
+    .dot:hover, .dot-lit:hover { transform: none; filter: none; }
+    .dot-lit { animation: none; }
+  }
 
   .chat{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 16px 14px;min-height:400px;}
   .chat-eyebrow{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:12px;}
@@ -642,12 +671,17 @@
 
     // light the map cells where the matching incidents originate
     var keys = matchedCellKeys(counts.matched || []);
+    var litCount = 0;
     squares.forEach(function(r){
       var lit = !!keys[r.dataset.cell];
       r.setAttribute("fill", lit ? "var(--grid-match)" : "var(--grid-empty)");
       if(lit && cellIncidentMap[r.dataset.cell]){
+        // stagger pop-in by up to 180 ms so cells ripple in rather than all at once
+        r.style.animationDelay = (litCount * 18).toFixed(0) + "ms";
         r.classList.add("dot-lit");
+        litCount++;
       } else {
+        r.style.animationDelay = "";
         r.classList.remove("dot-lit");
       }
     });
