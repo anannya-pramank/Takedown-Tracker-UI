@@ -57,6 +57,8 @@
   .pill:hover{background:var(--surface);}
   .pill:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .pill.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .pill.off{opacity:.32;cursor:not-allowed;background:var(--paper);color:var(--ink-faint);border-color:var(--line);}
+  .pill.off:hover{background:var(--paper);}
 
   .results{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;margin-top:30px;align-items:start;}
 
@@ -204,6 +206,7 @@
 
   var SVGNS = "http://www.w3.org/2000/svg";
   var state = { who:null, platform:null, provision:null, sector:null };
+  var PILLS = [];  // {el, group, id} for every facet pill, for availability updates
   var DATA = null;
   var cellIncidentMap = {};  // key "c_r" -> [incident, ...]
   var tip = null;            // tooltip DOM element
@@ -264,12 +267,14 @@
       DATA.facets[group].forEach(function(opt){
         var b = el("button", { class:"pill", type:"button", "data-v":opt.id, text:opt.label });
         b.addEventListener("click", function(){
+          if(b.classList.contains("off")) return;  // unavailable combo, ignore
           var was = b.classList.contains("on");
           span.querySelectorAll(".pill").forEach(function(x){ x.classList.remove("on"); });
           state[group] = was ? null : opt.id;
           if(!was) b.classList.add("on");
           recompute();
         });
+        PILLS.push({ el:b, group:group, id:opt.id });
         span.appendChild(b);
       });
       return span;
@@ -641,6 +646,54 @@
     }).length;
   }
 
+  // Count incidents matching the current selection with one group overridden.
+  function countWith(group, val){
+    var s = { who:state.who, platform:state.platform,
+              provision:state.provision, sector:state.sector };
+    s[group] = val;  // test this option in its row, keeping the other rows fixed
+    return (DATA.orders || []).filter(function(o){
+      return (!s.who      || matchField(o, "who", s.who))
+          && (!s.platform  || matchField(o, "platform", s.platform))
+          && (!s.provision || matchField(o, "provision", s.provision))
+          && (!s.sector    || matchField(o, "sector", s.sector));
+    }).length;
+  }
+
+  // Grey out any pill that, combined with the other rows, matches nothing -- so
+  // the sentence can only be built along paths that actually have incidents.
+  function updateAvailability(){
+    // 1) drop any active selection the other rows have since made impossible,
+    //    so the sentence never sits on a zero-match combination.
+    var changed = true, guard = 0;
+    while(changed && guard++ < 6){
+      changed = false;
+      ["who","platform","provision","sector"].forEach(function(g){
+        if(state[g] && countWith(g, state[g]) === 0){ state[g] = null; changed = true; }
+      });
+    }
+    // 2) grey out options that would take the current selection to zero.
+    PILLS.forEach(function(p){
+      var selected = (state[p.group] === p.id);
+      p.el.classList.toggle("on", selected);
+      if(selected){
+        p.el.classList.remove("off");
+        p.el.removeAttribute("aria-disabled");
+        p.el.title = "";
+        return;
+      }
+      var n = countWith(p.group, p.id);
+      if(n === 0){
+        p.el.classList.add("off");
+        p.el.setAttribute("aria-disabled", "true");
+        p.el.title = "No incidents match this combination";
+      } else {
+        p.el.classList.remove("off");
+        p.el.removeAttribute("aria-disabled");
+        p.el.title = n + (n === 1 ? " incident" : " incidents");
+      }
+    });
+  }
+
   function tweenNum(node, to){
     var from = parseInt((node.textContent || "0").replace(/[^0-9]/g, ""), 10) || 0;
     if(from === to){ node.textContent = to; return; }
@@ -667,6 +720,7 @@
 
   // ----- recompute on selection -----
   function recompute(){
+    updateAvailability();
     updateBigCount();
     var ready = state.who && state.platform && state.provision && state.sector;
     var eyebrow = document.getElementById("chatEyebrow");
