@@ -146,7 +146,7 @@
     background:#1e1e1c;color:#fff;
     border-radius:10px;padding:14px 16px 13px;
     box-shadow:0 8px 28px rgba(0,0,0,.42);
-    pointer-events:none;line-height:1.4;
+    pointer-events:auto;line-height:1.4;
   }
   .tip-caret{
     position:absolute;top:-7px;
@@ -155,7 +155,7 @@
     border-right:7px solid transparent;
     border-bottom:7px solid #1e1e1c;
   }
-  .tip-row1{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px;}
+  .tip-row1{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px;padding-right:16px;}
   .tip-title{font-weight:700;font-size:14.5px;color:#fff;flex:1;line-height:1.3;}
   .tip-badge{
     flex:0 0 auto;font-size:10.5px;font-weight:700;letter-spacing:.07em;
@@ -165,7 +165,24 @@
   }
   .tip-body{font-size:13px;color:#c8c5be;margin-bottom:4px;}
   .tip-meta{font-size:12px;color:#7a776f;margin-bottom:8px;}
-  .tip-link{font-size:12.5px;color:#e0a32e;font-weight:600;}
+  .tip-link{font-size:12.5px;color:#e0a32e;font-weight:600;cursor:pointer;}
+  .tip-close{
+    position:absolute;top:9px;right:11px;cursor:pointer;
+    background:none;border:none;color:#7a776f;font-size:17px;line-height:1;padding:0;
+  }
+  .tip-close:hover{color:#fff;}
+  .tip-nav{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    margin-top:10px;padding-top:9px;border-top:1px solid #34332f;
+  }
+  .tip-arrow{
+    cursor:pointer;background:#3a3935;color:#fff;border:none;border-radius:6px;
+    width:26px;height:26px;font-size:14px;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tip-arrow:hover{background:#4a4945;}
+  .tip-arrow:disabled{opacity:.3;cursor:default;}
+  .tip-count{font-size:11.5px;color:#8a877f;white-space:nowrap;}
   .dot-lit{cursor:pointer;}
 </style>
 </head>
@@ -548,29 +565,36 @@
       rect.setAttribute("fill", "var(--grid-empty)");
       rect.setAttribute("class", "dot");
       rect.dataset.cell = key;
-      // tooltip on hover for lit cells
+      // hover or click a lit cell -> open a persistent, flippable card
       rect.addEventListener("mouseover", function(){
         var incidents = cellIncidentMap[this.dataset.cell];
-        if(incidents && incidents.length) showTip(this, incidents);
+        if(!incidents || !incidents.length) return;
+        // don't reset the flip position if the card is already open for this cell
+        if(tipState.rectEl === this && tip && tip.style.display === "block") return;
+        openTip(this, incidents);
       });
-      rect.addEventListener("mouseout", hideTip);
-      // click lit cell → open source
-      rect.addEventListener("click", function(){
+      rect.addEventListener("click", function(e){
         var incidents = cellIncidentMap[this.dataset.cell];
         if(!incidents || !incidents.length) return;
-        var url = incidents[0].url || incidents[0].source || incidents[0].link || "";
-        if(url) window.open(url, "_blank", "noopener,noreferrer");
+        e.stopPropagation();           // don't let the document handler dismiss it
+        openTip(this, incidents);
       });
       svg.appendChild(rect); squares.push(rect); cellRect[key] = rect;
     });
     svg.setAttribute("viewBox", "0 0 " + (GEO.cols*pitch) + " " + (GEO.rows*pitch));
   }
 
-  // ----- tooltip helpers -----
+  // ----- map card (persistent + flippable) -----
+  var tipState = { incidents: [], idx: 0, rectEl: null, x: 0, cellMid: 0 };
+
   function buildTooltip(){
     tip = document.createElement("div");
     tip.id = "tip";
     document.body.appendChild(tip);
+    // dismiss when clicking anywhere outside the card (and outside a cell)
+    document.addEventListener("click", function(e){
+      if(tip.style.display === "block" && !tip.contains(e.target)) hideTip();
+    });
   }
 
   function escHtml(s){
@@ -579,9 +603,32 @@
       .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
   }
 
-  function showTip(rectEl, incidents){
+  // Open the card for a cell: newest incident first, positioned under the cell.
+  function openTip(rectEl, incidents){
     if(!tip) return;
-    var o = incidents[0];
+    var list = incidents.slice().sort(function(a, b){
+      return String(b.date || "").localeCompare(String(a.date || ""));  // newest first
+    });
+    tipState.incidents = list;
+    tipState.idx = 0;
+    tipState.rectEl = rectEl;
+
+    // compute position once, from the cell, so flipping doesn't make it drift
+    tip.style.display = "block";        // measured needs to be visible
+    renderTip();
+    var bcr = rectEl.getBoundingClientRect();
+    var tw  = tip.offsetWidth || 280;
+    tipState.cellMid = bcr.left + bcr.width / 2;
+    tipState.x = Math.max(8, Math.min(tipState.cellMid - tw / 2, window.innerWidth - tw - 8));
+    tip.style.left = tipState.x + "px";
+    tip.style.top  = (bcr.bottom + 8) + "px";
+    var caret = tip.querySelector(".tip-caret");
+    if(caret) caret.style.left = (tipState.cellMid - tipState.x - 7) + "px";
+  }
+
+  function renderTip(){
+    var list = tipState.incidents, i = tipState.idx, n = list.length;
+    var o = list[i];
     var title  = o.title || o.entity || o.name || o.description || "";
     var status = o.status || (o.disclosed ? "Active" : "Unknown");
     var desc   = (o.description && o.description !== title) ? o.description : (o.action || "");
@@ -589,35 +636,54 @@
     var meta   = parts.join(" \u00B7 ");
     var url    = o.url || o.source || o.link || "";
 
+    var nav = n > 1
+      ? '<div class="tip-nav">'
+        +   '<button class="tip-arrow" data-nav="newer"' + (i === 0 ? ' disabled' : '') + ' aria-label="Newer">\u2039</button>'
+        +   '<span class="tip-count">' + (i + 1) + ' of ' + n + ' at this location</span>'
+        +   '<button class="tip-arrow" data-nav="older"' + (i === n - 1 ? ' disabled' : '') + ' aria-label="Older">\u203A</button>'
+        + '</div>'
+      : '';
+
     tip.innerHTML =
       '<div class="tip-caret"></div>'
+      + '<button class="tip-close" aria-label="Close">\u00D7</button>'
       + '<div class="tip-row1">'
       +   '<span class="tip-title">' + escHtml(title) + '</span>'
       +   '<span class="tip-badge">' + escHtml(status.toUpperCase()) + '</span>'
       + '</div>'
-      + (desc   ? '<div class="tip-body">'  + escHtml(desc) + '</div>' : '')
-      + (meta   ? '<div class="tip-meta">'  + escHtml(meta) + '</div>' : '')
-      + (url    ? '<div class="tip-link">click to open source \u2197</div>' : '');
+      + (desc ? '<div class="tip-body">' + escHtml(desc) + '</div>' : '')
+      + (meta ? '<div class="tip-meta">' + escHtml(meta) + '</div>' : '')
+      + (url  ? '<div class="tip-link" data-url="' + escHtml(url) + '">click to open source \u2197</div>' : '')
+      + nav;
 
-    tip.style.display = "block";
-
-    // Position centered below the hovered cell, clamped to viewport
-    var bcr = rectEl.getBoundingClientRect();
-    var tw  = tip.offsetWidth  || 280;
-    var cellMid = bcr.left + bcr.width / 2;
-    var x = Math.max(8, Math.min(cellMid - tw / 2, window.innerWidth - tw - 8));
-    var y = bcr.bottom + 8;
-
-    tip.style.left = x + "px";
-    tip.style.top  = y + "px";
-
-    // Align caret under cell centre
+    // keep caret aligned after a re-render (position is fixed across flips)
     var caret = tip.querySelector(".tip-caret");
-    if(caret) caret.style.left = (cellMid - x - 7) + "px";
+    if(caret && tipState.cellMid) caret.style.left = (tipState.cellMid - tipState.x - 7) + "px";
+
+    // wire controls (stopPropagation so they don't trigger the outside-click dismiss)
+    tip.querySelector(".tip-close").addEventListener("click", function(e){
+      e.stopPropagation(); hideTip();
+    });
+    var link = tip.querySelector(".tip-link");
+    if(link) link.addEventListener("click", function(e){
+      e.stopPropagation();
+      var u = this.getAttribute("data-url");
+      if(u) window.open(u, "_blank", "noopener,noreferrer");
+    });
+    tip.querySelectorAll(".tip-arrow").forEach(function(btn){
+      btn.addEventListener("click", function(e){
+        e.stopPropagation();
+        if(this.disabled) return;
+        tipState.idx += (this.dataset.nav === "older" ? 1 : -1);
+        tipState.idx = Math.max(0, Math.min(n - 1, tipState.idx));
+        renderTip();
+      });
+    });
   }
 
   function hideTip(){
     if(tip) tip.style.display = "none";
+    tipState.rectEl = null;
   }
 
 
@@ -729,6 +795,7 @@
 
   // ----- recompute on selection -----
   function recompute(){
+    hideTip();          // close any open card; the selection (and matches) changed
     updateAvailability();
     updateBigCount();
     var ready = state.who || state.platform || state.provision || state.sector;
