@@ -137,19 +137,34 @@
   }
   @media (prefers-reduced-motion:reduce){
     .pill,.composer button{transition:none;}
+    .tip-card.deal-next,.tip-card.deal-prev{animation:none;}
   }
 
   /* ----- incident tooltip ----- */
   #tip{
     position:fixed;z-index:300;display:none;
+  }
+  .tip-card{
+    position:relative;z-index:2;
     min-width:260px;max-width:300px;
     background:#1e1e1c;color:#fff;
     border-radius:10px;padding:14px 16px 13px;
-    box-shadow:0 8px 28px rgba(0,0,0,.42);
-    pointer-events:auto;line-height:1.4;
+    box-shadow:0 8px 28px rgba(0,0,0,.42);line-height:1.4;
   }
+  /* stacked "deck" layers peeking out behind the top card */
+  .tip-stack{
+    position:absolute;left:0;right:0;top:0;bottom:0;
+    border-radius:10px;background:#1e1e1c;
+    box-shadow:0 8px 28px rgba(0,0,0,.30);
+  }
+  .tip-stack.s1{z-index:1;transform:translate(6px,7px);filter:brightness(.82);}
+  .tip-stack.s2{z-index:0;transform:translate(12px,14px);filter:brightness(.66);}
+  @keyframes dealNext{from{opacity:0;transform:translateX(24px) rotate(2.5deg) scale(.97);}to{opacity:1;transform:none;}}
+  @keyframes dealPrev{from{opacity:0;transform:translateX(-24px) rotate(-2.5deg) scale(.97);}to{opacity:1;transform:none;}}
+  .tip-card.deal-next{animation:dealNext .26s cubic-bezier(.2,.7,.3,1);}
+  .tip-card.deal-prev{animation:dealPrev .26s cubic-bezier(.2,.7,.3,1);}
   .tip-caret{
-    position:absolute;top:-7px;
+    position:absolute;top:-7px;z-index:3;
     width:0;height:0;
     border-left:7px solid transparent;
     border-right:7px solid transparent;
@@ -565,18 +580,21 @@
       rect.setAttribute("fill", "var(--grid-empty)");
       rect.setAttribute("class", "dot");
       rect.dataset.cell = key;
-      // hover or click a lit cell -> open a persistent, flippable card
+      // hover a lit cell -> show a card that stays connected to the cell and
+      // disappears when the cursor leaves both the cell and the card.
       rect.addEventListener("mouseover", function(){
         var incidents = cellIncidentMap[this.dataset.cell];
         if(!incidents || !incidents.length) return;
-        // don't reset the flip position if the card is already open for this cell
-        if(tipState.rectEl === this && tip && tip.style.display === "block") return;
-        openTip(this, incidents);
+        cancelHide();
+        if(tipState.rectEl !== this) openTip(this, incidents);  // keep flip state if same cell
       });
+      rect.addEventListener("mouseout", scheduleHide);
+      // tap (touch, no hover) -> open; stop the doc handler from instantly closing it
       rect.addEventListener("click", function(e){
         var incidents = cellIncidentMap[this.dataset.cell];
         if(!incidents || !incidents.length) return;
-        e.stopPropagation();           // don't let the document handler dismiss it
+        e.stopPropagation();
+        cancelHide();
         openTip(this, incidents);
       });
       svg.appendChild(rect); squares.push(rect); cellRect[key] = rect;
@@ -584,18 +602,28 @@
     svg.setAttribute("viewBox", "0 0 " + (GEO.cols*pitch) + " " + (GEO.rows*pitch));
   }
 
-  // ----- map card (persistent + flippable) -----
+  // ----- map card (hover-anchored, flippable deck) -----
   var tipState = { incidents: [], idx: 0, rectEl: null, x: 0, cellMid: 0 };
+  var hideTimer = null;
 
   function buildTooltip(){
     tip = document.createElement("div");
     tip.id = "tip";
     document.body.appendChild(tip);
-    // dismiss when clicking anywhere outside the card (and outside a cell)
+    // hover bridge: keep the card alive while the cursor is over it
+    tip.addEventListener("mouseover", cancelHide);
+    tip.addEventListener("mouseout", scheduleHide);
+    // keep the card glued to its cell while scrolling; hide if the cell leaves view
+    window.addEventListener("scroll", reanchorTip, { passive: true });
+    window.addEventListener("resize", reanchorTip, { passive: true });
+    // touch: tapping elsewhere closes it
     document.addEventListener("click", function(e){
       if(tip.style.display === "block" && !tip.contains(e.target)) hideTip();
     });
   }
+
+  function scheduleHide(){ clearTimeout(hideTimer); hideTimer = setTimeout(hideTip, 140); }
+  function cancelHide(){ clearTimeout(hideTimer); }
 
   function escHtml(s){
     return String(s || "")
@@ -603,7 +631,7 @@
       .replace(/>/g,"&gt;").replace(/"/g,"&quot;");
   }
 
-  // Open the card for a cell: newest incident first, positioned under the cell.
+  // Open the card for a cell: newest incident first.
   function openTip(rectEl, incidents){
     if(!tip) return;
     var list = incidents.slice().sort(function(a, b){
@@ -612,12 +640,17 @@
     tipState.incidents = list;
     tipState.idx = 0;
     tipState.rectEl = rectEl;
+    tip.style.display = "block";
+    renderTip("none");
+    positionTip();
+  }
 
-    // compute position once, from the cell, so flipping doesn't make it drift
-    tip.style.display = "block";        // measured needs to be visible
-    renderTip();
+  // Position the card under its cell, clamped to the viewport.
+  function positionTip(){
+    var rectEl = tipState.rectEl;
+    if(!rectEl) return;
     var bcr = rectEl.getBoundingClientRect();
-    var tw  = tip.offsetWidth || 280;
+    var tw  = (tip.querySelector(".tip-card") || tip).offsetWidth || 280;
     tipState.cellMid = bcr.left + bcr.width / 2;
     tipState.x = Math.max(8, Math.min(tipState.cellMid - tw / 2, window.innerWidth - tw - 8));
     tip.style.left = tipState.x + "px";
@@ -626,7 +659,20 @@
     if(caret) caret.style.left = (tipState.cellMid - tipState.x - 7) + "px";
   }
 
-  function renderTip(){
+  // Re-anchor on scroll/resize; hide if the cell has scrolled out of view.
+  function reanchorTip(){
+    if(!tip || tip.style.display !== "block" || !tipState.rectEl) return;
+    var bcr = tipState.rectEl.getBoundingClientRect();
+    if(bcr.bottom < 40 || bcr.top > window.innerHeight - 10
+       || bcr.right < 0 || bcr.left > window.innerWidth){
+      hideTip();
+      return;
+    }
+    positionTip();
+  }
+
+  // direction: "next" | "prev" | "none" (controls the deal animation)
+  function renderTip(direction){
     var list = tipState.incidents, i = tipState.idx, n = list.length;
     var o = list[i];
     var title  = o.title || o.entity || o.name || o.description || "";
@@ -644,23 +690,28 @@
         + '</div>'
       : '';
 
+    var dealClass = direction === "next" ? " deal-next" : (direction === "prev" ? " deal-prev" : "");
+    var stacks = (n > 2 ? '<div class="tip-stack s2"></div>' : '')
+               + (n > 1 ? '<div class="tip-stack s1"></div>' : '');
+
     tip.innerHTML =
       '<div class="tip-caret"></div>'
-      + '<button class="tip-close" aria-label="Close">\u00D7</button>'
-      + '<div class="tip-row1">'
-      +   '<span class="tip-title">' + escHtml(title) + '</span>'
-      +   '<span class="tip-badge">' + escHtml(status.toUpperCase()) + '</span>'
-      + '</div>'
-      + (desc ? '<div class="tip-body">' + escHtml(desc) + '</div>' : '')
-      + (meta ? '<div class="tip-meta">' + escHtml(meta) + '</div>' : '')
-      + (url  ? '<div class="tip-link" data-url="' + escHtml(url) + '">click to open source \u2197</div>' : '')
-      + nav;
+      + stacks
+      + '<div class="tip-card' + dealClass + '">'
+      +   '<button class="tip-close" aria-label="Close">\u00D7</button>'
+      +   '<div class="tip-row1">'
+      +     '<span class="tip-title">' + escHtml(title) + '</span>'
+      +     '<span class="tip-badge">' + escHtml(status.toUpperCase()) + '</span>'
+      +   '</div>'
+      +   (desc ? '<div class="tip-body">' + escHtml(desc) + '</div>' : '')
+      +   (meta ? '<div class="tip-meta">' + escHtml(meta) + '</div>' : '')
+      +   (url  ? '<div class="tip-link" data-url="' + escHtml(url) + '">click to open source \u2197</div>' : '')
+      +   nav
+      + '</div>';
 
-    // keep caret aligned after a re-render (position is fixed across flips)
     var caret = tip.querySelector(".tip-caret");
     if(caret && tipState.cellMid) caret.style.left = (tipState.cellMid - tipState.x - 7) + "px";
 
-    // wire controls (stopPropagation so they don't trigger the outside-click dismiss)
     tip.querySelector(".tip-close").addEventListener("click", function(e){
       e.stopPropagation(); hideTip();
     });
@@ -674,9 +725,9 @@
       btn.addEventListener("click", function(e){
         e.stopPropagation();
         if(this.disabled) return;
-        tipState.idx += (this.dataset.nav === "older" ? 1 : -1);
-        tipState.idx = Math.max(0, Math.min(n - 1, tipState.idx));
-        renderTip();
+        var older = this.dataset.nav === "older";
+        tipState.idx = Math.max(0, Math.min(n - 1, tipState.idx + (older ? 1 : -1)));
+        renderTip(older ? "next" : "prev");
       });
     });
   }
