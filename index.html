@@ -476,7 +476,7 @@
   // Cells to light for a set of matching incidents: the resolved cell at full
   // intensity, with a gradual radial falloff across surrounding land cells so
   // the highlight reads as a soft circular gradient rather than a hard block.
-  var HALO_RADIUS = 2.6;               // circular reach (in cells) from a hit
+  var HALO_RADIUS = 1.9;               // circular reach (in cells) from a hit
   // intensity by Euclidean distance from the nearest incident centre (0..1)
   function haloFalloff(dist){
     if(dist <= 0) return 1;
