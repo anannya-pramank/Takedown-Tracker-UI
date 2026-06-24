@@ -64,7 +64,7 @@
   .bigcount{font-family:var(--serif);text-align:center;margin:30px 0 2px;font-size:25px;color:var(--ink);line-height:1.1;}
   .bigcount .bc-num{font-size:46px;font-weight:700;color:var(--accent);margin:0 6px;letter-spacing:-0.01em;}
   .bigcount .bc-suf{color:var(--ink);}
-  #grid{width:100%;max-width:540px;height:auto;}
+  #grid{width:100%;max-width:640px;height:auto;}
   .legend{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:10px;font-size:12px;color:var(--ink-soft);}
   .legend span{display:flex;align-items:center;gap:6px;}
   .swatch{width:11px;height:11px;border-radius:2px;display:inline-block;}
@@ -72,7 +72,7 @@
   /* dot hover: grow + recolor (presentation-attribute fill is overridden by these rules) */
   #grid{overflow:visible;}
   .dot{
-    transition: fill .12s ease, transform .18s cubic-bezier(.2,.8,.2,1), filter .18s ease;
+    transition: fill .14s ease, transform .22s cubic-bezier(.25,.9,.2,1), filter .22s ease;
     cursor: default;
     transform-box: fill-box;
     transform-origin: center;
@@ -495,7 +495,7 @@
 
   function buildGrid(svg){          // builds the India tile map
     squares = []; landSet = {}; cellRect = {};
-    var pitch = 20, inset = 2, sz = pitch - inset*2;
+    var pitch = 24, inset = 2.5, sz = pitch - inset*2;
     INDIA_CELLS.forEach(function(cr){
       var c = cr[0], r = cr[1];
       var key = c+"_"+r;
@@ -503,7 +503,7 @@
       var rect = document.createElementNS(SVGNS, "rect");
       rect.setAttribute("x", c*pitch + inset);
       rect.setAttribute("y", r*pitch + inset);
-      rect.setAttribute("width", sz); rect.setAttribute("height", sz); rect.setAttribute("rx", "2.5");
+      rect.setAttribute("width", sz); rect.setAttribute("height", sz); rect.setAttribute("rx", "3");
       rect.setAttribute("fill", "var(--grid-empty)");
       rect.setAttribute("class", "dot");
       rect.dataset.cell = key;
