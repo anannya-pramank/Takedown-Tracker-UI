@@ -731,7 +731,7 @@
   function recompute(){
     updateAvailability();
     updateBigCount();
-    var ready = state.who && state.platform && state.provision && state.sector;
+    var ready = state.who || state.platform || state.provision || state.sector;
     var eyebrow = document.getElementById("chatEyebrow");
 
     if(!ready){
@@ -794,10 +794,10 @@
     for(var p in prov){ provisionTotal += prov[p].documented; provisionDisclosed += prov[p].disclosed; }
 
     var matched = (DATA.orders || []).filter(function(o){
-      return o.provision === state.provision
-          && o.platform === state.platform
-          && matchField(o, "who", state.who)
-          && matchField(o, "sector", state.sector);
+      return (!state.who      || matchField(o, "who", state.who))
+          && (!state.platform  || matchField(o, "platform", state.platform))
+          && (!state.provision || matchField(o, "provision", state.provision))
+          && (!state.sector    || matchField(o, "sector", state.sector));
     });
 
     var useOrders = matched.length > 0 || (DATA.meta && DATA.meta.orders_complete);
@@ -829,8 +829,14 @@
       b.textContent = "Compose your situation above, then ask me about the incidents that match.";
     } else {
       var labels = selectionLabels();
-      b.innerHTML = "You're looking at <span class=\"em\">" + counts.documented + " documented incidents</span> involving "
-        + labels.who + " on " + labels.platform + ", under " + labels.provision
+      var bits = [];
+      if(state.who)       bits.push(labels.who);
+      if(state.platform)  bits.push("on " + labels.platform);
+      if(state.provision) bits.push("under " + labels.provision);
+      if(state.sector)    bits.push("in " + labels.sector);
+      var phrase = bits.length ? (" involving " + bits.join(" ")) : "";
+      b.innerHTML = "You're looking at <span class=\"em\">" + counts.documented
+        + " documented incidents</span>" + phrase
         + ". Ask me anything about them.";
     }
     thread.appendChild(b);
@@ -855,8 +861,8 @@
   }
 
   function ask(question){
-    if(!(state.who && state.platform && state.provision && state.sector)){
-      addBubble("bot", "Pick an option in each row first, so I can scope the answer to the matching incidents.");
+    if(!(state.who || state.platform || state.provision || state.sector)){
+      addBubble("bot", "Pick at least one option above, so I can scope the answer to the matching incidents.");
       return;
     }
     addBubble("user", question);
