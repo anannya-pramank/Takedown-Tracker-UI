@@ -24,8 +24,79 @@ Notes on coverage (from the audit):
 import os
 import sys
 import json
+import re
+import math
+import hashlib
 import datetime
 import psycopg2
+
+# --- geolocation --------------------------------------------------------------
+# Place each incident at its issuing authority's city. The issuer is stored in
+# the description as "Issued by: X" (SFLC rows). Central bodies (MeitY, MIB, DoT,
+# Central Govt, NIXI, Delhi HC/Police) resolve to New Delhi; state police / High
+# Courts resolve to their seat. A small deterministic jitter spreads incidents
+# that share a city into a visible cluster instead of stacking on one cell.
+
+CITY_COORDS = {
+    "New Delhi": (77.21, 28.61), "Mumbai": (72.88, 19.08),
+    "Chennai": (80.27, 13.08), "Kolkata": (88.36, 22.57),
+    "Bengaluru": (77.59, 12.97), "Hyderabad": (78.47, 17.38),
+    "Ahmedabad": (72.57, 23.03), "Jaipur": (75.79, 26.91),
+    "Patna": (85.14, 25.59), "Bhopal": (77.41, 23.26),
+    "Thiruvananthapuram": (76.95, 8.52), "Agra": (78.01, 27.18),
+    "Gurugram": (77.03, 28.46), "Shillong": (91.88, 25.57),
+    "Chandigarh": (76.78, 30.73), "Vijayawada": (80.65, 16.51),
+}
+
+# Ordered (most specific first): (regex over issuer text) -> city.
+AUTHORITY_CITY = [
+    (r"kerala", "Thiruvananthapuram"),
+    (r"agra", "Agra"),
+    (r"tamil\s*nadu|madras|chennai", "Chennai"),
+    (r"telangana", "Hyderabad"),
+    (r"maharashtra|bombay", "Mumbai"),
+    (r"gurugram|gurgaon", "Gurugram"),
+    (r"\bbihar", "Patna"),
+    (r"rajasthan", "Jaipur"),
+    (r"meghalaya", "Shillong"),
+    (r"\bpunjab", "Chandigarh"),
+    (r"madhya\s*pradesh", "Bhopal"),
+    (r"andhra\s*pradesh", "Vijayawada"),
+    (r"karnataka", "Bengaluru"),
+    (r"gujarat", "Ahmedabad"),
+    (r"calcutta|west\s*bengal|kolkata", "Kolkata"),
+    (r"delhi", "New Delhi"),  # Delhi HC, Delhi Police
+]
+DEFAULT_CITY = "New Delhi"   # central authorities: MeitY, MIB, DoT, NIXI, etc.
+JITTER_RADIUS = 0.6          # degrees (~1 grid cell); tune for tighter/looser clusters
+
+
+def _issuer_from_description(description):
+    m = re.search(r"Issued by:\s*([^;)]+)", description or "")
+    return m.group(1).strip() if m else ""
+
+
+def _city_for(issuer):
+    for pat, city in AUTHORITY_CITY:
+        if re.search(pat, issuer, re.I):
+            return city
+    return DEFAULT_CITY
+
+
+def _jitter(lon, lat, seed):
+    h = hashlib.md5(str(seed).encode()).hexdigest()
+    a = int(h[:8], 16) / 0xFFFFFFFF          # angle fraction
+    b = int(h[8:16], 16) / 0xFFFFFFFF        # radius fraction
+    ang = a * 2 * math.pi
+    rad = JITTER_RADIUS * math.sqrt(b)       # sqrt -> uniform over the disc
+    return round(lon + rad * math.cos(ang), 3), round(lat + rad * math.sin(ang), 3)
+
+
+def incident_lonlat(description, seed):
+    city = _city_for(_issuer_from_description(description))
+    lon, lat = CITY_COORDS.get(city, CITY_COORDS[DEFAULT_CITY])
+    return _jitter(lon, lat, seed)
+# -----------------------------------------------------------------------------
 
 HOST = "aws-1-ap-south-1.pooler.supabase.com"
 PORT = 6543
@@ -106,16 +177,17 @@ def main():
         "active_challenges": cache.get("active_legal_challenges"),
     }
 
-    # ---- browsable incident records ----
+    # ---- browsable incident records (all of them) ----
     inc_rows = q(cur, """
         SELECT id, incident_date, entity_name, entity_type, platform,
-               legal_basis, status, sector, action_taken, source_urls
+               legal_basis, status, sector, action_taken, source_urls, description
         FROM public."incidents"
-        ORDER BY incident_date DESC NULLS LAST
-        LIMIT 80;
+        ORDER BY incident_date DESC NULLS LAST;
     """)
     orders = []
-    for (iid, idate, ename, etype, platform, basis, status, sector, action, urls) in inc_rows:
+    for (iid, idate, ename, etype, platform, basis, status, sector,
+         action, urls, description) in inc_rows:
+        lon, lat = incident_lonlat(description, iid)
         orders.append({
             "id": str(iid),
             "date": idate.isoformat() if idate else None,
@@ -128,6 +200,8 @@ def main():
             "action": action,
             "disclosed": basis is not None and basis != "Unknown",
             "url": (urls[0] if urls else ""),
+            "lon": lon,
+            "lat": lat,
         })
 
     snapshot = {
