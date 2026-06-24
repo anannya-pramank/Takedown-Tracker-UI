@@ -17,7 +17,6 @@
     --accent-soft:#e7eef5;
     --grid-empty:#d9d5cb;
     --grid-match:#1f5a8a;
-    --grid-halo:#94b1cb;
     --grid-hover:#e0a32e;
     --card-bg:#3a3935;
     --radius:10px;
@@ -474,24 +473,46 @@
     return CITY["New Delhi"];
   }
 
-  // Cells to light for a set of matching incidents: the resolved cell plus a
-  // couple of adjacent land cells around it.
+  // Cells to light for a set of matching incidents: the resolved cell at full
+  // intensity, with a gradual radial falloff across surrounding land cells so
+  // the highlight reads as a soft gradient rather than a hard block.
+  var HALO_RADIUS = 2;                 // how many rings spread out from a hit
+  // intensity by Chebyshev distance from the nearest incident centre (0..1)
+  function haloFalloff(dist){
+    if(dist <= 0) return 1;
+    if(dist >= HALO_RADIUS + 1) return 0;
+    return Math.max(0, 1 - dist / (HALO_RADIUS + 1));
+  }
   function matchedCellKeys(matched){
-    var keys = {};
+    var keys = {};                     // "c_r" -> intensity 0..1 (max across hits)
     (matched || []).forEach(function(o){
       var ll = incidentLonLat(o);
       var cr = lonLatToCell(ll[0], ll[1]);
       var k = nearestLandCell(cr[0], cr[1]);
       if(!k) return;
-      keys[k] = true;
       var p = k.split("_"), cc = +p[0], rr = +p[1];
-      var around = [[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,-1]], added = 0;
-      for(var a=0; a<around.length && added<2; a++){
-        var nk = (cc+around[a][0])+"_"+(rr+around[a][1]);
-        if(landSet[nk] && !keys[nk]){ keys[nk] = true; added++; }
+      for(var dc = -HALO_RADIUS; dc <= HALO_RADIUS; dc++){
+        for(var dr = -HALO_RADIUS; dr <= HALO_RADIUS; dr++){
+          var nk = (cc+dc)+"_"+(rr+dr);
+          if(!landSet[nk]) continue;
+          var dist = Math.max(Math.abs(dc), Math.abs(dr));
+          var v = haloFalloff(dist);
+          if(v > (keys[nk] || 0)) keys[nk] = v;
+        }
       }
     });
     return keys;
+  }
+
+  // interpolate between the grid-empty grey and the match blue by intensity t
+  var GRID_EMPTY_RGB = [217,213,203];  // #d9d5cb
+  var GRID_MATCH_RGB = [31,90,138];    // #1f5a8a
+  function haloColor(t){
+    t = Math.max(0, Math.min(1, t));
+    var r = Math.round(GRID_EMPTY_RGB[0] + (GRID_MATCH_RGB[0]-GRID_EMPTY_RGB[0])*t);
+    var g = Math.round(GRID_EMPTY_RGB[1] + (GRID_MATCH_RGB[1]-GRID_EMPTY_RGB[1])*t);
+    var b = Math.round(GRID_EMPTY_RGB[2] + (GRID_MATCH_RGB[2]-GRID_EMPTY_RGB[2])*t);
+    return "rgb(" + r + "," + g + "," + b + ")";
   }
 
   function buildGrid(svg){          // builds the India tile map
@@ -674,9 +695,12 @@
     var keys = matchedCellKeys(counts.matched || []);
     var litCount = 0;
     squares.forEach(function(r){
-      var lit = !!keys[r.dataset.cell];
-      var primary = lit && cellIncidentMap[r.dataset.cell];
-      r.setAttribute("fill", lit ? (primary ? "var(--grid-match)" : "var(--grid-halo)") : "var(--grid-empty)");
+      var t = keys[r.dataset.cell] || 0;
+      var lit = t > 0;
+      var primary = !!cellIncidentMap[r.dataset.cell];
+      // primary cells stay full match-blue; halo cells fade by intensity
+      r.setAttribute("fill", primary ? "var(--grid-match)"
+                                     : (lit ? haloColor(t) : "var(--grid-empty)"));
       if(primary){
         // stagger pop-in by up to 180 ms so cells ripple in rather than all at once
         r.style.animationDelay = (litCount * 18).toFixed(0) + "ms";
