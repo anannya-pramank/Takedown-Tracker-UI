@@ -476,13 +476,13 @@
   // Cells to light for a set of matching incidents: the resolved cell at full
   // intensity, with a gradual radial falloff across surrounding land cells so
   // the highlight reads as a soft circular gradient rather than a hard block.
-  var HALO_RADIUS = 1.9;               // circular reach (in cells) from a hit
+  var HALO_RADIUS = 2.8;               // circular reach (in cells) from a hit
   // intensity by Euclidean distance from the nearest incident centre (0..1)
   function haloFalloff(dist){
     if(dist <= 0) return 1;
     if(dist >= HALO_RADIUS) return 0;
-    // curved falloff keeps the inner ring saturated, drops off near the edge
-    return Math.pow(1 - dist / HALO_RADIUS, 0.82);
+    // steep curve: inner ring stays rich, outer cells fade to almost nothing
+    return Math.pow(1 - dist / HALO_RADIUS, 1.6);
   }
   function matchedCellKeys(matched){
     var keys = {};                     // "c_r" -> intensity 0..1 (max across hits)
@@ -506,17 +506,16 @@
     return keys;
   }
 
-  // Halo cells interpolate between a soft blue edge and a deep match blue, so
-  // even the faint outer ring stays clearly blue rather than washing to grey.
-  var HALO_EDGE_RGB  = [168,196,221];  // #a8c4dd  soft blue at the rim
-  var GRID_MATCH_RGB = [24,79,124];    // #184f7c  saturated halo peak
+  // Halo cells interpolate from the grid grey (rim, nearly invisible) up to a
+  // deep match blue at the centre, so the highlight fades softly into the map.
+  var GRID_EMPTY_RGB = [217,213,203];  // #d9d5cb  rim / map grey
+  var GRID_MATCH_RGB = [24,79,124];    // #184f7c  saturated inner blue
   var CORE_RGB       = [13,52,84];     // #0d3454  deepest centre dot
   function haloColor(t){
     t = Math.max(0, Math.min(1, t));
-    var tc = Math.pow(t, 0.78);        // push mid-tones toward the deep end
-    var r = Math.round(HALO_EDGE_RGB[0] + (GRID_MATCH_RGB[0]-HALO_EDGE_RGB[0])*tc);
-    var g = Math.round(HALO_EDGE_RGB[1] + (GRID_MATCH_RGB[1]-HALO_EDGE_RGB[1])*tc);
-    var b = Math.round(HALO_EDGE_RGB[2] + (GRID_MATCH_RGB[2]-HALO_EDGE_RGB[2])*tc);
+    var r = Math.round(GRID_EMPTY_RGB[0] + (GRID_MATCH_RGB[0]-GRID_EMPTY_RGB[0])*t);
+    var g = Math.round(GRID_EMPTY_RGB[1] + (GRID_MATCH_RGB[1]-GRID_EMPTY_RGB[1])*t);
+    var b = Math.round(GRID_EMPTY_RGB[2] + (GRID_MATCH_RGB[2]-GRID_EMPTY_RGB[2])*t);
     return "rgb(" + r + "," + g + "," + b + ")";
   }
   var CORE_FILL = "rgb(" + CORE_RGB.join(",") + ")";
