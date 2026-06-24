@@ -207,6 +207,15 @@
   var SVGNS = "http://www.w3.org/2000/svg";
   var state = { who:null, platform:null, provision:null, sector:null };
   var PILLS = [];  // {el, group, id} for every facet pill, for availability updates
+
+  // Display-only relabels: change how a facet value reads on the pills and in the
+  // summary sentence WITHOUT changing the stored value or any filtering logic.
+  var DISPLAY_LABELS = {
+    who: { "Technology": "Web-based service", "Platform-wide": "Platform-wide action" }
+  };
+  function dispLabel(group, id, fallback){
+    return (DISPLAY_LABELS[group] && DISPLAY_LABELS[group][id]) || fallback;
+  }
   var DATA = null;
   var cellIncidentMap = {};  // key "c_r" -> [incident, ...]
   var tip = null;            // tooltip DOM element
@@ -265,7 +274,7 @@
     function set(group){
       var span = el("span", { class:"pillset" });
       DATA.facets[group].forEach(function(opt){
-        var b = el("button", { class:"pill", type:"button", "data-v":opt.id, text:opt.label });
+        var b = el("button", { class:"pill", type:"button", "data-v":opt.id, text:dispLabel(group, opt.id, opt.label) });
         b.addEventListener("click", function(){
           if(b.classList.contains("off")) return;  // unavailable combo, ignore
           var was = b.classList.contains("on");
@@ -287,7 +296,7 @@
       return r;
     }
 
-    box.appendChild(row("Show me", "who"));
+    box.appendChild(row("If you are", "who"));
     box.appendChild(row("on", "platform"));
     box.appendChild(row("blocked under", "provision"));
     box.appendChild(row("in", "sector"));
@@ -631,7 +640,7 @@
   // ----- live "There are N…" count (updates on every toggle, partial or full) -----
   function buildBigCount(){
     var d = el("div", { class:"bigcount", id:"bigcount" });
-    d.innerHTML = '<span class="bc-pre">There are</span>'
+    d.innerHTML = '<span class="bc-pre">There have been</span>'
       + '<span class="bc-num" id="bcNum">0</span>'
       + '<span class="bc-suf" id="bcSuf">documented incidents on record</span>';
     return d;
@@ -715,7 +724,7 @@
     var any = state.who || state.platform || state.provision || state.sector;
     var n = any ? partialCount() : ((DATA.orders || []).length);
     tweenNum(num, n);
-    if(suf) suf.textContent = any ? "documented incidents like this" : "documented incidents on record";
+    if(suf) suf.textContent = any ? "documented incidents like yours" : "documented incidents on record";
   }
 
   // ----- recompute on selection -----
@@ -828,7 +837,7 @@
   }
 
   function selectionLabels(){
-    function lbl(group,id){ var a=DATA.facets[group]; for(var i=0;i<a.length;i++) if(a[i].id===id) return a[i].label; return id; }
+    function lbl(group,id){ var a=DATA.facets[group]; for(var i=0;i<a.length;i++) if(a[i].id===id) return dispLabel(group, id, a[i].label); return id; }
     return {
       who: lbl("who", state.who),
       platform: lbl("platform", state.platform),
