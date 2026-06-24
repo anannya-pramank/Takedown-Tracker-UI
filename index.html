@@ -16,7 +16,7 @@
     --accent:#1f5a8a;
     --accent-soft:#e7eef5;
     --grid-empty:#d9d5cb;
-    --grid-match:#1f5a8a;
+    --grid-match:#0d3454;
     --grid-hover:#e0a32e;
     --card-bg:#3a3935;
     --radius:10px;
@@ -475,27 +475,29 @@
 
   // Cells to light for a set of matching incidents: the resolved cell at full
   // intensity, with a gradual radial falloff across surrounding land cells so
-  // the highlight reads as a soft gradient rather than a hard block.
-  var HALO_RADIUS = 2;                 // how many rings spread out from a hit
-  // intensity by Chebyshev distance from the nearest incident centre (0..1)
+  // the highlight reads as a soft circular gradient rather than a hard block.
+  var HALO_RADIUS = 2.6;               // circular reach (in cells) from a hit
+  // intensity by Euclidean distance from the nearest incident centre (0..1)
   function haloFalloff(dist){
     if(dist <= 0) return 1;
-    if(dist >= HALO_RADIUS + 1) return 0;
-    return Math.max(0, 1 - dist / (HALO_RADIUS + 1));
+    if(dist >= HALO_RADIUS) return 0;
+    // curved falloff keeps the inner ring saturated, drops off near the edge
+    return Math.pow(1 - dist / HALO_RADIUS, 0.82);
   }
   function matchedCellKeys(matched){
     var keys = {};                     // "c_r" -> intensity 0..1 (max across hits)
+    var span = Math.ceil(HALO_RADIUS);
     (matched || []).forEach(function(o){
       var ll = incidentLonLat(o);
       var cr = lonLatToCell(ll[0], ll[1]);
       var k = nearestLandCell(cr[0], cr[1]);
       if(!k) return;
       var p = k.split("_"), cc = +p[0], rr = +p[1];
-      for(var dc = -HALO_RADIUS; dc <= HALO_RADIUS; dc++){
-        for(var dr = -HALO_RADIUS; dr <= HALO_RADIUS; dr++){
+      for(var dc = -span; dc <= span; dc++){
+        for(var dr = -span; dr <= span; dr++){
           var nk = (cc+dc)+"_"+(rr+dr);
           if(!landSet[nk]) continue;
-          var dist = Math.max(Math.abs(dc), Math.abs(dr));
+          var dist = Math.sqrt(dc*dc + dr*dr);   // Euclidean → circular
           var v = haloFalloff(dist);
           if(v > (keys[nk] || 0)) keys[nk] = v;
         }
@@ -504,16 +506,20 @@
     return keys;
   }
 
-  // interpolate between the grid-empty grey and the match blue by intensity t
-  var GRID_EMPTY_RGB = [217,213,203];  // #d9d5cb
-  var GRID_MATCH_RGB = [31,90,138];    // #1f5a8a
+  // Halo cells interpolate between a soft blue edge and a deep match blue, so
+  // even the faint outer ring stays clearly blue rather than washing to grey.
+  var HALO_EDGE_RGB  = [168,196,221];  // #a8c4dd  soft blue at the rim
+  var GRID_MATCH_RGB = [24,79,124];    // #184f7c  saturated halo peak
+  var CORE_RGB       = [13,52,84];     // #0d3454  deepest centre dot
   function haloColor(t){
     t = Math.max(0, Math.min(1, t));
-    var r = Math.round(GRID_EMPTY_RGB[0] + (GRID_MATCH_RGB[0]-GRID_EMPTY_RGB[0])*t);
-    var g = Math.round(GRID_EMPTY_RGB[1] + (GRID_MATCH_RGB[1]-GRID_EMPTY_RGB[1])*t);
-    var b = Math.round(GRID_EMPTY_RGB[2] + (GRID_MATCH_RGB[2]-GRID_EMPTY_RGB[2])*t);
+    var tc = Math.pow(t, 0.78);        // push mid-tones toward the deep end
+    var r = Math.round(HALO_EDGE_RGB[0] + (GRID_MATCH_RGB[0]-HALO_EDGE_RGB[0])*tc);
+    var g = Math.round(HALO_EDGE_RGB[1] + (GRID_MATCH_RGB[1]-HALO_EDGE_RGB[1])*tc);
+    var b = Math.round(HALO_EDGE_RGB[2] + (GRID_MATCH_RGB[2]-HALO_EDGE_RGB[2])*tc);
     return "rgb(" + r + "," + g + "," + b + ")";
   }
+  var CORE_FILL = "rgb(" + CORE_RGB.join(",") + ")";
 
   function buildGrid(svg){          // builds the India tile map
     squares = []; landSet = {}; cellRect = {};
@@ -699,7 +705,7 @@
       var lit = t > 0;
       var primary = !!cellIncidentMap[r.dataset.cell];
       // primary cells stay full match-blue; halo cells fade by intensity
-      r.setAttribute("fill", primary ? "var(--grid-match)"
+      r.setAttribute("fill", primary ? CORE_FILL
                                      : (lit ? haloColor(t) : "var(--grid-empty)"));
       if(primary){
         // stagger pop-in by up to 180 ms so cells ripple in rather than all at once
