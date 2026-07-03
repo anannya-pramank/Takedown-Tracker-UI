@@ -1,14 +1,14 @@
 {
   "meta": {
-    "last_updated": "2026-07-02",
+    "last_updated": "2026-07-03",
     "note": "Generated from live incident data.",
-    "total_documented": 681,
+    "total_documented": 682,
     "total_disclosed": 158,
     "orders_complete": true,
-    "located": 614,
+    "located": 615,
     "unplaced": 67,
     "location_breakdown": {
-      "central_text": 13,
+      "central_text": 14,
       "unknown": 67,
       "central": 345,
       "issuer_state": 242,
@@ -80,16 +80,16 @@
         "label": "WhatsApp"
       },
       {
-        "id": "Twitter/X | Instagram",
-        "label": "Twitter/X | Instagram"
+        "id": "Facebook | Instagram",
+        "label": "Facebook | Instagram"
       },
       {
         "id": "ISP",
         "label": "ISP"
       },
       {
-        "id": "Facebook | Instagram",
-        "label": "Facebook | Instagram"
+        "id": "Twitter/X | Instagram",
+        "label": "Twitter/X | Instagram"
       }
     ],
     "provision": [
@@ -190,6 +190,10 @@
         "disclosed": 0
       },
       "Twitter/X | Instagram": {
+        "documented": 1,
+        "disclosed": 0
+      },
+      "WhatsApp": {
         "documented": 1,
         "disclosed": 0
       },
@@ -375,6 +379,22 @@
       "loc_source": "central_text"
     },
     {
+      "id": "ebd368c5-8769-4433-a2c5-9a53bea8fef2",
+      "date": "2026-06-29",
+      "entity": "WhatsApp",
+      "who": "Technology",
+      "platform": "WhatsApp",
+      "provision": "Unknown",
+      "status": "Challenged",
+      "sector": "Technology Platform",
+      "action": "Directed to halt rollout of new 'username' feature",
+      "disclosed": false,
+      "url": "https://sflc.in/sflc-in-statement-on-meitys-notice-to-whatsapp-to-halt-rollout-of-username-feature/",
+      "lon": 76.845,
+      "lat": 28.936,
+      "loc_source": "central_text"
+    },
+    {
       "id": "cbdb1e20-6f2c-4858-8b72-8fd00b166536",
       "date": "2026-06-27",
       "entity": "Cockroach Janta Party",
@@ -407,19 +427,19 @@
       "loc_source": "unknown"
     },
     {
-      "id": "a1a82203-34bb-4cbf-b2cb-72dad8a4a7b9",
+      "id": "32d5cd9b-2835-4950-ae6f-68f5d8b1c79d",
       "date": "2026-06-24",
-      "entity": "CJP's Dipke",
+      "entity": "Abhijeet Dipke",
       "who": "Individual",
       "platform": "Twitter/X",
-      "provision": "Unknown",
+      "provision": "IT Rules 2021",
       "status": "Challenged",
-      "sector": "Civil Society",
-      "action": "Account blocked",
-      "disclosed": false,
-      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPZ3hMN1FlZlhUdGZvS21fS1hyQVlvUGhoWXUzLW9kMTlXVE1LRDBXc19KQkd0cFRkRENZbENnOTZ0UjEyNGQzcWxNbC15SERYbk9GTnotel9zR2RudHQ5M1c1R05reXhKRXlUcERqeExRQ0gxWldvN250N3hOSGNFVkdpaks4Tkpmdk5mLVZCM3NPWXdEdVFGTElIME1yYWRpNC0tSDFIVTZXSTlIWDJVRWVkUHVCUWdJZkFDRkxBOG1wVmVhcUlobDNuUno3QkFIY0xKUDlvSDlvM0V1Q2FCTk9sOWktSC1iQllnUWxjNWhMMmNHUlHSAYMCQVVfeXFMT2YtNGN5c0RJWnRkRndxX0V1Q1lxSFBmQkxvSmppOTJmblZhMUwtUmdtTlNRUXl0Vy15dk9BTEhMOGRUcEJ3OC1oUlpVMHlTSFpqVHE1X2s4a25JNkJxOUF4QndMTk52U1Q2Q1hXVUswcGZGQnoweWxQeWJpaG0zcWtFQ2x4Y24ySzRGa2sxV0gzNGdzQ05KQS1QUDhZcHZIUTVxVE9FT0ZSQkxjLU55SkZZVEhzdG0wNTA1ZmxQM0hLeFc1ckhaaVhSdjFqR25OdWVjTC02cEJzSzV4dlNXQ3lSLVdrZ0dSUDZTUXpMYVBma0NqRndiNnBXLVlxNTBTbXJmWQ?oc=5",
-      "lon": 76.763,
-      "lat": 28.3,
+      "sector": "Individual / Journalist",
+      "action": "X account block",
+      "disclosed": true,
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQQUdIREVoQzdSbWxqY3EwUUtVSUtSMUd0aHdVUEFCTG9zR0tra0RPQnZMX2FzQVVCVHZvY29RTkRIS240Q0NvU1BxWmlvM2szVTVvVURIS05CWHRyenNSUmpmMTlpMDZ2RzlVQTl3RjhEcVZYSkZTM2JEWDRSV05QM0Jjbjc1YlRhMU5kV0ZBcFF5cFBjUlFGRWNHekJsbm51bVViX194LW5RX0daTXRPU3lfZnhtY25YOHJJ0gG7AUFVX3lxTFBBR0hERWhDN1JtbGpjcTBRS1VJS1IxR3Rod1VQQUJMb3NHS2trRE9CdkxfYXNBVUJUdm9jb1FOREhLbjRDQ29TUHFaaW8zazNVNW9VREhLTkJYdHJ6c1JSamYxOWkwNnZHOVVBOXdGOERxVlhKRlMzYkRYNFJXTlAzQmNuNzViVGExTmRXRkFwUXlwUGNSUUZFY0d6QmxubnVtVWJfX3gtblFfR1pNdE9TeV9meG1jblg4ckk?oc=5",
+      "lon": 77.256,
+      "lat": 28.938,
       "loc_source": "central_text"
     },
     {
@@ -439,19 +459,19 @@
       "loc_source": "central_text"
     },
     {
-      "id": "32d5cd9b-2835-4950-ae6f-68f5d8b1c79d",
+      "id": "a1a82203-34bb-4cbf-b2cb-72dad8a4a7b9",
       "date": "2026-06-24",
-      "entity": "Abhijeet Dipke",
+      "entity": "CJP's Dipke",
       "who": "Individual",
       "platform": "Twitter/X",
-      "provision": "IT Rules 2021",
+      "provision": "Unknown",
       "status": "Challenged",
-      "sector": "Individual / Journalist",
-      "action": "X account block",
-      "disclosed": true,
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQQUdIREVoQzdSbWxqY3EwUUtVSUtSMUd0aHdVUEFCTG9zR0tra0RPQnZMX2FzQVVCVHZvY29RTkRIS240Q0NvU1BxWmlvM2szVTVvVURIS05CWHRyenNSUmpmMTlpMDZ2RzlVQTl3RjhEcVZYSkZTM2JEWDRSV05QM0Jjbjc1YlRhMU5kV0ZBcFF5cFBjUlFGRWNHekJsbm51bVViX194LW5RX0daTXRPU3lfZnhtY25YOHJJ0gG7AUFVX3lxTFBBR0hERWhDN1JtbGpjcTBRS1VJS1IxR3Rod1VQQUJMb3NHS2trRE9CdkxfYXNBVUJUdm9jb1FOREhLbjRDQ29TUHFaaW8zazNVNW9VREhLTkJYdHJ6c1JSamYxOWkwNnZHOVVBOXdGOERxVlhKRlMzYkRYNFJXTlAzQmNuNzViVGExTmRXRkFwUXlwUGNSUUZFY0d6QmxubnVtVWJfX3gtblFfR1pNdE9TeV9meG1jblg4ckk?oc=5",
-      "lon": 77.256,
-      "lat": 28.938,
+      "sector": "Civil Society",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi9gFBVV95cUxPZ3hMN1FlZlhUdGZvS21fS1hyQVlvUGhoWXUzLW9kMTlXVE1LRDBXc19KQkd0cFRkRENZbENnOTZ0UjEyNGQzcWxNbC15SERYbk9GTnotel9zR2RudHQ5M1c1R05reXhKRXlUcERqeExRQ0gxWldvN250N3hOSGNFVkdpaks4Tkpmdk5mLVZCM3NPWXdEdVFGTElIME1yYWRpNC0tSDFIVTZXSTlIWDJVRWVkUHVCUWdJZkFDRkxBOG1wVmVhcUlobDNuUno3QkFIY0xKUDlvSDlvM0V1Q2FCTk9sOWktSC1iQllnUWxjNWhMMmNHUlHSAYMCQVVfeXFMT2YtNGN5c0RJWnRkRndxX0V1Q1lxSFBmQkxvSmppOTJmblZhMUwtUmdtTlNRUXl0Vy15dk9BTEhMOGRUcEJ3OC1oUlpVMHlTSFpqVHE1X2s4a25JNkJxOUF4QndMTk52U1Q2Q1hXVUswcGZGQnoweWxQeWJpaG0zcWtFQ2x4Y24ySzRGa2sxV0gzNGdzQ05KQS1QUDhZcHZIUTVxVE9FT0ZSQkxjLU55SkZZVEhzdG0wNTA1ZmxQM0hLeFc1ckhaaVhSdjFqR25OdWVjTC02cEJzSzV4dlNXQ3lSLVdrZ0dSUDZTUXpMYVBma0NqRndiNnBXLVlxNTBTbXJmWQ?oc=5",
+      "lon": 76.763,
+      "lat": 28.3,
       "loc_source": "central_text"
     },
     {
@@ -487,22 +507,6 @@
       "loc_source": "unknown"
     },
     {
-      "id": "d76adf5e-6579-4991-a8ab-2131d835d669",
-      "date": "2026-06-19",
-      "entity": "@speakingaboutindia",
-      "who": "Individual",
-      "platform": "Instagram",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://www.instagram.com/reel/DZuDlPNyXdo/?igsh=OTl3aGp6Znh0ZHZt",
-      "lon": 77.183,
-      "lat": 28.435,
-      "loc_source": "central"
-    },
-    {
       "id": "06944808-ce3b-417b-be01-65fde5808b9e",
       "date": "2026-06-19",
       "entity": "David Peterson (Proton VPN manager)",
@@ -519,6 +523,22 @@
       "loc_source": "unknown"
     },
     {
+      "id": "d76adf5e-6579-4991-a8ab-2131d835d669",
+      "date": "2026-06-19",
+      "entity": "@speakingaboutindia",
+      "who": "Individual",
+      "platform": "Instagram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://www.instagram.com/reel/DZuDlPNyXdo/?igsh=OTl3aGp6Znh0ZHZt",
+      "lon": 77.183,
+      "lat": 28.435,
+      "loc_source": "central"
+    },
+    {
       "id": "c2b5a3f9-5db4-411e-a1e7-64bcdef833ae",
       "date": "2026-06-18",
       "entity": "Proton VPN GM",
@@ -530,22 +550,6 @@
       "action": "Account withheld in India",
       "disclosed": false,
       "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOMWVWQlFRMGRyekxoeEc3UUVYMk1UaDZGNmRvb2pPRlJ0b1hvQ2ZRZ0VBNVlUM2hjclZTc3NoQTdxUy1KSTd5bWNnd2NKcjN0cnBvSk5BTkNTT3FkNHJIRXZ3WExpQ1dzZzdKaHc3UTdHQ0Zock41LXlZQ25SUy1ncENxMEkxOEhRRlRkNTFMMERBS3ZkWEI4aTFGUGVPMEJkZ2RCdmJkMnNsRkpkb05BV0xCOTlDU0xrV2JxRnljR2NmTW1VZkFDRzEzZWpSUWfSAdQBQVVfeXFMTWtVamhIZWZVc1R6am56VmcxU091SndrVlpMWFg5RDNHLTBhUGZrb0F1VHkzZjA1WWhvUElZVmJFZzQxNFZtX0YyWEtycDBfY0JQeE9SS2kyd1BpdmxnMHNyRHB0dUdYc05qdTlxMkdsX1UxZnpBOURGOV9SWk9xeVNiWmExNm5samRLY05PSkk0Ry1Ka1RjWTJuM1ZpNW10WkZCaXl3MEVOYWhCbkJqc0RPWS1OZ2lsMjYwdmxlRnBCS0NBVTZVTF8xQ3lWRklSa0VjdUw?oc=5",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
-      "id": "eddec7dd-2352-44c6-8d03-32ed73b764b6",
-      "date": "2026-06-16",
-      "entity": "Telegram App",
-      "who": "Technology",
-      "platform": "Telegram",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Telegram app banned in India; message editing feature disabled",
-      "disclosed": false,
-      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQbndybmNmczlVVXZqMGxrZjFtQ2w0ZFJvUU9LX3o4el80MTNLalQzVjA3Mm52MDVHeEJkaVpyYWNLOFBpc28yckhzcVZiUkMxOE54dnljV2tCeXgtalVqZ25hR21aYUtLWjlLcm9vdHdTQnJkdEhRRl9vVmJBMjVfU25XbTk2SWZNSjZoRXNrZ3RZbzAycXBFazRVUDlLTWFQbnMtdmVXU3E5SVNJbkdHS3ItbmdxTGdWTEE0ZVUzNNIBxAFBVV95cUxQQW16UGsySGY4SjNMSzVWZmd4b0x6QVpCSDhUaW9FSUFJMTlLMnJBUWJPMjM0UDl3NkQ0bGgzdmxWc2V6VVdsNV9lTE1PZUJabjhrcjQ5QnBsMUd0R1UxNUQ1bGRkQUFqWDkzaDc0MVR1RjNTMldrcFo5SUJSSTFJSTV0UUhYbXlHSDd0ODZUeWNtYjlYYXg4ZmZMNVFIbFVrU0pzN0l6MXlNaDRBa21nRGpIU0hkaTBBYnVWb3BKVWhKbkJU?oc=5",
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
@@ -583,6 +587,22 @@
       "loc_source": "central"
     },
     {
+      "id": "eddec7dd-2352-44c6-8d03-32ed73b764b6",
+      "date": "2026-06-16",
+      "entity": "Telegram App",
+      "who": "Technology",
+      "platform": "Telegram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Telegram app banned in India; message editing feature disabled",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxQbndybmNmczlVVXZqMGxrZjFtQ2w0ZFJvUU9LX3o4el80MTNLalQzVjA3Mm52MDVHeEJkaVpyYWNLOFBpc28yckhzcVZiUkMxOE54dnljV2tCeXgtalVqZ25hR21aYUtLWjlLcm9vdHdTQnJkdEhRRl9vVmJBMjVfU25XbTk2SWZNSjZoRXNrZ3RZbzAycXBFazRVUDlLTWFQbnMtdmVXU3E5SVNJbkdHS3ItbmdxTGdWTEE0ZVUzNNIBxAFBVV95cUxQQW16UGsySGY4SjNMSzVWZmd4b0x6QVpCSDhUaW9FSUFJMTlLMnJBUWJPMjM0UDl3NkQ0bGgzdmxWc2V6VVdsNV9lTE1PZUJabjhrcjQ5QnBsMUd0R1UxNUQ1bGRkQUFqWDkzaDc0MVR1RjNTMldrcFo5SUJSSTFJSTV0UUhYbXlHSDd0ODZUeWNtYjlYYXg4ZmZMNVFIbFVrU0pzN0l6MXlNaDRBa21nRGpIU0hkaTBBYnVWb3BKVWhKbkJU?oc=5",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
+    },
+    {
       "id": "2220aa2b-4414-44ee-b8b2-993e3f45d2ea",
       "date": "2026-06-14",
       "entity": "YSR Congress Party (YSRCP)",
@@ -599,22 +619,6 @@
       "loc_source": "unknown"
     },
     {
-      "id": "840d8ea9-9112-4fd0-9c68-cf2469b72a35",
-      "date": "2026-06-09",
-      "entity": "@theliverdr",
-      "who": "Individual",
-      "platform": "Instagram",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://www.instagram.com/p/DZVLii3AdTQ/",
-      "lon": 76.968,
-      "lat": 28.202,
-      "loc_source": "central"
-    },
-    {
       "id": "4f5f8b81-ce2c-4ae6-86df-9962c7c21469",
       "date": "2026-06-09",
       "entity": "@queerbeatmedia @manishgaekward",
@@ -628,6 +632,22 @@
       "url": "https://x.com/manishgaekwad/status/2064242136376390090",
       "lon": 76.846,
       "lat": 28.98,
+      "loc_source": "central"
+    },
+    {
+      "id": "840d8ea9-9112-4fd0-9c68-cf2469b72a35",
+      "date": "2026-06-09",
+      "entity": "@theliverdr",
+      "who": "Individual",
+      "platform": "Instagram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://www.instagram.com/p/DZVLii3AdTQ/",
+      "lon": 76.968,
+      "lat": 28.202,
       "loc_source": "central"
     },
     {
@@ -759,6 +779,22 @@
       "loc_source": "unknown"
     },
     {
+      "id": "30388eb2-64cc-4fee-a957-3c155809e086",
+      "date": "2026-05-28",
+      "entity": "Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMinwNBVV95cUxNTmRIWTBPSXV6akZRQV94Y2NUdC00cmY4VjIyVnprdVJnNjJ5YThwRlRSbUY5dV80MFhXNXdvT3h3QjFtSkpseWVRY1NhMllic1poVXRSbGo2RVozRkZYVzdIUFlJRENLemtybjYxRHJESFVhbFpZSGhaUm9qck9ZdkNkTFFYMURtM0s0dzU5QnhhSmZib1g4UXpKbkNmZUxqMjlZa2NxUERod1hSTmpqODZsUFVUR3lRX3BWaEpJejlyWlZsbk9QRUR1a1dfVWd0ZUgtSy1tS3NMQWVtR3I1Mi1ldm5ONjdaN0p5RHFYY1o2VnB1bTlRNXVodkhYTG85UEZURzVrUFVsRUpuQkRROXNwWmNkclVhZ0VvcV84ZmIxeExCQWFXaUhzZFVzcUd2UXFfUG1VNGxIYk5HeVlBRXE1SWdPNHFVcndGV2NDTlBOelZtWVFZbGFfNDJxMmR1UEptMHhTZUN6T3hCRVIwamU2bFRHbU5xcXdnSGJDVEJLeHp1UjFkTTIyUmhjY3YzUHBEYUtCUDhLaUFkSHB3?oc=5",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
+    },
+    {
       "id": "92910491-9f3a-40c2-83c5-b9b58384af32",
       "date": "2026-05-28",
       "entity": "Viral Cockroach Janta Party",
@@ -791,20 +827,20 @@
       "loc_source": "central"
     },
     {
-      "id": "30388eb2-64cc-4fee-a957-3c155809e086",
-      "date": "2026-05-28",
-      "entity": "Cockroach Janta Party",
+      "id": "746c7e6a-b8c9-4749-bc8f-2a1ed2f600d6",
+      "date": "2026-05-27",
+      "entity": "@the.ranting.gola",
       "who": "Individual",
-      "platform": "Twitter/X",
+      "platform": "Instagram",
       "provision": "Unknown",
       "status": "Active",
-      "sector": "Other",
-      "action": "Account withheld in India",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
       "disclosed": false,
-      "url": "https://news.google.com/rss/articles/CBMinwNBVV95cUxNTmRIWTBPSXV6akZRQV94Y2NUdC00cmY4VjIyVnprdVJnNjJ5YThwRlRSbUY5dV80MFhXNXdvT3h3QjFtSkpseWVRY1NhMllic1poVXRSbGo2RVozRkZYVzdIUFlJRENLemtybjYxRHJESFVhbFpZSGhaUm9qck9ZdkNkTFFYMURtM0s0dzU5QnhhSmZib1g4UXpKbkNmZUxqMjlZa2NxUERod1hSTmpqODZsUFVUR3lRX3BWaEpJejlyWlZsbk9QRUR1a1dfVWd0ZUgtSy1tS3NMQWVtR3I1Mi1ldm5ONjdaN0p5RHFYY1o2VnB1bTlRNXVodkhYTG85UEZURzVrUFVsRUpuQkRROXNwWmNkclVhZ0VvcV84ZmIxeExCQWFXaUhzZFVzcUd2UXFfUG1VNGxIYk5HeVlBRXE1SWdPNHFVcndGV2NDTlBOelZtWVFZbGFfNDJxMmR1UEptMHhTZUN6T3hCRVIwamU2bFRHbU5xcXdnSGJDVEJLeHp1UjFkTTIyUmhjY3YzUHBEYUtCUDhLaUFkSHB3?oc=5",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
+      "url": "https://www.instagram.com/the.ranting.gola/",
+      "lon": 77.373,
+      "lat": 28.21,
+      "loc_source": "central"
     },
     {
       "id": "01a1fe16-8778-4006-a94a-1cb4001bca38",
@@ -823,25 +859,9 @@
       "loc_source": "unknown"
     },
     {
-      "id": "746c7e6a-b8c9-4749-bc8f-2a1ed2f600d6",
-      "date": "2026-05-27",
-      "entity": "@the.ranting.gola",
-      "who": "Individual",
-      "platform": "Instagram",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://www.instagram.com/the.ranting.gola/",
-      "lon": 77.373,
-      "lat": 28.21,
-      "loc_source": "central"
-    },
-    {
-      "id": "8d17d9c6-7dcc-4c27-bc87-114f55b2065b",
+      "id": "ff7ccd85-7c61-4540-a1e5-5895ad33b306",
       "date": "2026-05-26",
-      "entity": "@unfiltered_byjasmeet",
+      "entity": "@reporter_kashish_",
       "who": "Individual",
       "platform": "Instagram",
       "provision": "Unknown",
@@ -849,9 +869,9 @@
       "sector": "Technology Platform",
       "action": "Access blocked",
       "disclosed": false,
-      "url": "https://www.instagram.com/reels/DYy7Z9qRF1z/",
-      "lon": 77.253,
-      "lat": 28.048,
+      "url": "https://www.instagram.com/reel/DYxHyknzsTd/",
+      "lon": 77.205,
+      "lat": 28.797,
       "loc_source": "central"
     },
     {
@@ -871,9 +891,9 @@
       "loc_source": "central"
     },
     {
-      "id": "ff7ccd85-7c61-4540-a1e5-5895ad33b306",
+      "id": "8d17d9c6-7dcc-4c27-bc87-114f55b2065b",
       "date": "2026-05-26",
-      "entity": "@reporter_kashish_",
+      "entity": "@unfiltered_byjasmeet",
       "who": "Individual",
       "platform": "Instagram",
       "provision": "Unknown",
@@ -881,9 +901,9 @@
       "sector": "Technology Platform",
       "action": "Access blocked",
       "disclosed": false,
-      "url": "https://www.instagram.com/reel/DYxHyknzsTd/",
-      "lon": 77.205,
-      "lat": 28.797,
+      "url": "https://www.instagram.com/reels/DYy7Z9qRF1z/",
+      "lon": 77.253,
+      "lat": 28.048,
       "loc_source": "central"
     },
     {
@@ -1015,22 +1035,6 @@
       "loc_source": "text_scan"
     },
     {
-      "id": "d581ab23-5d3e-470a-86eb-79d689bf1ea3",
-      "date": "2026-05-23",
-      "entity": "Satirical Cockroach Janta Party",
-      "who": "Individual",
-      "platform": "Website",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Other",
-      "action": "Blocked",
-      "disclosed": false,
-      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOMTA0SFFHSFh6VTdkdDRSTUlGNVk5Wi1Xc3hvY3diVWY1WUVsQzJ3QlhzOW12RlU0M2NGRkhWdllhU1h6c0JOWHNRVFFKM21WQW5mTFRXVHdaeFAybGdYYVhEc3RncURXaXVDbVd4dVVVMWgwQ0k4b1lUcHpaeVo5Yk9hNEhmdwJOdzBWWWNuOXpTbUlOMmJIR0dkeXMxNXR2dm9MRWgtQ2R5QjFDS09UbElQS0FfdWRIRlRHaGdVdWNKTHhiNnhJLWd5RngxdG1TWlNadDBwQV9LRW0yclcyaFVmQVNzYW9kOG1pZ19ucmlTWjVvdEZUbg?oc=5",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
       "id": "d67598b2-5013-40f7-9766-0eae84ba4fc1",
       "date": "2026-05-23",
       "entity": "Cockroach Janta Party (founder Abhijeet Dipke)",
@@ -1042,22 +1046,6 @@
       "action": "X handles withheld, Instagram accounts hacked",
       "disclosed": false,
       "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPd1ZKOUpSV2g5NngyUkxfTURtanI3emFHM05YOFdxWGdsY2dSVExaVFlZUy1iSk5oQWZvQTltbEtYTE5KaGFwSlR1VjloUjk4Ul9FRmpYTWdRMTdkekhxNk9BU2lCOWdVamxzbWtwREg3Rm5qeVpER3l2VHZmd2JvOGZJS2RoZXRXeFlCWF9mekJIRTV1RzJHQW5RWjZHazhxYUphY2FEVlRvZ0VWdVFqUVRCREgxNlU3dU9fZFhkbmFCdUtObEdQRUJsUHBaY3fSAdYBQVVfeXFMT1F2bVhpV1UwWVNOYlVLdjZ1cFBqQ2xCQTZsZnFqRTNoLXNkVERuS2FDdFEtN3hNT3ljWG41ZmlsMXAwNmxlRmh0cXRPcFoyemdidFZzQVo5QW81NnljWE1hTF96TEQ0Tldud1FtNTdyTHNpYmJRUkQ5clFxWmpxdm5hN2Vzdl9nVk90YXE0NzU0N1Y3M2dQOUhwYlZiakpTSHJGUzY5dGx2LTEtbktkdU5Ga214b0dSeDhDd2llelRuVTRSNUVhXzlBcjVxT0lBdnp1elBOQQ?oc=5",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
-      "id": "9571b610-c437-4f33-8137-6121290bcf60",
-      "date": "2026-05-23",
-      "entity": "Viral Cockroach Janta Party",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Other",
-      "action": "Account withheld in India",
-      "disclosed": false,
-      "url": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxNa3BUTEF5U1ZlVmFuN3JTcnh2a3ZWc0oxWk1DelZVM0lLV1RVc0RhZVBiQzJkSTNCV2xBbTJwN1k1M25FcEdHaXkySkY4dC1vRTBweXFGMkxWUlU1ZHUyU0FuLVU2ODlEZ1BuUUJaamxfUXJZUHR5YVVOZHo0cW14YU1rYVBQQ1R3MHpudjVoUTU5SUJZcXdqdlhVQkI4a2M1R0JRYWRSWXIxN3UzT0RoLXhwcG9sN3VUR0Vna2NvOVYyQVJyY29odDVEdjIxdDZWYXlqODFiSDZXZmFIeF9ndC1JX2l1eFdpSEhTNlNBR3V1V2RpYnJCQUwzbnJkNHJxemVzT1drNDFkSFh1VlVjYzJiaVlyOFoyZDNRRU5wcy1iR3VPVmFUbVlHY3B1MkhwSkZmQ2R6TmY0a19JbF9fS2ZJZ0cxcXJZVE1iRGR5SmY2bjMzYThlSzMzQTdYaDJXbVJLOXRpSzV5YlZxQTdkaA?oc=5",
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
@@ -1079,20 +1067,36 @@
       "loc_source": "unknown"
     },
     {
-      "id": "27ac0131-d48b-4772-99ee-04dbe227c3f8",
-      "date": "2026-05-22",
-      "entity": "@ercinvestigates",
+      "id": "d581ab23-5d3e-470a-86eb-79d689bf1ea3",
+      "date": "2026-05-23",
+      "entity": "Satirical Cockroach Janta Party",
       "who": "Individual",
-      "platform": "Instagram",
+      "platform": "Website",
       "provision": "Unknown",
       "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
+      "sector": "Other",
+      "action": "Blocked",
       "disclosed": false,
-      "url": "https://www.instagram.com/p/DYhWi_NzEL3/",
-      "lon": 77.508,
-      "lat": 28.622,
-      "loc_source": "central"
+      "url": "https://news.google.com/rss/articles/CBMi-AFBVV95cUxOMTA0SFFHSFh6VTdkdDRSTUlGNVk5Wi1Xc3hvY3diVWY1WUVsQzJ3QlhzOW12RlU0M2NGRkhWdllhU1h6c0JOWHNRVFFKM21WQW5mTFRXVHdaeFAybGdYYVhEc3RncURXaXVDbVd4dVVVMWgwQ0k4b1lUcHpaeVo5Yk9hNEhmdwJOdzBWWWNuOXpTbUlOMmJIR0dkeXMxNXR2dm9MRWgtQ2R5QjFDS09UbElQS0FfdWRIRlRHaGdVdWNKTHhiNnhJLWd5RngxdG1TWlNadDBwQV9LRW0yclcyaFVmQVNzYW9kOG1pZ19ucmlTWjVvdEZUbg?oc=5",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
+    },
+    {
+      "id": "9571b610-c437-4f33-8137-6121290bcf60",
+      "date": "2026-05-23",
+      "entity": "Viral Cockroach Janta Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMi8AJBVV95cUxNa3BUTEF5U1ZlVmFuN3JTcnh2a3ZWc0oxWk1DelZVM0lLV1RVc0RhZVBiQzJkSTNCV2xBbTJwN1k1M25FcEdHaXkySkY4dC1vRTBweXFGMkxWUlU1ZHUyU0FuLVU2ODlEZ1BuUUJaamxfUXJZUHR5YVVOZHo0cW14YU1rYVBQQ1R3MHpudjVoUTU5SUJZcXdqdlhVQkI4a2M1R0JRYWRSWXIxN3UzT0RoLXhwcG9sN3VUR0Vna2NvOVYyQVJyY29odDVEdjIxdDZWYXlqODFiSDZXZmFIeF9ndC1JX2l1eFdpSEhTNlNBR3V1V2RpYnJCQUwzbnJkNHJxemVzT1drNDFkSFh1VlVjYzJiaVlyOFoyZDNRRU5wcy1iR3VPVmFUbVlHY3B1MkhwSkZmQ2R6TmY0a19JbF9fS2ZJZ0cxcXJZVE1iRGR5SmY2bjMzYThlSzMzQTdYaDJXbVJLOXRpSzV5YlZxQTdkaA?oc=5",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
     },
     {
       "id": "393ae526-2712-42e0-8e97-81145208d694",
@@ -1109,6 +1113,22 @@
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
+    },
+    {
+      "id": "27ac0131-d48b-4772-99ee-04dbe227c3f8",
+      "date": "2026-05-22",
+      "entity": "@ercinvestigates",
+      "who": "Individual",
+      "platform": "Instagram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://www.instagram.com/p/DYhWi_NzEL3/",
+      "lon": 77.508,
+      "lat": 28.622,
+      "loc_source": "central"
     },
     {
       "id": "e6664f73-e251-4e3a-93a1-5eec873396fd",
@@ -1287,22 +1307,6 @@
       "loc_source": "unknown"
     },
     {
-      "id": "18953be6-6cff-4818-ae5c-0aa7e056fb78",
-      "date": "2026-05-20",
-      "entity": "Cockroach Janata Party",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Challenged",
-      "sector": "Other",
-      "action": "Account withheld in India",
-      "disclosed": false,
-      "url": "https://www.thehindu.com/news/national/cockroach-janata-partys-x-handle-withheld-founder-starts-new-account/article71006016.ece",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
       "id": "62820549-c1cf-40d8-95bc-792d67dae331",
       "date": "2026-05-20",
       "entity": "Cockroach Janta Party",
@@ -1314,6 +1318,22 @@
       "action": "Account withheld in India",
       "disclosed": false,
       "url": "https://www.medianama.com/2026/05/223-x-withholds-cockroach-janta-party-account-india-days-after-launch/",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
+    },
+    {
+      "id": "18953be6-6cff-4818-ae5c-0aa7e056fb78",
+      "date": "2026-05-20",
+      "entity": "Cockroach Janata Party",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Challenged",
+      "sector": "Other",
+      "action": "Account withheld in India",
+      "disclosed": false,
+      "url": "https://www.thehindu.com/news/national/cockroach-janata-partys-x-handle-withheld-founder-starts-new-account/article71006016.ece",
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
@@ -1333,22 +1353,6 @@
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
-    },
-    {
-      "id": "ec69982a-2fe5-4550-85d4-50a2faec39d8",
-      "date": "2026-05-17",
-      "entity": "@yuva_aas",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/yuva_aas/status/2055885037325971671",
-      "lon": 78.707,
-      "lat": 17.113,
-      "loc_source": "issuer_state"
     },
     {
       "id": "4dce5bec-74fb-49eb-9586-b5923f657431",
@@ -1495,22 +1499,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "6eff9d6e-1f35-4e92-9a68-daac9cfe91d6",
-      "date": "2026-05-17",
-      "entity": "@Swaleha_2",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/Swaleha_202/status/2055915655657054628",
-      "lon": 78.066,
-      "lat": 17.413,
-      "loc_source": "issuer_state"
-    },
-    {
       "id": "6ce61830-cb67-4dec-82cc-3114615a0a91",
       "date": "2026-05-17",
       "entity": "Iltija Mufti",
@@ -1527,6 +1515,22 @@
       "loc_source": "unknown"
     },
     {
+      "id": "6eff9d6e-1f35-4e92-9a68-daac9cfe91d6",
+      "date": "2026-05-17",
+      "entity": "@Swaleha_2",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/Swaleha_202/status/2055915655657054628",
+      "lon": 78.066,
+      "lat": 17.413,
+      "loc_source": "issuer_state"
+    },
+    {
       "id": "7b384407-81a6-43a3-be87-e8dda7e97d03",
       "date": "2026-05-17",
       "entity": "@Murad_Siddiqui2",
@@ -1540,6 +1544,22 @@
       "url": "https://x.com/Murad_20Siddiqui2/status/2055892386598035569",
       "lon": 78.482,
       "lat": 17.78,
+      "loc_source": "issuer_state"
+    },
+    {
+      "id": "ec69982a-2fe5-4550-85d4-50a2faec39d8",
+      "date": "2026-05-17",
+      "entity": "@yuva_aas",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/yuva_aas/status/2055885037325971671",
+      "lon": 78.707,
+      "lat": 17.113,
       "loc_source": "issuer_state"
     },
     {
@@ -2007,22 +2027,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "5d4868ff-5709-4181-9efe-e3b229aeceb8",
-      "date": "2026-05-08",
-      "entity": "vidsrc.icu",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Court Order",
-      "status": "Active",
-      "sector": "Entertainment / OTT",
-      "action": "Access blocked",
-      "disclosed": true,
-      "url": "https://delhihighcourt.nic.in/app/showlogo/1778511305_b9d2b6189ce80903_594_4922026.pdf/2026",
-      "lon": 77.161,
-      "lat": 28.898,
-      "loc_source": "issuer_state"
-    },
-    {
       "id": "b30aa378-608a-4586-882b-d512a5bf2767",
       "date": "2026-05-08",
       "entity": "@MaridhasAnswers",
@@ -2036,6 +2040,22 @@
       "url": "https://x.com/MaridhasAnswers/status/2052679105506938953",
       "lon": 79.821,
       "lat": 13.222,
+      "loc_source": "issuer_state"
+    },
+    {
+      "id": "5d4868ff-5709-4181-9efe-e3b229aeceb8",
+      "date": "2026-05-08",
+      "entity": "vidsrc.icu",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Court Order",
+      "status": "Active",
+      "sector": "Entertainment / OTT",
+      "action": "Access blocked",
+      "disclosed": true,
+      "url": "https://delhihighcourt.nic.in/app/showlogo/1778511305_b9d2b6189ce80903_594_4922026.pdf/2026",
+      "lon": 77.161,
+      "lat": 28.898,
       "loc_source": "issuer_state"
     },
     {
@@ -2279,22 +2299,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "273ccaa0-b37d-4359-80d2-0524d34a2689",
-      "date": "2026-04-28",
-      "entity": "Reuters",
-      "who": "Media Outlet",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Unknown",
-      "sector": "News Media",
-      "action": "Account blocked",
-      "disclosed": false,
-      "url": "https://news.google.com/rss/articles/CBMi9gJBVV95cUxNcHpCaHFmRDl2cENldU1aMXZ2RUkwekZwXzNUUjdpSWFJb29nQ2szUmw0S3dqWFh0Sk41TUo4Q2Vmdw0KPHRhcmdldD5yYXBJX2R0Yk5qVVlEOWxBaUNQbVlUTWJMbERDczU0SlYyQzlIT2R6MkZ3S29MWHlnNVF3eTRNWU5Yclp6TmRBYTBfZUNnT0pILVhKZnRWQl84MzUwM2JwbmhPaXFZRzRVTHBlbE5nMHp6UE9ZbjlxemFmdXpVbjltUWMwLWNqeVYwNE9Tc2FkM3NuMDNhWjQ1MmdhSXJVc2JBMk5KckwxVUxTajJIMEFwQmE0c2g4TlhBOC1Ca3FJelhnOVRKWDRudEcxbGpPVFhSZXBkbkNEbFBURk9UdGJ5SlduSkRqUEhRR2lxSzlrSTlQdlNlOUFLTmYxSGt5Ymlibml3VjVicEJ0NjhkcVhFYWhlMzE4SE5fTEU2UmJ5WXc0LVJkMHRwalVGdFVsaHdWdEpNR1pfdWtGQQ?oc=5",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
       "id": "33f2340b-3b65-49d2-a799-e972267a5ccc",
       "date": "2026-04-28",
       "entity": "Ambuj Kumar, Editor of Lokhit India",
@@ -2311,17 +2315,17 @@
       "loc_source": "central_text"
     },
     {
-      "id": "97fb6e4b-35fa-4d2c-87eb-1f12ec62ae15",
-      "date": "2026-04-27",
-      "entity": "Turkish broadcaster",
+      "id": "273ccaa0-b37d-4359-80d2-0524d34a2689",
+      "date": "2026-04-28",
+      "entity": "Reuters",
       "who": "Media Outlet",
       "platform": "Twitter/X",
       "provision": "Unknown",
-      "status": "Active",
+      "status": "Unknown",
       "sector": "News Media",
       "action": "Account blocked",
       "disclosed": false,
-      "url": "https://news.google.com/rss/articles/CBMiowNBVV95cUxOX_NzWXI1Wjhfdk5kTk0xQTV1a0poR1o2c3pwaE00OXRtcTNnWlhNM2NrZ3NjZFloQkstT1F0cC0tQ0tpR0UydzU1WmgzRmJCdUtKcVVJMlZOcnZGVFQ1MllkT2xERjNhbmxGVFNNOXMzSmhiRmFQZXRfaEdwYTBoWmgxbHd1R1RndGxkM2d6aU5tUnB6VVFwUFUzc04wSjE0STF4M1JIbkI0Qk83RWF1bVpwLXFMMmFOMUFtdXJlVm1zNVdwMm5DcWV6S09KcHhpNUpZWG0yRzM4TEE1TGJ6STdyTV9RODlxcWhhb01NVVF0VzBKTVQ2NGczVGdhUGNuZkNkU0R6M0VqTTI2WTZzcnJaMUVUZTNxSnRYQ0paMlVTU0R0SjlzUko5eGUyZG9sZjhmUmtmUFhSQTZCdkFtdDJfeWtsNlFOazhoS0VsY2ZTYVZKVzRYUUFSbjlJZEFqbnBSaXRISmd5NzRCVVZIMzlRalhFcGVkckY5Rk1qc0xFbzlta28xVnlWYlp3LXpqelpSUk9KSUVlUXdVLTNBbWRhOA?oc=5",
+      "url": "https://news.google.com/rss/articles/CBMi9gJBVV95cUxNcHpCaHFmRDl2cENldU1aMXZ2RUkwekZwXzNUUjdpSWFJb29nQ2szUmw0S3dqWFh0Sk41TUo4Q2Vmdw0KPHRhcmdldD5yYXBJX2R0Yk5qVVlEOWxBaUNQbVlUTWJMbERDczU0SlYyQzlIT2R6MkZ3S29MWHlnNVF3eTRNWU5Yclp6TmRBYTBfZUNnT0pILVhKZnRWQl84MzUwM2JwbmhPaXFZRzRVTHBlbE5nMHp6UE9ZbjlxemFmdXpVbjltUWMwLWNqeVYwNE9Tc2FkM3NuMDNhWjQ1MmdhSXJVc2JBMk5KckwxVUxTajJIMEFwQmE0c2g4TlhBOC1Ca3FJelhnOVRKWDRudEcxbGpPVFhSZXBkbkNEbFBURk9UdGJ5SlduSkRqUEhRR2lxSzlrSTlQdlNlOUFLTmYxSGt5Ymlibml3VjVicEJ0NjhkcVhFYWhlMzE4SE5fTEU2UmJ5WXc0LVJkMHRwalVGdFVsaHdWdEpNR1pfdWtGQQ?oc=5",
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
@@ -2338,6 +2342,22 @@
       "action": "Account blocked",
       "disclosed": false,
       "url": "https://news.google.com/rss/articles/CBMi9gJBVV95cUxNcHpCaHFmRDl2cENldU1aMXZ2RUkwekZwXzNUUjdpSWFJb29nQ2szUmw0S3dqWFh0Sk41TUo4Q2Vmdw1wYXBJX2R0Yk5qVVlEOWxBaUNQbVlUTWJMbERDczU0SlYyQzlIT2R6MkZ3S29MWHlnNVF3eTRNWU5Yclp6TmRBYTBfZUNnT0pILVhKZnRWQl84MzUwM2JwbmhPaXFZRzRVTHBlbE5nMHp6UE9ZbjlxemFmdXpVbjltUWMwLWNqeVYwNE9Tc2FkM3NuMDNhWjQ1MmdhSXJVc2JBMk5KckwxVUxTajJIMEFwQmE0c2g4TlhBOC1Ca3FJelhnOVRKWDRudEcxbGpPVFhSZXBkbkNEbFBURk9UdGJ5SlduSkRqUEhRR2lxSzlrSTlQdlNlOUFLTmYxSGt5Ymlibml3VjVicEJ0NjhkcVhFYWhlMzE4SE5fTEU2UmJ5WXc0LVJkMHRwalVGdFVsaHdWdEpNR1pfdWtGQQ?oc=5",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
+    },
+    {
+      "id": "97fb6e4b-35fa-4d2c-87eb-1f12ec62ae15",
+      "date": "2026-04-27",
+      "entity": "Turkish broadcaster",
+      "who": "Media Outlet",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "News Media",
+      "action": "Account blocked",
+      "disclosed": false,
+      "url": "https://news.google.com/rss/articles/CBMiowNBVV95cUxOX_NzWXI1Wjhfdk5kTk0xQTV1a0poR1o2c3pwaE00OXRtcTNnWlhNM2NrZ3NjZFloQkstT1F0cC0tQ0tpR0UydzU1WmgzRmJCdUtKcVVJMlZOcnZGVFQ1MllkT2xERjNhbmxGVFNNOXMzSmhiRmFQZXRfaEdwYTBoWmgxbHd1R1RndGxkM2d6aU5tUnB6VVFwUFUzc04wSjE0STF4M1JIbkI0Qk83RWF1bVpwLXFMMmFOMUFtdXJlVm1zNVdwMm5DcWV6S09KcHhpNUpZWG0yRzM4TEE1TGJ6STdyTV9RODlxcWhhb01NVVF0VzBKTVQ2NGczVGdhUGNuZkNkU0R6M0VqTTI2WTZzcnJaMUVUZTNxSnRYQ0paMlVTU0R0SjlzUko5eGUyZG9sZjhmUmtmUFhSQTZCdkFtdDJfeWtsNlFOazhoS0VsY2ZTYVZKVzRYUUFSbjlJZEFqbnBSaXRISmd5NzRCVVZIMzlRalhFcGVkckY5Rk1qc0xFbzlta28xVnlWYlp3LXpqelpSUk9KSUVlUXdVLTNBbWRhOA?oc=5",
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
@@ -2407,22 +2427,6 @@
       "loc_source": "unknown"
     },
     {
-      "id": "5657d051-1711-4ce8-afc3-181c030618d3",
-      "date": "2026-04-19",
-      "entity": "@roflgandhi2.0 Instagram Story",
-      "who": "Individual",
-      "platform": "Instagram",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/RoflGandhi_/status/2046243352136630379?s=20",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
       "id": "936d7c34-2d2b-4c57-85ab-b4cb3a5ef8da",
       "date": "2026-04-19",
       "entity": "@Indian98311912",
@@ -2437,6 +2441,22 @@
       "lon": 77.672,
       "lat": 28.775,
       "loc_source": "central"
+    },
+    {
+      "id": "5657d051-1711-4ce8-afc3-181c030618d3",
+      "date": "2026-04-19",
+      "entity": "@roflgandhi2.0 Instagram Story",
+      "who": "Individual",
+      "platform": "Instagram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/RoflGandhi_/status/2046243352136630379?s=20",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
     },
     {
       "id": "049827c9-7cb5-4848-9405-c09b6c764308",
@@ -2455,19 +2475,19 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "e974dac1-122b-497e-9805-d93b3866392c",
+      "id": "888b83ba-9073-4910-b7a8-56667b654956",
       "date": "2026-04-15",
-      "entity": "Arvind Kejriwal video with Justice Swarana Kanta Sharma",
+      "entity": "Infringing Content Karthik Aryan",
       "who": "Technology",
-      "platform": "App",
+      "platform": "Website",
       "provision": "Court Order",
       "status": "Active",
       "sector": "Technology Platform",
       "action": "Access blocked",
       "disclosed": true,
-      "url": "https://www.barandbench.com/news/delhi-high-court-asks-police-to-remove-videos-of-arvind-kejriwal-arguing-before-justice-swarana-kanta-sharma",
-      "lon": 76.887,
-      "lat": 28.784,
+      "url": "https://www.barandbench.com/news/bombay-high-court-to-order-takedown-of-content-infringing-personality-rights-of-actor-kartik-aaryan",
+      "lon": 73.199,
+      "lat": 18.977,
       "loc_source": "issuer_state"
     },
     {
@@ -2487,19 +2507,19 @@
       "loc_source": "text_scan"
     },
     {
-      "id": "888b83ba-9073-4910-b7a8-56667b654956",
+      "id": "e974dac1-122b-497e-9805-d93b3866392c",
       "date": "2026-04-15",
-      "entity": "Infringing Content Karthik Aryan",
+      "entity": "Arvind Kejriwal video with Justice Swarana Kanta Sharma",
       "who": "Technology",
-      "platform": "Website",
+      "platform": "App",
       "provision": "Court Order",
       "status": "Active",
       "sector": "Technology Platform",
       "action": "Access blocked",
       "disclosed": true,
-      "url": "https://www.barandbench.com/news/bombay-high-court-to-order-takedown-of-content-infringing-personality-rights-of-actor-kartik-aaryan",
-      "lon": 73.199,
-      "lat": 18.977,
+      "url": "https://www.barandbench.com/news/delhi-high-court-asks-police-to-remove-videos-of-arvind-kejriwal-arguing-before-justice-swarana-kanta-sharma",
+      "lon": 76.887,
+      "lat": 28.784,
       "loc_source": "issuer_state"
     },
     {
@@ -2535,22 +2555,6 @@
       "loc_source": "central"
     },
     {
-      "id": "788b0d09-6229-4183-b5b4-05f809e6d9dd",
-      "date": "2026-04-08",
-      "entity": "4PM",
-      "who": "Media Outlet",
-      "platform": "YouTube",
-      "provision": "Section 69A",
-      "status": "Active",
-      "sector": "News Media",
-      "action": "Channel blocked",
-      "disclosed": true,
-      "url": "https://www.medianama.com/2026/04/223-public-opinion-draft-it-rules-amendments-free-speech-india/",
-      "lon": 80.45,
-      "lat": 26.862,
-      "loc_source": "text_scan"
-    },
-    {
       "id": "5bcf64c3-dcbc-4bb5-9ea2-50f475d803f4",
       "date": "2026-04-08",
       "entity": "@mememandir Twitter Post",
@@ -2565,6 +2569,22 @@
       "lon": 75.694,
       "lat": 26.991,
       "loc_source": "issuer_state"
+    },
+    {
+      "id": "788b0d09-6229-4183-b5b4-05f809e6d9dd",
+      "date": "2026-04-08",
+      "entity": "4PM",
+      "who": "Media Outlet",
+      "platform": "YouTube",
+      "provision": "Section 69A",
+      "status": "Active",
+      "sector": "News Media",
+      "action": "Channel blocked",
+      "disclosed": true,
+      "url": "https://www.medianama.com/2026/04/223-public-opinion-draft-it-rules-amendments-free-speech-india/",
+      "lon": 80.45,
+      "lat": 26.862,
+      "loc_source": "text_scan"
     },
     {
       "id": "a4a264ad-bbd3-45a3-ac73-935946d41b34",
@@ -2727,9 +2747,9 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "494b8575-dda4-4e51-b085-602a0afddb47",
+      "id": "252dca30-86c7-424b-9ec8-41cc601d3a31",
       "date": "2026-03-24",
-      "entity": "@LavanyaBallal Twitter Post Withheld",
+      "entity": "@Kanchanyadav000 Twitter Post Withheld",
       "who": "Individual",
       "platform": "Twitter/X",
       "provision": "Unknown",
@@ -2737,9 +2757,9 @@
       "sector": "Technology Platform",
       "action": "Access blocked",
       "disclosed": false,
-      "url": "https://x.com/LavanyaBallal/status/2036369488912982295",
-      "lon": 77.112,
-      "lat": 9.022,
+      "url": "https://x.com/rajuparulekar/status/2036361293196669314/photo/2",
+      "lon": 76.906,
+      "lat": 8.081,
       "loc_source": "issuer_state"
     },
     {
@@ -2839,9 +2859,9 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "252dca30-86c7-424b-9ec8-41cc601d3a31",
+      "id": "494b8575-dda4-4e51-b085-602a0afddb47",
       "date": "2026-03-24",
-      "entity": "@Kanchanyadav000 Twitter Post Withheld",
+      "entity": "@LavanyaBallal Twitter Post Withheld",
       "who": "Individual",
       "platform": "Twitter/X",
       "provision": "Unknown",
@@ -2849,9 +2869,25 @@
       "sector": "Technology Platform",
       "action": "Access blocked",
       "disclosed": false,
-      "url": "https://x.com/rajuparulekar/status/2036361293196669314/photo/2",
-      "lon": 76.906,
-      "lat": 8.081,
+      "url": "https://x.com/LavanyaBallal/status/2036369488912982295",
+      "lon": 77.112,
+      "lat": 9.022,
+      "loc_source": "issuer_state"
+    },
+    {
+      "id": "1be6bf2b-0010-4b09-a51f-eee3c6984b14",
+      "date": "2026-03-24",
+      "entity": "@VinayDokania Twitter Post Withheld",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/SupriyaShrinate/status/2036333094115090514/photo/1",
+      "lon": 77.503,
+      "lat": 8.578,
       "loc_source": "issuer_state"
     },
     {
@@ -3223,9 +3259,9 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "1be6bf2b-0010-4b09-a51f-eee3c6984b14",
-      "date": "2026-03-24",
-      "entity": "@VinayDokania Twitter Post Withheld",
+      "id": "8084f92b-5686-49e7-8520-030f2e41443a",
+      "date": "2026-03-23",
+      "entity": "@protagonist_xig Tweet Withheld",
       "who": "Individual",
       "platform": "Twitter/X",
       "provision": "Unknown",
@@ -3233,9 +3269,25 @@
       "sector": "Technology Platform",
       "action": "Access blocked",
       "disclosed": false,
-      "url": "https://x.com/SupriyaShrinate/status/2036333094115090514/photo/1",
-      "lon": 77.503,
-      "lat": 8.578,
+      "url": "https://x.com/sagarikaghose/status/2035910587658727761",
+      "lon": 73.35,
+      "lat": 18.796,
+      "loc_source": "issuer_state"
+    },
+    {
+      "id": "51404f20-5c8f-4cf2-85ca-02e6ceb28cd2",
+      "date": "2026-03-23",
+      "entity": "@sagarikaghose Twitter Post Withheld",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/sagarikaghose/status/2035910587658727761",
+      "lon": 72.944,
+      "lat": 19.136,
       "loc_source": "issuer_state"
     },
     {
@@ -3271,22 +3323,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "8084f92b-5686-49e7-8520-030f2e41443a",
-      "date": "2026-03-23",
-      "entity": "@protagonist_xig Tweet Withheld",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/sagarikaghose/status/2035910587658727761",
-      "lon": 73.35,
-      "lat": 18.796,
-      "loc_source": "issuer_state"
-    },
-    {
       "id": "0692d57f-0a39-4ea4-8b89-53eeade95b4d",
       "date": "2026-03-23",
       "entity": "@SatishM93279435 Tweet Withheld",
@@ -3300,22 +3336,6 @@
       "url": "https://x.com/sagarikaghose/status/2035910587658727761",
       "lon": 73.392,
       "lat": 19.24,
-      "loc_source": "issuer_state"
-    },
-    {
-      "id": "51404f20-5c8f-4cf2-85ca-02e6ceb28cd2",
-      "date": "2026-03-23",
-      "entity": "@sagarikaghose Twitter Post Withheld",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/sagarikaghose/status/2035910587658727761",
-      "lon": 72.944,
-      "lat": 19.136,
       "loc_source": "issuer_state"
     },
     {
@@ -3335,22 +3355,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "18376f2e-3645-4350-a7e1-c635ca0d9388",
-      "date": "2026-03-20",
-      "entity": "@RoflGandhi_ Twitter Post Withheld",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/RoflGandhi_/status/2034887517737296115",
-      "lon": 76.136,
-      "lat": 27.345,
-      "loc_source": "issuer_state"
-    },
-    {
       "id": "cc236192-f93a-434c-b23b-07fd71b2baff",
       "date": "2026-03-20",
       "entity": "The Wire Youtube Video Blocked",
@@ -3367,9 +3371,25 @@
       "loc_source": "unknown"
     },
     {
-      "id": "acfb5df3-f421-4283-aae8-e4138c1ecf54",
+      "id": "18376f2e-3645-4350-a7e1-c635ca0d9388",
+      "date": "2026-03-20",
+      "entity": "@RoflGandhi_ Twitter Post Withheld",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/RoflGandhi_/status/2034887517737296115",
+      "lon": 76.136,
+      "lat": 27.345,
+      "loc_source": "issuer_state"
+    },
+    {
+      "id": "c9634b8b-f4cb-4866-b7bf-c4a731de6a1c",
       "date": "2026-03-19",
-      "entity": "@Nher_who",
+      "entity": "@ITSCK47 Twitter Account Withheld",
       "who": "Individual",
       "platform": "Twitter/X",
       "provision": "Unknown",
@@ -3377,10 +3397,10 @@
       "sector": "Technology Platform",
       "action": "Access restored",
       "disclosed": false,
-      "url": "https://x.com/iArpitSpeaks/status/2034486433365610986",
-      "lon": 77.247,
-      "lat": 28.66,
-      "loc_source": "central"
+      "url": "https://x.com/Sydusm/status/2034353757568512449/photo/2",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
     },
     {
       "id": "a6bd21a8-62a0-4b26-981d-1c842c1fd831",
@@ -3399,9 +3419,9 @@
       "loc_source": "central"
     },
     {
-      "id": "c9634b8b-f4cb-4866-b7bf-c4a731de6a1c",
+      "id": "c2bc7b2d-fef4-43f5-b508-59899ef00148",
       "date": "2026-03-19",
-      "entity": "@ITSCK47 Twitter Account Withheld",
+      "entity": "@mrjethwani_ Twitter Account Withheld",
       "who": "Individual",
       "platform": "Twitter/X",
       "provision": "Unknown",
@@ -3409,7 +3429,55 @@
       "sector": "Technology Platform",
       "action": "Access restored",
       "disclosed": false,
-      "url": "https://x.com/Sydusm/status/2034353757568512449/photo/2",
+      "url": "https://x.com/bhavi_kap/status/2034506470470132158",
+      "lon": null,
+      "lat": null,
+      "loc_source": "unknown"
+    },
+    {
+      "id": "b36fb9b6-7e24-4ecb-8591-1c372de53d6a",
+      "date": "2026-03-19",
+      "entity": "@DrNimoYadav",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Technology Platform",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://x.com/iArpitSpeaks/status/2034486433365610986",
+      "lon": 77.053,
+      "lat": 28.433,
+      "loc_source": "central"
+    },
+    {
+      "id": "acfb5df3-f421-4283-aae8-e4138c1ecf54",
+      "date": "2026-03-19",
+      "entity": "@Nher_who",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Technology Platform",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://x.com/iArpitSpeaks/status/2034486433365610986",
+      "lon": 77.247,
+      "lat": 28.66,
+      "loc_source": "central"
+    },
+    {
+      "id": "7033bb8d-f6b8-4a98-a532-2baadb8856ec",
+      "date": "2026-03-19",
+      "entity": "@indian_armada Twitter Account Withheld",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Technology Platform",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://x.com/bhavi_kap/status/2034506470470132158",
       "lon": null,
       "lat": null,
       "loc_source": "unknown"
@@ -3431,38 +3499,6 @@
       "loc_source": "central"
     },
     {
-      "id": "b36fb9b6-7e24-4ecb-8591-1c372de53d6a",
-      "date": "2026-03-19",
-      "entity": "@DrNimoYadav",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Technology Platform",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://x.com/iArpitSpeaks/status/2034486433365610986",
-      "lon": 77.053,
-      "lat": 28.433,
-      "loc_source": "central"
-    },
-    {
-      "id": "7033bb8d-f6b8-4a98-a532-2baadb8856ec",
-      "date": "2026-03-19",
-      "entity": "@indian_armada Twitter Account Withheld",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Technology Platform",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://x.com/bhavi_kap/status/2034506470470132158",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
       "id": "7ab23d4a-1075-499c-93fe-c8d7d791f1aa",
       "date": "2026-03-19",
       "entity": "@Doc_RGM",
@@ -3476,54 +3512,6 @@
       "url": "https://x.com/SupriyaShrinate/status/2034500642501534090",
       "lon": 77.06,
       "lat": 28.924,
-      "loc_source": "central"
-    },
-    {
-      "id": "c2bc7b2d-fef4-43f5-b508-59899ef00148",
-      "date": "2026-03-19",
-      "entity": "@mrjethwani_ Twitter Account Withheld",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Technology Platform",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://x.com/bhavi_kap/status/2034506470470132158",
-      "lon": null,
-      "lat": null,
-      "loc_source": "unknown"
-    },
-    {
-      "id": "2ca8510f-c23b-4462-a668-6e99b982b75f",
-      "date": "2026-03-18",
-      "entity": "Pulkit Sharma Instagram Post Withheld",
-      "who": "Individual",
-      "platform": "Instagram",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/RoflGandhi_/status/2034258043974844733",
-      "lon": 77.11,
-      "lat": 28.658,
-      "loc_source": "central"
-    },
-    {
-      "id": "4358a3ad-914e-4dca-b857-7214c460d1a0",
-      "date": "2026-03-18",
-      "entity": "@DocRGM Twitter Account Withheld",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Technology Platform",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://x.com/DocRGM/status/2034179978548679008",
-      "lon": 77.429,
-      "lat": 28.089,
       "loc_source": "central"
     },
     {
@@ -3572,6 +3560,38 @@
       "url": "https://x.com/legalshishya/status/2034113547308073472",
       "lon": 77.261,
       "lat": 28.919,
+      "loc_source": "central"
+    },
+    {
+      "id": "2ca8510f-c23b-4462-a668-6e99b982b75f",
+      "date": "2026-03-18",
+      "entity": "Pulkit Sharma Instagram Post Withheld",
+      "who": "Individual",
+      "platform": "Instagram",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/RoflGandhi_/status/2034258043974844733",
+      "lon": 77.11,
+      "lat": 28.658,
+      "loc_source": "central"
+    },
+    {
+      "id": "4358a3ad-914e-4dca-b857-7214c460d1a0",
+      "date": "2026-03-18",
+      "entity": "@DocRGM Twitter Account Withheld",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Technology Platform",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://x.com/DocRGM/status/2034179978548679008",
+      "lon": 77.429,
+      "lat": 28.089,
       "loc_source": "central"
     },
     {
@@ -3655,22 +3675,6 @@
       "loc_source": "text_scan"
     },
     {
-      "id": "a6d83685-0b18-4874-aa09-2b523ff7c24e",
-      "date": "2026-03-13",
-      "entity": "4PM News YouTube Channel Blocked",
-      "who": "Individual",
-      "platform": "YouTube",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Entertainment / OTT",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/thewire_in/status/2032440854833684825",
-      "lon": 76.672,
-      "lat": 28.362,
-      "loc_source": "central"
-    },
-    {
       "id": "9302ef36-254a-413d-9871-e56a55841791",
       "date": "2026-03-13",
       "entity": "@kachatterjee Twitter Post Withheld",
@@ -3687,19 +3691,19 @@
       "loc_source": "central"
     },
     {
-      "id": "f0cb0dea-4480-4d73-8186-cbd175d31550",
-      "date": "2026-03-11",
-      "entity": "@Gss_Views",
+      "id": "a6d83685-0b18-4874-aa09-2b523ff7c24e",
+      "date": "2026-03-13",
+      "entity": "4PM News YouTube Channel Blocked",
       "who": "Individual",
-      "platform": "Twitter/X",
+      "platform": "YouTube",
       "provision": "Unknown",
       "status": "Active",
-      "sector": "Technology Platform",
+      "sector": "Entertainment / OTT",
       "action": "Access blocked",
       "disclosed": false,
-      "url": "https://x.com/Gss_Views/status/2031479663915315516?s=20",
-      "lon": 76.963,
-      "lat": 28.749,
+      "url": "https://x.com/thewire_in/status/2032440854833684825",
+      "lon": 76.672,
+      "lat": 28.362,
       "loc_source": "central"
     },
     {
@@ -3717,6 +3721,22 @@
       "lon": 77.197,
       "lat": 28.788,
       "loc_source": "central_text"
+    },
+    {
+      "id": "f0cb0dea-4480-4d73-8186-cbd175d31550",
+      "date": "2026-03-11",
+      "entity": "@Gss_Views",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/Gss_Views/status/2031479663915315516?s=20",
+      "lon": 76.963,
+      "lat": 28.749,
+      "loc_source": "central"
     },
     {
       "id": "d96c94ee-07a3-46a6-8d91-00beeab32a60",
@@ -5063,22 +5083,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "aad47a6d-c8e5-426c-8ba9-3489892335fc",
-      "date": "2025-05-10",
-      "entity": "The Wire",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "News Media",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://thewire.in/media/statement-by-the-wire-on-the-governments-blocking-and-unblocking-of-its-website",
-      "lon": 77.495,
-      "lat": 29.112,
-      "loc_source": "central"
-    },
-    {
       "id": "c3a97087-029b-4d8d-adcc-4cfdebb8a086",
       "date": "2025-05-10",
       "entity": "Rafeal Jet Deal Story on Wire",
@@ -5095,19 +5099,19 @@
       "loc_source": "central"
     },
     {
-      "id": "c330d286-0ad8-475c-8fc5-32be216b704d",
-      "date": "2025-05-09",
-      "entity": "@AnuradhaBhasin_",
-      "who": "Individual",
-      "platform": "Twitter/X",
+      "id": "aad47a6d-c8e5-426c-8ba9-3489892335fc",
+      "date": "2025-05-10",
+      "entity": "The Wire",
+      "who": "Technology",
+      "platform": "Website",
       "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
+      "status": "Restored",
+      "sector": "News Media",
+      "action": "Access restored",
       "disclosed": false,
-      "url": "https://www.thehindu.com/news/national/x-says-it-blocked-8000-accounts-in-india-after-govts-executive-orders/article69554836.ece",
-      "lon": 77.198,
-      "lat": 28.083,
+      "url": "https://thewire.in/media/statement-by-the-wire-on-the-governments-blocking-and-unblocking-of-its-website",
+      "lon": 77.495,
+      "lat": 29.112,
       "loc_source": "central"
     },
     {
@@ -5127,6 +5131,22 @@
       "loc_source": "central"
     },
     {
+      "id": "4e9e27ba-4f14-4b1c-8e04-1216696a16da",
+      "date": "2025-05-09",
+      "entity": "@kashmirglobal",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "News Media",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/kashmirglobal",
+      "lon": 77.619,
+      "lat": 28.883,
+      "loc_source": "central"
+    },
+    {
       "id": "4e6251ee-9424-48e3-99f4-99a94ea8f77b",
       "date": "2025-05-09",
       "entity": "@RejazSydeek",
@@ -5140,6 +5160,38 @@
       "url": "https://x.com/RejazSydeek",
       "lon": 76.889,
       "lat": 28.422,
+      "loc_source": "central"
+    },
+    {
+      "id": "35984c74-759d-46f3-82d8-057d4b020800",
+      "date": "2025-05-09",
+      "entity": "@FreePressK",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://x.com/FreePressK",
+      "lon": 77.295,
+      "lat": 28.179,
+      "loc_source": "central"
+    },
+    {
+      "id": "c330d286-0ad8-475c-8fc5-32be216b704d",
+      "date": "2025-05-09",
+      "entity": "@AnuradhaBhasin_",
+      "who": "Individual",
+      "platform": "Twitter/X",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Technology Platform",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://www.thehindu.com/news/national/x-says-it-blocked-8000-accounts-in-india-after-govts-executive-orders/article69554836.ece",
+      "lon": 77.198,
+      "lat": 28.083,
       "loc_source": "central"
     },
     {
@@ -5172,38 +5224,6 @@
       "url": "https://x.com/TheKashmiriyat",
       "lon": 76.693,
       "lat": 28.441,
-      "loc_source": "central"
-    },
-    {
-      "id": "35984c74-759d-46f3-82d8-057d4b020800",
-      "date": "2025-05-09",
-      "entity": "@FreePressK",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/FreePressK",
-      "lon": 77.295,
-      "lat": 28.179,
-      "loc_source": "central"
-    },
-    {
-      "id": "4e9e27ba-4f14-4b1c-8e04-1216696a16da",
-      "date": "2025-05-09",
-      "entity": "@kashmirglobal",
-      "who": "Individual",
-      "platform": "Twitter/X",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "News Media",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://x.com/kashmirglobal",
-      "lon": 77.619,
-      "lat": 28.883,
       "loc_source": "central"
     },
     {
@@ -5271,22 +5291,6 @@
       "loc_source": "unknown"
     },
     {
-      "id": "abb3f10e-d60f-4566-94d8-5e79054271aa",
-      "date": "2024-11-24",
-      "entity": "WeDate-Dating App",
-      "who": "Technology",
-      "platform": "App",
-      "provision": "Unknown",
-      "status": "Unknown",
-      "sector": "Technology Platform",
-      "action": "Status unknown",
-      "disclosed": false,
-      "url": "https://timesofindia.indiatimes.com/business/india-business/government-blocks-access-to-43-mobile-apps/articleshow/79389252.cms",
-      "lon": 76.725,
-      "lat": 28.61,
-      "loc_source": "central"
-    },
-    {
       "id": "53d19f90-ffb5-472b-933d-eb7ec8f308a7",
       "date": "2024-11-24",
       "entity": "ChinaLove: dating app for Chinese  singles",
@@ -5300,6 +5304,22 @@
       "url": "https://timesofindia.indiatimes.com/business/india-business/government-blocks-access-to-43-mobile-apps/articleshow/79389252.cms",
       "lon": 77.498,
       "lat": 28.495,
+      "loc_source": "central"
+    },
+    {
+      "id": "abb3f10e-d60f-4566-94d8-5e79054271aa",
+      "date": "2024-11-24",
+      "entity": "WeDate-Dating App",
+      "who": "Technology",
+      "platform": "App",
+      "provision": "Unknown",
+      "status": "Unknown",
+      "sector": "Technology Platform",
+      "action": "Status unknown",
+      "disclosed": false,
+      "url": "https://timesofindia.indiatimes.com/business/india-business/government-blocks-access-to-43-mobile-apps/articleshow/79389252.cms",
+      "lon": 76.725,
+      "lat": 28.61,
       "loc_source": "central"
     },
     {
@@ -6519,22 +6539,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "14f51e16-b7fd-4882-af66-87254236e4b6",
-      "date": "2023-09-27",
-      "entity": "https://bc.game/",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Other",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://www.indiatoday.in/cities/agra/story/online-betting-agra-police-shut-down-27-gaming-websites-9-apps-2459661-2023-11-07",
-      "lon": 77.61,
-      "lat": 26.911,
-      "loc_source": "issuer_state"
-    },
-    {
       "id": "17d0e400-be81-44f6-b8d5-3da133f10583",
       "date": "2023-09-27",
       "entity": "https://bxawscf.binkaur.xyz/",
@@ -6548,6 +6552,22 @@
       "url": "https://www.indiatoday.in/cities/agra/story/online-betting-agra-police-shut-down-27-gaming-websites-9-apps-2459661-2023-11-07",
       "lon": 77.768,
       "lat": 27.525,
+      "loc_source": "issuer_state"
+    },
+    {
+      "id": "14f51e16-b7fd-4882-af66-87254236e4b6",
+      "date": "2023-09-27",
+      "entity": "https://bc.game/",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://www.indiatoday.in/cities/agra/story/online-betting-agra-police-shut-down-27-gaming-websites-9-apps-2459661-2023-11-07",
+      "lon": 77.61,
+      "lat": 26.911,
       "loc_source": "issuer_state"
     },
     {
@@ -6919,70 +6939,6 @@
       "loc_source": "issuer_state"
     },
     {
-      "id": "54b6c3ef-5705-4cf2-ad72-feaac6d10f6d",
-      "date": "2023-02-09",
-      "entity": "http://faircent.com",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Other",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
-      "lon": 77.043,
-      "lat": 28.382,
-      "loc_source": "central"
-    },
-    {
-      "id": "bd6259a4-9e3c-4abd-9d44-14c8104cf248",
-      "date": "2023-02-09",
-      "entity": "https://kreditbee.en.aptoide.com/app",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Other",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
-      "lon": 76.97,
-      "lat": 28.832,
-      "loc_source": "central"
-    },
-    {
-      "id": "5004eb0f-24f3-4aca-a4ae-28d749312389",
-      "date": "2023-02-09",
-      "entity": "http://true-balance.en.uptodown.com/",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Other",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
-      "lon": 76.783,
-      "lat": 28.551,
-      "loc_source": "central"
-    },
-    {
-      "id": "5a8f30a6-0460-454f-ae3a-b72dec5fa227",
-      "date": "2023-02-09",
-      "entity": "http://cashtm.in",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Unknown",
-      "status": "Restored",
-      "sector": "Other",
-      "action": "Access restored",
-      "disclosed": false,
-      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
-      "lon": 76.9,
-      "lat": 28.25,
-      "loc_source": "central"
-    },
-    {
       "id": "6994760f-552a-4831-b3b4-de024317c7eb",
       "date": "2023-02-09",
       "entity": "http://7movierulz.tc/",
@@ -7063,6 +7019,70 @@
       "loc_source": "central"
     },
     {
+      "id": "5004eb0f-24f3-4aca-a4ae-28d749312389",
+      "date": "2023-02-09",
+      "entity": "http://true-balance.en.uptodown.com/",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
+      "lon": 76.783,
+      "lat": 28.551,
+      "loc_source": "central"
+    },
+    {
+      "id": "54b6c3ef-5705-4cf2-ad72-feaac6d10f6d",
+      "date": "2023-02-09",
+      "entity": "http://faircent.com",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
+      "lon": 77.043,
+      "lat": 28.382,
+      "loc_source": "central"
+    },
+    {
+      "id": "5a8f30a6-0460-454f-ae3a-b72dec5fa227",
+      "date": "2023-02-09",
+      "entity": "http://cashtm.in",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Unknown",
+      "status": "Restored",
+      "sector": "Other",
+      "action": "Access restored",
+      "disclosed": false,
+      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
+      "lon": 76.9,
+      "lat": 28.25,
+      "loc_source": "central"
+    },
+    {
+      "id": "bd6259a4-9e3c-4abd-9d44-14c8104cf248",
+      "date": "2023-02-09",
+      "entity": "https://kreditbee.en.aptoide.com/app",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Other",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://www.financialexpress.com/life/technology/banned-websites-apps-given-48-hrs-to-prove-genuineness-officialnbsp/2977000/",
+      "lon": 76.97,
+      "lat": 28.832,
+      "loc_source": "central"
+    },
+    {
       "id": "cd9d1d6b-64ab-4acb-ac53-74249d290572",
       "date": "2022-11-23",
       "entity": "https://cromawholesellersltd.com/",
@@ -7095,6 +7115,22 @@
       "loc_source": "central"
     },
     {
+      "id": "8f720268-f92f-4afa-bd92-fa142ac6d1db",
+      "date": "2022-11-03",
+      "entity": "http://vipstand.se",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Court Order",
+      "status": "Restored",
+      "sector": "Entertainment / OTT",
+      "action": "Access restored",
+      "disclosed": true,
+      "url": "https://brandequity.economictimes.indiatimes.com/news/media/ipl-2022-hc-orders-blocking-of-rogue-websites-illegally-telecasting-cricket-matches/90251006",
+      "lon": 77.116,
+      "lat": 28.464,
+      "loc_source": "issuer_state"
+    },
+    {
       "id": "d6a874a8-9431-4213-9209-89cce631bed7",
       "date": "2022-11-03",
       "entity": "http://vipleague.im",
@@ -7108,6 +7144,22 @@
       "url": "https://brandequity.economictimes.indiatimes.com/news/media/ipl-2022-hc-orders-blocking-of-rogue-websites-illegally-telecasting-cricket-matches/90251006",
       "lon": 77.468,
       "lat": 28.93,
+      "loc_source": "issuer_state"
+    },
+    {
+      "id": "66ecfe52-ba68-4aae-9f7d-5b3cf949626d",
+      "date": "2022-11-03",
+      "entity": "http://t20wc.nl",
+      "who": "Technology",
+      "platform": "Website",
+      "provision": "Court Order",
+      "status": "Active",
+      "sector": "Entertainment / OTT",
+      "action": "Access blocked",
+      "disclosed": true,
+      "url": "https://brandequity.economictimes.indiatimes.com/news/media/ipl-2022-hc-orders-blocking-of-rogue-websites-illegally-telecasting-cricket-matches/90251006",
+      "lon": 77.354,
+      "lat": 28.783,
       "loc_source": "issuer_state"
     },
     {
@@ -7140,38 +7192,6 @@
       "url": "https://brandequity.economictimes.indiatimes.com/news/media/ipl-2022-hc-orders-blocking-of-rogue-websites-illegally-telecasting-cricket-matches/90251006",
       "lon": 77.521,
       "lat": 28.411,
-      "loc_source": "issuer_state"
-    },
-    {
-      "id": "8f720268-f92f-4afa-bd92-fa142ac6d1db",
-      "date": "2022-11-03",
-      "entity": "http://vipstand.se",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Court Order",
-      "status": "Restored",
-      "sector": "Entertainment / OTT",
-      "action": "Access restored",
-      "disclosed": true,
-      "url": "https://brandequity.economictimes.indiatimes.com/news/media/ipl-2022-hc-orders-blocking-of-rogue-websites-illegally-telecasting-cricket-matches/90251006",
-      "lon": 77.116,
-      "lat": 28.464,
-      "loc_source": "issuer_state"
-    },
-    {
-      "id": "66ecfe52-ba68-4aae-9f7d-5b3cf949626d",
-      "date": "2022-11-03",
-      "entity": "http://t20wc.nl",
-      "who": "Technology",
-      "platform": "Website",
-      "provision": "Court Order",
-      "status": "Active",
-      "sector": "Entertainment / OTT",
-      "action": "Access blocked",
-      "disclosed": true,
-      "url": "https://brandequity.economictimes.indiatimes.com/news/media/ipl-2022-hc-orders-blocking-of-rogue-websites-illegally-telecasting-cricket-matches/90251006",
-      "lon": 77.354,
-      "lat": 28.783,
       "loc_source": "issuer_state"
     },
     {
@@ -8391,22 +8411,6 @@
       "loc_source": "central"
     },
     {
-      "id": "05fcb99b-2411-4b10-82c7-d6dff333de1d",
-      "date": "2020-09-02",
-      "entity": "AppLock Lite",
-      "who": "Technology",
-      "platform": "App",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Technology Platform",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 77.648,
-      "lat": 28.61,
-      "loc_source": "central"
-    },
-    {
       "id": "95677af9-c126-4730-bd93-eeec20e20f84",
       "date": "2020-09-02",
       "entity": "Cyber Hunter",
@@ -8487,19 +8491,19 @@
       "loc_source": "central"
     },
     {
-      "id": "8d99d8d6-e997-48fc-9974-39e221a408c5",
+      "id": "05fcb99b-2411-4b10-82c7-d6dff333de1d",
       "date": "2020-09-02",
-      "entity": "AppLock",
+      "entity": "AppLock Lite",
       "who": "Technology",
       "platform": "App",
       "provision": "Unknown",
-      "status": "Restored",
+      "status": "Active",
       "sector": "Technology Platform",
-      "action": "Access restored",
+      "action": "Access blocked",
       "disclosed": false,
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 76.998,
-      "lat": 28.592,
+      "lon": 77.648,
+      "lat": 28.61,
       "loc_source": "central"
     },
     {
@@ -8743,19 +8747,19 @@
       "loc_source": "central"
     },
     {
-      "id": "63480797-7727-4106-84ab-db473afc98e6",
+      "id": "8d99d8d6-e997-48fc-9974-39e221a408c5",
       "date": "2020-09-02",
-      "entity": "Hide App-Hide Application Icon",
+      "entity": "AppLock",
       "who": "Technology",
       "platform": "App",
       "provision": "Unknown",
-      "status": "Unknown",
+      "status": "Restored",
       "sector": "Technology Platform",
-      "action": "Status unknown",
+      "action": "Access restored",
       "disclosed": false,
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 77.154,
-      "lat": 28.966,
+      "lon": 76.998,
+      "lat": 28.592,
       "loc_source": "central"
     },
     {
@@ -8807,6 +8811,22 @@
       "loc_source": "central"
     },
     {
+      "id": "63480797-7727-4106-84ab-db473afc98e6",
+      "date": "2020-09-02",
+      "entity": "Hide App-Hide Application Icon",
+      "who": "Technology",
+      "platform": "App",
+      "provision": "Unknown",
+      "status": "Unknown",
+      "sector": "Technology Platform",
+      "action": "Status unknown",
+      "disclosed": false,
+      "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
+      "lon": 77.154,
+      "lat": 28.966,
+      "loc_source": "central"
+    },
+    {
       "id": "c2c33c1c-9acc-4db5-ab56-14e9500e6dd4",
       "date": "2020-09-02",
       "entity": "Smart AppLock (App Protect)",
@@ -8820,22 +8840,6 @@
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
       "lon": 77.712,
       "lat": 28.394,
-      "loc_source": "central"
-    },
-    {
-      "id": "895ab6f1-9a9a-40cd-a102-fa68cdd5ea87",
-      "date": "2020-09-02",
-      "entity": "Gallery Vault - Hide Pictures  And Videos",
-      "who": "Technology",
-      "platform": "App",
-      "provision": "Unknown",
-      "status": "Unknown",
-      "sector": "Technology Platform",
-      "action": "Status unknown",
-      "disclosed": false,
-      "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 77.417,
-      "lat": 28.397,
       "loc_source": "central"
     },
     {
@@ -8951,19 +8955,19 @@
       "loc_source": "central"
     },
     {
-      "id": "267458d3-10cc-4c68-a486-68ad15e6acf6",
+      "id": "895ab6f1-9a9a-40cd-a102-fa68cdd5ea87",
       "date": "2020-09-02",
-      "entity": "Game of Sultans",
+      "entity": "Gallery Vault - Hide Pictures  And Videos",
       "who": "Technology",
       "platform": "App",
       "provision": "Unknown",
-      "status": "Active",
-      "sector": "Entertainment / OTT",
-      "action": "Access blocked",
+      "status": "Unknown",
+      "sector": "Technology Platform",
+      "action": "Status unknown",
       "disclosed": false,
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 77.428,
-      "lat": 28.72,
+      "lon": 77.417,
+      "lat": 28.397,
       "loc_source": "central"
     },
     {
@@ -9159,9 +9163,9 @@
       "loc_source": "central"
     },
     {
-      "id": "b5d2f57e-a48c-444a-a971-922ddc568053",
+      "id": "267458d3-10cc-4c68-a486-68ad15e6acf6",
       "date": "2020-09-02",
-      "entity": "Dark Tanks",
+      "entity": "Game of Sultans",
       "who": "Technology",
       "platform": "App",
       "provision": "Unknown",
@@ -9170,8 +9174,8 @@
       "action": "Access blocked",
       "disclosed": false,
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 77.676,
-      "lat": 28.918,
+      "lon": 77.428,
+      "lat": 28.72,
       "loc_source": "central"
     },
     {
@@ -9335,9 +9339,9 @@
       "loc_source": "central"
     },
     {
-      "id": "fa6b3d20-7676-47a7-9a20-3fbab841eba4",
+      "id": "b5d2f57e-a48c-444a-a971-922ddc568053",
       "date": "2020-09-02",
-      "entity": "PUBG MOBILE LITE",
+      "entity": "Dark Tanks",
       "who": "Technology",
       "platform": "App",
       "provision": "Unknown",
@@ -9346,8 +9350,8 @@
       "action": "Access blocked",
       "disclosed": false,
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 77.134,
-      "lat": 28.627,
+      "lon": 77.676,
+      "lat": 28.918,
       "loc_source": "central"
     },
     {
@@ -9364,6 +9368,22 @@
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
       "lon": 76.993,
       "lat": 28.32,
+      "loc_source": "central"
+    },
+    {
+      "id": "fa6b3d20-7676-47a7-9a20-3fbab841eba4",
+      "date": "2020-09-02",
+      "entity": "PUBG MOBILE LITE",
+      "who": "Technology",
+      "platform": "App",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Entertainment / OTT",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
+      "lon": 77.134,
+      "lat": 28.627,
       "loc_source": "central"
     },
     {
@@ -9399,22 +9419,6 @@
       "loc_source": "central"
     },
     {
-      "id": "590f5341-5056-438b-9361-91daa4bd123b",
-      "date": "2020-09-02",
-      "entity": "Ludo World-Ludo Superstar",
-      "who": "Technology",
-      "platform": "App",
-      "provision": "Unknown",
-      "status": "Active",
-      "sector": "Entertainment / OTT",
-      "action": "Access blocked",
-      "disclosed": false,
-      "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
-      "lon": 76.902,
-      "lat": 28.508,
-      "loc_source": "central"
-    },
-    {
       "id": "35c26d8f-7a4d-4df4-a41a-bfbcd54aeaf0",
       "date": "2020-09-02",
       "entity": "Gallery HD",
@@ -9444,6 +9448,22 @@
       "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
       "lon": 77.456,
       "lat": 28.898,
+      "loc_source": "central"
+    },
+    {
+      "id": "590f5341-5056-438b-9361-91daa4bd123b",
+      "date": "2020-09-02",
+      "entity": "Ludo World-Ludo Superstar",
+      "who": "Technology",
+      "platform": "App",
+      "provision": "Unknown",
+      "status": "Active",
+      "sector": "Entertainment / OTT",
+      "action": "Access blocked",
+      "disclosed": false,
+      "url": "https://www.businessinsider.in/tech/apps/news/checkout-full-list-of-118-banned-chinese-mobile-apps-in-india/articleshow/77891192.cms",
+      "lon": 76.902,
+      "lat": 28.508,
       "loc_source": "central"
     },
     {
