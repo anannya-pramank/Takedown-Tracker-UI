@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-07-16",
+    "last_updated": "2026-07-17",
     "note": "Generated from live incident data.",
     "total_documented": 683,
     "total_disclosed": 158,
@@ -324,7 +324,7 @@
     }
   },
   "litigation": {
-    "total_cases": 53,
+    "total_cases": 54,
     "by_court": [
       {
         "court": "Delhi High Court",
@@ -337,6 +337,10 @@
       {
         "court": "Bombay High Court",
         "count": 8
+      },
+      {
+        "court": "Supreme Court",
+        "count": 1
       },
       {
         "court": "Bombay HC",
@@ -359,7 +363,7 @@
         "count": 1
       }
     ],
-    "active_challenges": 36
+    "active_challenges": 37
   },
   "orders": [
     {
