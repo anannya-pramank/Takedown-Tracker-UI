@@ -1,6 +1,6 @@
 {
   "meta": {
-    "last_updated": "2026-07-22",
+    "last_updated": "2026-07-23",
     "note": "Generated from live incident data.",
     "total_documented": 683,
     "total_disclosed": 158,
@@ -324,11 +324,11 @@
     }
   },
   "litigation": {
-    "total_cases": 55,
+    "total_cases": 56,
     "by_court": [
       {
         "court": "Delhi High Court",
-        "count": 27
+        "count": 28
       },
       {
         "court": "Karnataka High Court",
